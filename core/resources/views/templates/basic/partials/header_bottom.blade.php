@@ -36,7 +36,7 @@
                 </div>
             @endif --}}
             <button class="navbar-toggler header-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span id="hiddenNav"><i class="las la-bars"></i></span>
+                <span id="hiddenNav"><i class="pas pa-bars"></i></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav-menu ms-auto align-items-lg-center">

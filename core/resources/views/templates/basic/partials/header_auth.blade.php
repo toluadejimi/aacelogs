@@ -26,7 +26,7 @@
                         <a class="nav-link" href="{{ route('user.change.password') }}">@lang('Change Password')</a>
                     </li>
 
-               
+
                     <li class="nav-item d-block">
                         <div class="accounts-buttons d-flex align-items-center">
                             <a href="{{ route('user.logout') }}" class="accounts-buttons__link btn btn--base btn--sm">
@@ -40,7 +40,7 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="products">@lang('Home')</a>
                     </li>
-                 
+
                     <li class="nav-item d-block">
                         <div class="accounts-buttons d-flex align-items-center">
                             <a href="{{ route('user.logout') }}" class="accounts-buttons__link btn btn--base btn--sm">
@@ -57,10 +57,10 @@
                         </div>
                     </li>
 
-                    
+
                     @endauth
 
-                    
+
 
 
                 </ul>

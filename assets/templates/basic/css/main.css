@@ -2690,9 +2690,7 @@ fieldset:disabled .btn {
 }
 
 @media screen and (max-width: 470px) {
-    .navbar {
-        justify-content: flex-start;
-    }
+    
 }
 
 /* ========================= Desktop Device Start ========================= */

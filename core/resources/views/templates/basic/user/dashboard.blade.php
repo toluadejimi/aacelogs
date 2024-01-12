@@ -57,7 +57,7 @@
     <div class="row d-lg-none d-block">
         <div class="col-12 ">
             <div class="show-sidebar-bar">
-                <i class="las la-bars"></i>
+                <i class="pas pa-bars"></i>
             </div>
         </div>
     </div>
