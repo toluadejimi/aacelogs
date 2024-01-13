@@ -44,7 +44,7 @@ Route::middleware('admin')->group(function () {
         Route::get('download-attachments/{file_hash}', 'downloadAttachment')->name('download.attachment');
     });
 
-    // Category  
+    // Category
     Route::controller('CategoryController')->prefix('category')->name('category.')->group(function(){
         Route::get('all', 'all')->name('all');
         Route::post('add', 'add')->name('add');
@@ -53,7 +53,7 @@ Route::middleware('admin')->group(function () {
         Route::post('delete/{id}', 'delete')->name('delete');
     });
 
-    // Product  
+    // Product
     Route::controller('ProductController')->prefix('product')->name('product.')->group(function(){
         Route::get('all', 'all')->name('all');
         Route::get('form/{id?}', 'form')->name('form');
@@ -61,6 +61,7 @@ Route::middleware('admin')->group(function () {
         Route::post('update', 'update')->name('update');
         Route::post('status/{id}', 'status')->name('status');
         Route::get('accounts/{id}', 'accounts')->name('accounts');
+        Route::get('delete/{id}', 'delete')->name('delete');
         Route::post('delete/account/{id}', 'deleteAccount')->name('delete.account');
         Route::post('update/account', 'updateAccount')->name('update.account');
         Route::get('/download/demo/txt', 'downloadDemoTxt')->name('download.demo.txt');

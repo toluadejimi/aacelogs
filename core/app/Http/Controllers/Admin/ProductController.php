@@ -18,7 +18,7 @@ class ProductController extends Controller{
         return view('admin.product.all',compact('pageTitle', 'products'));
     }
 
-    public function form($id = null){ 
+    public function form($id = null){
 
         $pageTitle = 'Add Product';
         $formAction = route('admin.product.add');
@@ -33,9 +33,9 @@ class ProductController extends Controller{
 
         return view('admin.product.form',compact('pageTitle', 'categories', 'product', 'formAction'));
     }
-    
+
     public function add(){
-		
+
 		$this->formSubmit();
 
     	$notify[] = ['success', 'Product added successfully'];
@@ -51,7 +51,7 @@ class ProductController extends Controller{
     }
 
 	private function formSubmit($update = false){
-		
+
 		$request = request();
 		$rule = [
     		'category_id' => 'required|integer',
@@ -73,19 +73,19 @@ class ProductController extends Controller{
         $category = Category::active()->findOrFail($request->category_id);
 
 		if($update){
-			$product = Product::findOrFail($request->id); 
+			$product = Product::findOrFail($request->id);
 		}else{
-			$product = new Product; 
+			$product = new Product;
 		}
 
 		$purifier = new \HTMLPurifier();
 		$description = htmlspecialchars_decode($purifier->purify($request->description));
-		
+
     	$product->category_id = $category->id;
     	$product->name = $request->name;
-    	$product->price = $request->price; 
+    	$product->price = $request->price;
     	$product->description = $description;
-		
+
         if ($request->hasFile('image')) {
             try {
                 $old = $product->image;
@@ -102,7 +102,7 @@ class ProductController extends Controller{
 			$fileContents = file_get_contents($file->path());
 			$lines = explode("\n", $fileContents);
 			$lines = array_filter($lines);
-	
+
 			foreach($lines as $line){
 				$details = new ProductDetail();
 				$details->product_id = $product->id;
@@ -114,7 +114,7 @@ class ProductController extends Controller{
 		return $product;
 	}
 
-	public function status($id){ 
+	public function status($id){
 		return Product::changeStatus($id);
 	}
 
@@ -144,6 +144,18 @@ class ProductController extends Controller{
 		$accountDetails->delete();
 
 		$notify[] = ['success', 'Account deleted successfully'];
+	    return back()->withNotify($notify);
+	}
+
+
+    public function delete($id){
+
+        $product = Product::findOrFail($id);
+		$accountDetails = ProductDetail::where('product_id', $id);
+		$accountDetails->delete();
+        $product->delete();
+
+		$notify[] = ['success', 'Product deleted successfully'];
 	    return back()->withNotify($notify);
 	}
 

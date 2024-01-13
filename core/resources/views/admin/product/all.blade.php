@@ -23,7 +23,7 @@
                                         <span class="fw-bold">{{ strLimit($product->name, 50) }}</span>
                                         <span class="small d-block">{{ __(@$product->category->name) }}</span>
                                     </td>
-                                    <td> 
+                                    <td>
                                         <span class="fw-bold">{{ showAmount($product->price) }} {{ __($general->cur_text) }}</span>
                                     </td>
                                     <td>
@@ -31,7 +31,7 @@
                                             {{ showAmount(@$product->in_stock, 0) }}
                                         </a>
                                     </td>
-                                    <td> 
+                                    <td>
                                        @php echo $product->statusBadge; @endphp
                                     </td>
                                     <td>
@@ -60,6 +60,12 @@
                                                 <a href="{{ route('admin.product.accounts', $product->id) }}" class="dropdown-item">
                                                     <i class="la la-clipboard-list"></i> @lang('Accounts')
                                                 </a>
+
+                                                <a href="{{ route('admin.product.delete', $product->id) }}" class="dropdown-item">
+                                                    <i class="la la-clipboard-basket"></i> @lang('Delete')
+                                                </a>
+
+
                                             </div>
                                         </div>
                                     </td>
@@ -100,7 +106,7 @@
         border-right: 0.3em solid transparent;
         border-bottom: 0;
         border-left: 0.3em solid transparent;
-    }                             
+    }
 </style>
 @endpush
 
@@ -111,4 +117,3 @@
     </a>
 @endpush
 
- 
