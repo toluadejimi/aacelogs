@@ -15,7 +15,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="products">@lang('Buy Logs')</a>
+                        <a class="nav-link" aria-current="page" href="/">@lang('Buy Logs')</a>
                     </li>
 
 
