@@ -11,31 +11,31 @@
                     <li class="list-group-item d-flex flex-wrap justify-content-center px-0">
                         <div class="row mt-12 text-center">
 
-                                            
+
                                 <p>Resolve pending transactions by using your bank session ID / Refrence
                                     No on your transaction
                                     recepit</p>
-                            
+
                                 <form action="resolve-now" method="POST">
                                     @csrf
-                            
+
                                     <label class="my-3">Enter Session ID</label>
                                     <div>
                                         <input type="text" name="session_id" required
                                             class="form-control" placeholder="Enter session ID">
                                         <input hidden type="text" name="trx_ref"
                                             value="{{ $trx }}" required class="form-control">
-                            
+
                                     </div>
 
 
-                                    <button type="submit" class="btn btn--base w-100 mt-3" id="btn-confirm">@lang('Contine')
+                                    <button type="submit" class="btn btn--base w-100 mt-3" id="btn-confirm">@lang('Continue')
 
 
 
                                 </form>
-                            
-                            
+
+
                         </div>
                         <strong> </strong>
                     </li>

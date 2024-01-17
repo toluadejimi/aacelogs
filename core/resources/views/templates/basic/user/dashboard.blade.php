@@ -101,6 +101,8 @@
                             <a href="{{ route('user.deposit.history') }}" class="has-anchor"></a>
                         </div>
                     </div>
+                    <a href="/" class="btn btn--warning w-100 mt-1"
+                        id="btn-confirm">@lang('Buy Log')</a>
                 </div>
             </div>
 
