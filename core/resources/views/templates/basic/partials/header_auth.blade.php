@@ -13,6 +13,12 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('user.home') }}">@lang('Dashboard')</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="products">@lang('Buy Logs')</a>
+                    </li>
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.deposit.history') }}">@lang('Payments')</a>
                     </li>
