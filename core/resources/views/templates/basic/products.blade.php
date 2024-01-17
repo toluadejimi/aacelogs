@@ -10,13 +10,14 @@
 
                         @auth
                         <a href="{{ route('user.deposit.new') }}" class="accounts-buttons__link btn btn--base btn--lg my-3">
-                                <i class="fas fa-wallet"></i> NGN {{ number_format(Auth::user()->wallet, 2) ?? "Login" }} 
+                                <i class="fas fa-wallet"></i> NGN {{ number_format(Auth::user()->balance, 2) ?? "Login" }}
+
                         </a>
                         @else
                         <a href="login" class="accounts-buttons__link btn btn--base btn--lg my-3">
-                            <i class="fas fa-wallet"></i> Login to view wallet 
+                            <i class="fas fa-wallet"></i> Login to view wallet
                         </a>
-                        
+
                         @endauth
 
 
