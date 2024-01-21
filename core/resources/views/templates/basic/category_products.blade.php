@@ -24,11 +24,11 @@
 </section>
 
 
-@if ($sections->secs != null)
+{{-- @if ($sections->secs != null)
         @foreach (json_decode($sections->secs) as $sec)
             @include($activeTemplate . 'sections.' . $sec)
         @endforeach
-    @endif
+    @endif --}}
 
 <x-purchase-modal />
 @endsection
