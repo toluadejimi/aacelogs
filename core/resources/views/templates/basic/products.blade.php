@@ -29,11 +29,7 @@
 
             <li>
 
-            <a href="https://t.me/acelogs_01" style="margin-right: 3px;" class="accounts-buttons__link btn btn--warning btn--lg my-3">
-                    <i class="fas fa-phone"></i> Support
-                </a>
-            
-            </li>
+          
 
 
            
