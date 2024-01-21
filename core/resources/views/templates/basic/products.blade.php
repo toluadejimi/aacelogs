@@ -29,7 +29,7 @@
 
                     <div class="card-body border-0">
 
-                        <h4 class="my-3 text-center"> Welcome to Ace Logstore</h4>
+                        <h4 class="my-3 text-center"> Welcome to Acelogstore</h4>
                         <p class="text-center"> The best shop for social media accounts and services.
                         </p>
 
