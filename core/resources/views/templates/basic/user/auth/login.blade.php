@@ -82,7 +82,7 @@
 
                                     <div class="col-sm-12">
                                         <div class="have-account text-center">
-                                            <p class="have-account__text">@lang('Haven\'t an account?')
+                                            <p class="have-account__text">@lang('No Account Yet?')
                                                 <a href="{{ route('user.register') }}" class="have-account__link text--base">@lang('Register')</a>
                                             </p>
                                         </div>
