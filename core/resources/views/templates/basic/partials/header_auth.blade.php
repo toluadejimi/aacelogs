@@ -15,19 +15,19 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">@lang('Buy Logs')</a>
+                        <a class="nav-link" aria-current="page" href="/">@lang('Home')</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.deposit.history') }}">@lang('Payments')</a>
+                        <a class="nav-link" href="{{ route('user.deposit.history') }}">@lang('Purchase History')</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.orders') }}">@lang('Orders')</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.profile.setting') }}">@lang('Profile')</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.change.password') }}">@lang('Change Password')</a>
                     </li>
