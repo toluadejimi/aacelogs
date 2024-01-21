@@ -123,22 +123,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-6 col-sm-6">
-                <div class="custom--card-two">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <p class="mb-0">@lang('Tickets')</p>
-                                <h4 class="my-1">{{ getAmount(@$widget['total_tickets']) }}</h4>
-                            </div>
-                            <span class="widgets-icons-2 ms-auto">
-                                <i class="fas fa-ticket-alt"></i>
-                            </span>
-                            <a href="{{ route('ticket.index') }}" class="has-anchor"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+         
         </div>
         <div class="row g-4">
             <div class="col-lg-12">
