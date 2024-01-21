@@ -1,6 +1,118 @@
 @extends($activeTemplate.'layouts.master')
 @section('content')
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Simulate a 5-second delay
+        setTimeout(function() {
+            // Remove the loader after 5 seconds
+            $('#warning').modal('show');
+
+        }, 1000);
+
+    });
+
+</script>
+
+<style>
+    .modal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1050;
+        display: none;
+        overflow: hidden;
+        outline: 0;
+        background-color: rgba(0, 0, 0, 0.343);
+    }
+
+    i {
+        padding: 2px;
+    }
+
+    .child {
+        width: 30px;
+        height: 30px;
+        /* Center horizontally*/
+        position: center;
+        margin: 0 auto;
+    }
+
+</style>
+
+
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body border-0">
+
+                <div class="card border-0">
+
+                    <div class="card-body border-0">
+
+                        <h4 class="my-3 text-center"> Welcome to Ace Logstore</h4>
+                        <p class="text-center"> The best  shop for social media accounts and services.
+                        </p>
+
+                            <p class="text-center"> DO NOT MISS AN UPDATE </p>
+                            <p class="text-center"> Join our announcement group: </p>
+
+                            <div class="d-flex justify-content-center">
+
+                                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+                                <table class="">
+                                    <tr class="mr-2">
+                                        <td class="ml-2"><a href="https://t.me/acelogs_01"><i class="fa fa-telegram" style="font-size:40px"></i></a></td>
+                                        <td><a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON"><i class="fa fa-whatsapp fa-3x" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                </table>
+
+
+                            </div>
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+                    </p>
+
+
+                    <button type="button" class="test-white btn btn--base btn-sm my-1" data-dismiss="modal">I
+                        Understand</button>
+
+
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
 <section class="catalog-section section-bg py-{{ @$categories->count() ? 120 : 60 }}">
     <div class="container">
 
@@ -43,7 +155,7 @@
 
                 <li>
                     @auth
-                    <a href="https://t.me/acelogs_01" style="margin-right: 3px;" class="accounts-buttons__link btn btn--dark btn--lg my-3">
+                    <a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON" style="margin-right: 3px;" class="accounts-buttons__link btn btn--dark btn--lg my-3">
                         <i class="fas fa-phone"></i> Whatsapp Support
                     </a>
                     @endauth
