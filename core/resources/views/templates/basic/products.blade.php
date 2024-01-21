@@ -8,34 +8,54 @@
         <div class="row">
 
 
-         <ul class="nav col-12 col-md-auto mb-2 justify-content-center  text-center mb-md-0">
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center  text-center mb-md-0">
 
-            <li class="" style="margin-right:3px;"> @auth
-                <a href="{{ route('user.deposit.new') }}" class="accounts-buttons__link btn btn--base btn--lg my-3">
-                    <i class="fas fa-wallet"></i> NGN {{ number_format(Auth::user()->balance, 2) ?? "Login" }}
-
-                </a>
-                @endauth
-            </li>
-
-            <li>
-
-             <a href="policy/rules/42" style="margin-right: 3px;" class="accounts-buttons__link btn btn--danger btn--lg my-3">
-                    <i class="fas fa-thumbs-up"></i> Rules
-                </a>
-            
-            </li>
+                <li class="" style="margin-right:3px;">
+                    @auth
+                    <a href="{{ route('user.deposit.new') }}" class="accounts-buttons__link btn btn--base btn--lg my-3">
+                        <i class="fas fa-wallet"></i> NGN {{ number_format(Auth::user()->balance, 2) ?? "Login" }}
 
 
-            <li>
+                    </a>
+                    @endauth
+                </li>
 
-          
+                <li>
+                    @auth
+                    <a href="{{ route('user.deposit.new') }}" style="margin-right: 3px;" class="accounts-buttons__link btn btn--danger btn--lg my-3">
+                        <i class="fas fa-money"></i> Fund Wallet
+                    </a>
+                    @endauth
 
 
-           
-        </ul>
+                </li>
 
-        
+
+                <li class="" style="margin-right:3px;">
+                    @auth
+                    <a href="https://t.me/acelogs_01" class="accounts-buttons__link btn btn--dark btn--lg my-3">
+                        <i class="fas fa-phone"></i>Telegam Supoort
+
+
+                    </a>
+                    @endauth
+                </li>
+
+                <li>
+                    @auth
+                    <a href="https://t.me/acelogs_01" style="margin-right: 3px;" class="accounts-buttons__link btn btn--dark btn--lg my-3">
+                        <i class="fas fa-phone"></i> Whatsapp Support
+                    </a>
+                    @endauth
+                </li>
+
+
+
+
+
+
+            </ul>
+
 
 
         </div>
@@ -43,15 +63,18 @@
 
 
 
-        <div class="card justify-content-center">
+        <div class="d-flex justify-content-between mb-3">
             <div class="card-body">
-                <div class="row">
+                <div class="row d-flex justify-content-between">
 
 
+                    <div class="mb-4">
+                        @auth
+                        <strong class="text-darkblue">Hi {{Auth::user()->username}}, </strong>
+                        <p class="text-disabled">What will you like to buy today</p>
+                        @endauth
 
-
-
-
+                    </div>
 
 
 
@@ -121,17 +144,14 @@
 
         </div>
 
-        <div class="card justify-content-center mb-5">
-
-
-
-        </div>
 
 
 
 
+        <div class="row justify-content-center mt-5">
 
-        <div class="row justify-content-center">
+
+
 
             <div class="col-xxl-10 col-xl-11">
                 @forelse($categories as $category)
@@ -162,31 +182,32 @@
         </div>
 
 
-         <style>
-        .float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #dc3545;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-        }
+        <style>
+            .float {
+                position: fixed;
+                width: 60px;
+                height: 60px;
+                bottom: 40px;
+                right: 40px;
+                background-color: #dc3545;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                font-size: 30px;
+                box-shadow: 2px 2px 3px #999;
+                z-index: 100;
+            }
 
-        .my-float {
-            margin-top: 16px;
-        }
-    </style>
+            .my-float {
+                margin-top: 16px;
+            }
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <a href="https://t.me/acelogs_01" class="float" target="_blank">
-        <i class="fa fa-comment my-float"></i>
-    </a>
+        </style>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <a href="https://t.me/acelogs_01" class="float" target="_blank">
+            <i class="fa fa-comment my-float"></i>
+        </a>
 
 
 
