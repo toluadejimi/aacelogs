@@ -35,19 +35,20 @@
 
                         <hr>
 
-                        <p class="text-center"> If you have products to sell on our website inform us and report complaints </p>
 
-                         <div class="d-flex justify-content-center my-2">
+                         <p class="text-center"> If you have products to sell on our website inform us or report complaints:
+                            </p>
+                        
+                         
+                            <p class="text-center"><a href="https://t.me/acelogs_01">Contact us on Telegram
+                               </a>
+                            </p>
 
-                            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
-                            <table class="">
-                                <tr class="mr-2">
-                                    <td class="ml-2"><a href="https://t.me/acelogs_01"><i class="fa fa-telegram" style="font-size:40px"></i></a></td>
-                                </tr>
-                            </table>
+                      </p>
+
+                         
 
 
-                        </div>
 
                         <hr>
 
@@ -55,18 +56,16 @@
                         <p class="text-center"> DO NOT MISS AN UPDATE </p>
                         <p class="text-center"> Join our announcement group: </p>
 
-                        <div class="d-flex justify-content-center">
 
-                            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
-                            <table class="">
-                                <tr class="mr-2">
-                                    <td class="ml-2"><a href="https://t.me/acelogs_01"><i class="fa fa-telegram" style="font-size:40px"></i></a></td>
-                                    <td><a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON"><i class="fa fa-whatsapp fa-3x" aria-hidden="true"></i></a></td>
-                                </tr>
-                            </table>
+                        <p class="text-center"> WhatsApp Group:<a
+                                    href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON">Join Whatsapp Group</a>
+                            </p>
 
+                           <p class="text-center"> Telegram Group:<a href="https://t.me/acelogs_01">Join Telegram
+                                    Group</a>
+                            </p>
 
-                        </div>
+                  
 
 
 
@@ -80,7 +79,7 @@
 
 
 
-                    </p>
+            
 
 
 
