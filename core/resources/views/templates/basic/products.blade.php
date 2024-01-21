@@ -61,7 +61,7 @@
                                     href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON">Join Whatsapp Group</a>
                             </p>
 
-                           <p class="text-center"> Telegram Group:<a href="https://t.me/acelogs_01">Join Telegram
+                           <p class="text-center"> Telegram Group:<a href="https://t.me/ACELOGSTORE01">Join Telegram
                                     Group</a>
                             </p>
 
@@ -139,7 +139,7 @@
 
                 <li class="" style="margin-right:3px;">
                     @auth
-                    <a href="https://t.me/acelogs_01" class="accounts-buttons__link btn btn--dark btn--lg my-3">
+                    <a href="https://t.me/ACELOGSTORE01" class="accounts-buttons__link btn btn--dark btn--lg my-3">
                         <i class="fas fa-phone"></i>Telegam Supoort
 
 
