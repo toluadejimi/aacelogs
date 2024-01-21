@@ -20,10 +20,10 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.deposit.history') }}">@lang('Purchase History')</a>
+                        <a class="nav-link" href="{{ route('user.deposit.history') }}">@lang('Payment History')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.orders') }}">@lang('Orders')</a>
+                        <a class="nav-link" href="{{ route('user.orders') }}">@lang('Purchase History')</a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.profile.setting') }}">@lang('Profile')</a>
