@@ -33,6 +33,25 @@
                         <p class="text-center"> The best shop for social media accounts and services.
                         </p>
 
+                        <hr>
+
+                        <p class="text-center"> If you have products to sell on our website inform us and report complaints </p>
+
+                         <div class="d-flex justify-content-center my-2">
+
+                            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+                            <table class="">
+                                <tr class="mr-2">
+                                    <td class="ml-2"><a href="https://t.me/acelogs_01"><i class="fa fa-telegram" style="font-size:40px"></i></a></td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+
+                        <hr>
+
+
                         <p class="text-center"> DO NOT MISS AN UPDATE </p>
                         <p class="text-center"> Join our announcement group: </p>
 
