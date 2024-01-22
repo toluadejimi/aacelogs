@@ -29,7 +29,7 @@
         <div class="col-4">
             <div class="catalog-item__info d-flex align-items-center">
                
-                               <p class="catalog-item__instock">@lang('In Stock'): <span class="pcs">{{ getAmount($product->in_stock) }} @lang('qty').</span></p>
+          <p class="catalog-item__instock">@lang('In Stock'): <span class="pcs">{{ getAmount($product->in_stock) }} @lang('pcs').</span></p>
 
             </div>
         </div>

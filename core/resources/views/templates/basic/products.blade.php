@@ -36,17 +36,17 @@
                         <hr>
 
 
-                         <p class="text-center"> If you have products to sell on our website inform us or report complaints:
-                            </p>
-                        
-                         
-                            <p class="text-center"><a href="https://t.me/acelogs_01">Contact us on Telegram
-                               </a>
-                            </p>
+                        <p class="text-center"> If you have products to sell on our website inform us or report complaints:
+                        </p>
 
-                      </p>
 
-                         
+                        <p class="text-center"><a href="https://t.me/acelogs_01">Contact us on Telegram
+                            </a>
+                        </p>
+
+                        </p>
+
+
 
 
 
@@ -57,15 +57,14 @@
                         <p class="text-center"> Join our announcement group: </p>
 
 
-                        <p class="text-center"> WhatsApp Group:<a
-                                    href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON">Join Whatsapp Group</a>
-                            </p>
+                        <p class="text-center"> WhatsApp Group:<a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON">Join Whatsapp Group</a>
+                        </p>
 
-                           <p class="text-center"> Telegram Group:<a href="https://t.me/ACELOGSTORE01">Join Telegram
-                                    Group</a>
-                            </p>
+                        <p class="text-center"> Telegram Group:<a href="https://t.me/ACELOGSTORE01">Join Telegram
+                                Group</a>
+                        </p>
 
-                  
+
 
 
 
@@ -79,7 +78,7 @@
 
 
 
-            
+
 
 
 
@@ -234,6 +233,9 @@
 
 
 
+
+
+
                 </div>
 
 
@@ -255,9 +257,6 @@
 
 
         <div class="row justify-content-center mt-5">
-
-
-
 
             <div class="col-xxl-10 col-xl-11">
                 @forelse($categories as $category)
