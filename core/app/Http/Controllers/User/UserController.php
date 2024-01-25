@@ -188,7 +188,8 @@ class UserController extends Controller
     {
         $pageTitle = 'Fund Wallet';
         $gateway_currency = GatewayCurrency::all();
-        return view($this->activeTemplate.'user.deposit_new', compact('pageTitle', 'gateway_currency'));
+        $deposits = Deposit::latest()->where('user_id', Auth::id())->with('gateway', 'order')->paginate('5');
+        return view($this->activeTemplate.'user.deposit_new', compact('pageTitle', 'gateway_currency', 'deposits'));
     }
 
     public function attachmentDownload($fileHash)
