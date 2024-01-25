@@ -39,11 +39,11 @@
             <div class="catalog-item__info d-flex align-items-center">
                
                 @if($product->in_stock)
-                <button class="btn btn--base btn--sm purchaseBtn" data-text="{{ $text }}" data-price="{{ showAmount($product->price).' '.$general->cur_text }}" data-qty="{{ getAmount($product->in_stock).' qty' }}" data-id="{{ $product->id }}" data-amount="{{ getAmount($product->price) }}">
+                <button class="btn btn--success btn--sm purchaseBtn" data-text="{{ $text }}" data-price="{{ showAmount($product->price).' '.$general->cur_text }}" data-qty="{{ getAmount($product->in_stock).' qty' }}" data-id="{{ $product->id }}" data-amount="{{ getAmount($product->price) }}">
                     <i class="las la-shopping-cart"></i> @lang('Buy Now')
                 </button>
                 @else
-                <button class="btn btn--base btn--sm no-drop" disabled>
+                <button class="btn btn--success btn--sm no-drop" disabled>
                     <i class="las la-shopping-cart"></i> @lang('Buy Now')
                 </button>
                 @endif
