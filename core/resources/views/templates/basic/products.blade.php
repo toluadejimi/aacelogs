@@ -136,24 +136,7 @@
                 </li>
 
 
-                <li class="" style="margin-right:3px;">
-                    @auth
-                    <a href="https://t.me/ACELOGSTORE01" class="accounts-buttons__link btn btn--dark btn--lg my-3">
-                        <i class="fas fa-phone"></i>Telegam Supoort
-
-
-                    </a>
-                    @endauth
-                </li>
-
-                <li>
-                    @auth
-                    <a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON" style="margin-right: 3px;" class="accounts-buttons__link btn btn--dark btn--lg my-3">
-                        <i class="fas fa-phone"></i> Whatsapp Support
-                    </a>
-                    @endauth
-                </li>
-
+              
 
 
 
@@ -310,9 +293,37 @@
         </style>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <a href="https://t.me/acelogs_01" class="float" target="_blank">
+        <a href="https://t.me/ACELOGSTORE01" class="float" target="_blank">
             <i class="fa fa-comment my-float"></i>
         </a>
+
+
+
+        <style>
+        .float2 {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            left: 40px;
+            background-color: #1ea42a;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .my-float2 {
+            margin-top: 16px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON" class="float2" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
 
 
 
