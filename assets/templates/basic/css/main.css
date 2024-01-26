@@ -1107,7 +1107,7 @@ p {
 @media screen and (max-width: 991px) {
     .btn {
         padding: 15px 32px;
-        font-size: 0.875rem;
+        font-size: 9px;
     }
 }
 
@@ -1884,14 +1884,14 @@ fieldset:disabled .btn {
 
 .table thead tr th {
     text-align: center;
-    padding: 15px 20px;
+    padding: 12px 0px;
     color: hsl(var(--white));
     font-family: var(--heading-font);
-    font-weight: 600;
-    border-bottom: 0;
-    max-width: 170px;
+    font-weight: 100;
+    max-width: 187px;
     border: 1px solid hsl(var(--black)/0.08);
     background-color: hsl(var(--heading-color));
+    font-size: 10px;
 }
 
 .table thead tr th:not(:first-child) {
@@ -1927,6 +1927,7 @@ fieldset:disabled .btn {
 
 .table tbody tr:last-child td:first-child {
     border-radius: 0px 0 0 6px;
+    font-size: 10px;
 }
 
 .table tbody tr:last-child td:last-child {
@@ -1936,15 +1937,16 @@ fieldset:disabled .btn {
 .table tbody tr td {
     text-align: center;
     vertical-align: middle;
-    padding: 10px 15px;
+    padding: 12px 8px;
     border-width: 1px;
     border: 0;
     font-family: var(--heading-font);
     color: hsl(var(--black)/0.7);
-    font-weight: 500;
+    font-weight: 100;
     max-width: 170px;
     border: 0;
     border-bottom: 1px solid hsl(var(--black)/0.08);
+    font-size: 10px;
 }
 
 .table tbody tr td::before {
@@ -1960,6 +1962,7 @@ fieldset:disabled .btn {
 .table tbody tr td:first-child {
     text-align: left;
     border-left: 1px solid hsl(var(--black)/0.08);
+    font-size: 10px;
 }
 
 .table tbody tr td:last-child {
@@ -5503,4 +5506,16 @@ label.required:after {
     .navbar .search-box-popup-btn.change-icon i::before {
         content: '\f00d';
     }
+
+
+}
+
+
+.heading {
+    font-size: 12px;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 8px 
+
 }

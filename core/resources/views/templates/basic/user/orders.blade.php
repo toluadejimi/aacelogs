@@ -14,15 +14,15 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 p-3">
         <div class="table-responsive">
-            <table class="table table--responsive--md custom--table">
+            <table class="table table">
                 <thead>
                     <tr>
-                        <th>@lang('Order_ID')</th>
+                        <th>@lang('ID')</th>
                         <th>@lang('Ordered At')</th>
                         <th>@lang('Amount')</th>
-                        <th>@lang('Quantity')</th>
+                        <th>@lang('Qty')</th>
                         <th>@lang('Details')</th>
                     </tr>
                 </thead>
@@ -39,17 +39,11 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="td-wrapper">
-                                    {{ showDateTime($order->created_at) }}<br>{{ diffForHumans($order->created_at) }}
-                                </div>
+                                {{ diffForHumans($order->created_at) }}
                             </td>
                             <td>
-                                <div class="td-wrapper">
-                                    <span class="d-block">{{ $qty }} @lang('Qty') x {{ showAmount($perUnitPrice) }} {{ __($general->cur_text) }}</span>
-                                    <span class="fw-bold">
+                               
                                         {{showAmount($order->total_amount)}} {{ __($general->cur_text) }}
-                                    </span>
-                                </div>
                             </td>
                             <td>
                                 <span>{{ @$order->orderItems->count() }}</span>

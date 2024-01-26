@@ -16,86 +16,54 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="table-responsive">
-            <table class="table table--responsive--lg custom--table">
+          <div class="table-responsive">
+            <table class="table">
+
                 <thead>
                     <tr>
-                        <th>@lang('Gateway | Trx')</th>
-                        <th>@lang('Initiated')</th>
+                        <th>@lang('Trx')</th>
+                        <th>@lang('Time')</th>
                         <th>@lang('Amount')</th>
                         <th>@lang('Status')</th>
+                        <th>@lang('Action')</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($deposits as $deposit)
-                        <tr>
-                            <td>
-                                <div class="td-wrapper">
-                                    <span class="title d-block">{{ __($deposit->gateway?->name) }}</span>
-                                    <span class="info"> {{ $deposit->trx }} </span>
-                                </div>
-                            </td>
+                    <tr>
+                        <td>
+                            <span class="info"> {{ $deposit->trx }} </span>
+                        </td>
 
-                            <td>
-                                <div class="td-wrapper">
-                                    <span class="d-block">{{ showDateTime($deposit->created_at) }}</span>
-                                    <span class="">{{ diffForHumans($deposit->created_at) }}</span>
-                                </div>
-                                
-                            </td>
-                            <td>
-                                <div class="td-wrapper">
-                                    <span class="">
-                                        {{ __($general->cur_sym) }}{{ showAmount($deposit->amount) }} + <span class="text--base" title="@lang('charge')">{{ showAmount($deposit->charge) }} </span>
-                                    </span>
-                                    <strong class="d-block" title="@lang('Amount with charge')">
-                                        {{ showAmount($deposit->amount + $deposit->charge) }}
-                                        {{ __($general->cur_text) }}
-                                    </strong>
-                                </div>
-                            </td>
-                            {{-- <td>
-                                <div class="td-wrapper">
-                                    <span>
-                                        1 {{ __($general->cur_text) }} = {{ showAmount($deposit->rate) }}
-                                        {{ __($deposit->method_currency) }}
-                                    </span>
-                                    <strong class="d-block">{{ showAmount($deposit->final_amo) }} {{ __($deposit->method_currency) }}</strong>
-                                </div>
-                            </td> --}}
-                            <td>
-                                @php echo $deposit->statusBadge @endphp
-                            </td>
-                            @php
-                                $details = $deposit->detail != null ? json_encode($deposit->detail) : null;
-                            @endphp
-                            {{-- <td>
-                                <div class="action-buttons">
-                                    @if ($deposit->order->status == Status::ORDER_PAID)
-                                        <a href="{{ route('user.orders', ['search' => $deposit->trx]) }}"
-                                            title="@lang('Order Details')"
-                                            class="action-btn btn btn--dark btn--sm">
-                                            <i class="fas fa-laptop-medical"></i>
-                                        </a>
-                                    @else
-                                        <button class="action-btn btn btn--dark btn--sm" disabled title="@lang('Order Details')">
-                                            <i class="fas fa-laptop-medical"></i>
-                                        </button>
-                                    @endif
-                                    <a href="javascript:void(0)"
-                                        title="@lang('Details')"
-                                        class="action-btn btn btn--base btn--sm @if ($deposit->method_code >= 1000) detailBtn @else disabled @endif"
-                                        @if ($deposit->method_code >= 1000) data-info="{{ $details }}" @endif
-                                        @if ($deposit->status == Status::PAYMENT_REJECT) data-admin_feedback="{{ $deposit->admin_feedback }}" @endif>
-                                        <i class="fa fa-desktop"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr> --}}
+                        <td>
+                            <span class="">{{ diffForHumans($deposit->created_at) }}</span>
+                        </td>
+                        <td>
+
+                            {{ __($general->cur_sym) }}{{ showAmount($deposit->amount) }}
+                        </td>
+
+                        <td>
+                            @php echo $deposit->statusBadge @endphp
+                        </td>
+                        @php
+                        $details = $deposit->detail != null ? json_encode($deposit->detail) : null;
+                        @endphp
+                        <td>
+                            <div class="action-buttons">
+                                @if ($deposit->status == 0)
+                                <a href="/user/resolve-deposit?trx={{ $deposit->trx }}" class="btn btn-sm btn-danger" type="button">Resolve</button>
+                                 @endif
+
+                        </td>
+                       
+
+
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="100%" class="text-center">{{ __($emptyMessage) }}</td>
-                        </tr>
+                    <tr>
+                        <td colspan="100%" class="text-center">{{ __($emptyMessage) }}</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

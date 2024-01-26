@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive">
-            <table class="table table--responsive--md custom--table">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>@lang('SL')</th>
