@@ -26,16 +26,16 @@
                                 <div class="share-sell d-flex justify-content-between">
                                     <div class="selling-card">
                                         @if ($product->in_stock)
-                                            <button class="btn btn--base purchaseBtn" data-text="{{ $product->name . ' | ' . strLimit(strip_tags($product->description), 270) }}" data-price="{{ showAmount($product->price) . ' ' . $general->cur_text }}" data-qty="{{ getAmount($product->in_stock) . ' qty' }}" data-id="{{ $product->id }}" data-amount="{{ getAmount($product->price) }}">
-                                                <i class="las la-cart-plus"></i> @lang('Purchase Now')
+                                            <button class="btn btn--base purchaseBtn" data-text="{{ $product->name . ' | ' . strLimit(strip_tags($product->description), 270) }}" data-price="{{ showAmount($product->price) . ' ' . $general->cur_text }}" data-qty="{{ getAmount($product->in_stock) . ' pcs' }}" data-id="{{ $product->id }}" data-amount="{{ getAmount($product->price) }}">
+                                                <i class="las la-cart-plus"></i> @lang('Buy Now')
                                             </button>
                                         @else
                                             <button class="btn btn--base mt-2 no-drop" disabled>
-                                                <i class="las la-cart-plus"></i> @lang('Purchase Now')
+                                                <i class="las la-cart-plus"></i> @lang('Buy Now')
                                             </button>
                                         @endif
                                     </div>
-                                    <div class="blog-details__share mt-4 d-flex align-items-center flex-wrap">
+                                    {{-- <div class="blog-details__share mt-4 d-flex align-items-center flex-wrap">
                                         <h6 class="social-share__title mb-0 me-sm-3 me-1 d-inline-block">@lang('Share'):</h6>
                                         <ul class="social-list">
                                             <li class="social-list__item"><a class="social-list__link flex-center" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"><i class="fab fa-facebook-f"></i></a>
@@ -45,7 +45,7 @@
                                             <li class="social-list__item"><a class="social-list__link flex-center" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ urlencode(url()->current()) }}&amp;title=my share text&amp;summary=dit is de linkedin summary"> <i class="fab fa-linkedin-in"></i></a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
 
