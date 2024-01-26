@@ -190,7 +190,7 @@
                     @endforeach
 
 
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2 mb-3">
                         <a href="{{ route('category.products', ['search'=>request()->search, 'slug'=>slug($category->name), 'id'=>$category->id]) }}" class="btn btn--base btn-block --base btn--sm">
                             @lang('View All')
                         </a> </div>
