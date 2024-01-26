@@ -181,8 +181,8 @@
                 @php
                 $products = $category->products;
                 @endphp
-                <div class="catalog-item-wrapper">
-                    <div class="d-grid gap-2">
+                <div class="catalog-item-wrapper mb-2">
+                    <div class="d-grid gap-2 mb-2">
                         <span class="heading">{{ __($category->name) }}</span>
                     </div>
                     @foreach($products->take(5) as $product)
