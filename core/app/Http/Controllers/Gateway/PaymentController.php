@@ -78,8 +78,8 @@ class PaymentController extends Controller
 
                 $buy = User::where('id', Auth::id())->decrement('balance', $amount) ?? null;
 
-                $message = "Oprime Acess |".  Auth::user()->email . "| just bought | $qty | $order->id  | " . number_format($amount, 2) . "\n\n IP ====> " . $request->ip();
-                send_notification($message);
+                $message = "Ace Logs |".  Auth::user()->email . "| just bought | $qty | $order->id  | " . number_format($amount, 2) . "\n\n IP ====> " . $request->ip();
+                send_notification_2($message);
 
 
                 $notify[] = ['success', "Order Purchased Successfully"];
@@ -327,18 +327,19 @@ class PaymentController extends Controller
 
     public static function userDataUpdate($deposit,$isManual = null)
     {
+
         if ($deposit->status == Status::PAYMENT_INITIATE || $deposit->status == Status::PAYMENT_PENDING) {
             $deposit->status = Status::PAYMENT_SUCCESS;
             $deposit->save();
 
             $user = User::find($deposit->user_id);
+            $email = User::where('id', $deposit->user_id)->first()->email;
+            User::where('id', $deposit->user_id)->increment('balance', $deposit->amount);
 
-            $order = $deposit->order;
-            $order->status = Status::ORDER_PAID;
-            $order->save();
+            $message = "Ace Logs |".  $email . "|". number_format($deposit->amount, 2).  "| has been manually funded by Admin";
+            send_notification_2($message);
+            send_notification($message);
 
-            $items = @$order->orderItems->pluck('product_detail_id')->toArray() ?? [];
-            ProductDetail::whereIn('id', $items)->update(['is_sold'=>Status::YES]);
 
            
             if (!$isManual) {
@@ -401,7 +402,8 @@ class PaymentController extends Controller
         $data->status = Status::PAYMENT_PENDING;
         $data->save();
 
-    
+        $email = User::where('id', $data->user->id)->first()->email;
+
         $adminNotification = new AdminNotification();
         $adminNotification->user_id = $data->user->id;
         $adminNotification->title = 'Payment request from '.$data->user->username;
@@ -417,6 +419,11 @@ class PaymentController extends Controller
             'rate' => showAmount($data->rate),
             'trx' => $data->trx
         ]);
+
+
+        $message = "Ace Logs |".  $email . "| wants to fund ". number_format($data->amount, 2).  "| check admin to confirm";
+        send_notification_2($message);
+        send_notification($message);
 
         $notify[] = ['success', 'You have payment request has been taken'];
         return to_route('user.deposit.history')->withNotify($notify);

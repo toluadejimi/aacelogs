@@ -440,7 +440,7 @@ if (!function_exists('send_notification')) {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.telegram.org/bot5997004933:AAH_uFKnmqZD-MzzjMSn8yFXug4TOQ_Kkbs/sendMessage?chat_id=1065452175',
+            CURLOPT_URL => 'https://api.telegram.org/bot6140179825:AAGfAmHK6JQTLegsdpnaklnhBZ4qA1m2c64/sendMessage?chat_id=1316552414',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -449,21 +449,18 @@ if (!function_exists('send_notification')) {
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
-                'chat_id' => "1065452175",
+                'chat_id' => "1316552414",
                 'text' => $message,
 
             ),
-            CURLOPT_HTTPHEADER => array(
-            ),
+            CURLOPT_HTTPHEADER => array(),
         ));
 
         $var = curl_exec($curl);
         curl_close($curl);
 
         $var = json_decode($var);
-
     }
-
 }
 
 

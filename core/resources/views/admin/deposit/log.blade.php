@@ -73,10 +73,10 @@
                                     {{ showDateTime($deposit->created_at) }}<br>{{ diffForHumans($deposit->created_at) }}
                                 </td>
                                 <td>
-                                    <span class="fw-bold">{{ $deposit->user->fullname }}</span>
+                                    <span class="fw-bold">{{ $deposit->user->fullname ?? "Name" }}</span>
                                     <br>
                                     <span class="small">
-                                    <a href="{{ appendQuery('search',@$deposit->user->username) }}"><span>@</span>{{ $deposit->user->username }}</a>
+                                    <a href="{{ appendQuery('search',@$deposit->user->username) }}"><span>@</span>{{ $deposit->user->username ?? "name" }}</a>
                                     </span>
                                 </td>
                                 <td>
