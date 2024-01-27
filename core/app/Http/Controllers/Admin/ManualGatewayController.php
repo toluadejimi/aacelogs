@@ -95,7 +95,7 @@ class ManualGatewayController extends Controller
 
 
         $singleCurrency = $method->singleCurrency;
-        $singleCurrency->name = $request->name;
+        $singleCurrency->name = "NGN";
         $singleCurrency->gateway_alias = strtolower(trim(str_replace(' ','_',$method->name)));
         $singleCurrency->currency = $request->currency;
         $singleCurrency->symbol = '';
