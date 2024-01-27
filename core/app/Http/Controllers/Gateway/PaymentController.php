@@ -401,10 +401,7 @@ class PaymentController extends Controller
         $data->status = Status::PAYMENT_PENDING;
         $data->save();
 
-        $order = $data->order;
-        $items = @$order->orderItems->pluck('product_detail_id')->toArray() ?? [];
-        ProductDetail::whereIn('id', $items)->update(['is_sold'=>Status::YES]);
-
+    
         $adminNotification = new AdminNotification();
         $adminNotification->user_id = $data->user->id;
         $adminNotification->title = 'Payment request from '.$data->user->username;
