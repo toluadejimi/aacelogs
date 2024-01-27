@@ -10,26 +10,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav-menu ms-auto align-items-lg-center">
                     @auth
+
+                         <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">@lang('🛒 Buy Account')</a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ route('user.home') }}">@lang('Dashboard')</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('user.home') }}">@lang('🏠 Dashboard')</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">@lang('Home')</a>
-                    </li>
+                   
 
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.deposit.history') }}">@lang('Payment History')</a>
-                    </li>
-                    <li class="nav-item">
+                    </li> --}}
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.orders') }}">@lang('Purchase History')</a>
-                    </li>
+                    </li> --}}
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.profile.setting') }}">@lang('Profile')</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.change.password') }}">@lang('Change Password')</a>
+                        <a class="nav-link" href="{{ route('user.change.password') }}">@lang('🔐 Change Password')</a>
                     </li>
 
 

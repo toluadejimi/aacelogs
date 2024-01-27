@@ -108,20 +108,20 @@
 
             <div class="col-4 mb-4">
                 @auth
-                <a href="{{ route('user.deposit.new') }}" class="btn btn--base btn-sm active text-small" role="button" aria-pressed="true">NGN {{ number_format(Auth::user()->balance, 2) ?? "Login" }}</a>
+                <a href="{{ route('user.deposit.new') }}" class="btn btn--base btn-sm active text-small" role="button" aria-pressed="true"> 💰 NGN {{ number_format(Auth::user()->balance, 2) ?? "Login" }}</a>
                 @endauth
             </div>
             <div class="col-4 mb-4">
                 @auth
 
-                <a href="{{ route('user.deposit.new') }}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Fund Wallet</a>
+                <a href="{{ route('user.deposit.new') }}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">💸 Fund Wallet</a>
 
                 @endauth
             </div>
 
             <div class="col-4 mb-4">
                 @auth
-                <a href="{{ route('user.orders') }}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">My Orders</a>
+                <a href="{{ route('user.orders') }}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">🛍️ My Orders</a>
                 @endauth
             </div>
 
