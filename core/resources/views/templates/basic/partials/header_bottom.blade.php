@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav-menu ms-auto align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ route('home') }}">@lang('Home')</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('home') }}">@lang('🛒 Buy Account')</a>
                     </li>
 
                     @php
