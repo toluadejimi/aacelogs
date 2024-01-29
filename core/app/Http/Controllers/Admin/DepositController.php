@@ -135,10 +135,7 @@ class DepositController extends Controller
         $deposit->status = Status::PAYMENT_REJECT;
         $deposit->save();
         
-        $order = $deposit->order;
-        $items = @$order->orderItems->pluck('product_detail_id')->toArray() ?? [];
-        ProductDetail::whereIn('id', $items)->update(['is_sold'=>Status::NO]);
-
+       
         notify($deposit->user, 'DEPOSIT_REJECT', [
             'method_name' => $deposit->gatewayCurrency()->name,
             'method_currency' => $deposit->method_currency,

@@ -66,7 +66,7 @@
 
                                     <td>
                                         <div>
-                                            <div class="fw-bold">{{ $order->deposit->trx }}</div>
+                                            <div class="fw-bold">{{ $order->deposit->trx ?? "Trx" }}</div>
                                             <a href="{{ route('admin.deposit.details', $order->deposit->id) }}">
                                                 @lang('View Details')
                                             </a>

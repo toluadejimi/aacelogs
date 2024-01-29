@@ -45,7 +45,7 @@ class ProcessController extends Controller
         if ($request->status == 'failed') {
 
             Deposit::where('trx', $request->trans_id)->update(['status' => 3]);
-            $message = "Oprime Acess |".  Auth::user()->email . "| canceled funding |";
+            $message = "Ace Logs |".  Auth::user()->email . "| canceled funding |";
             send_notification($message);
             $message = 'Transaction failed, Ref: ' . $request->trans_id;
             $notify[] = ['error', $message];
@@ -63,7 +63,7 @@ class ProcessController extends Controller
         $trxstatus = Deposit::where('trx', $request->trans_id)->first()->status ?? null;
         if ($trxstatus == 1) {
 
-            $message = "Oprime Acess |".  Auth::user()->email . "| is trying to fund  with | $request->trans_id  | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
+            $message = "Ace Logs |".  Auth::user()->email . "| is trying to fund  with | $request->trans_id  | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification($message);
             $message = 'Transaction already confirmed or not found';
             $notify[] = ['error', $message];
@@ -96,7 +96,7 @@ class ProcessController extends Controller
             Deposit::where('trx', $request->trans_id)->update(['status' => 1]);
 
 
-            $message =  "Oprime Acess |". Auth::user()->email . "| funding successful |" . number_format($amount, 2) . "\n\n IP ====> $ip" . "\n\n OrderID ====> $request->trans_id";
+            $message =  "Ace Logs |". Auth::user()->email . "| funding successful |" . number_format($amount, 2) . "\n\n IP ====> $ip" . "\n\n OrderID ====> $request->trans_id";
             send_notification($message);
 
             //PaymentController::userDataUpdate($deposit);

@@ -12,7 +12,7 @@
                     @auth
 
                          <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">@lang('🛒 Buy Account')</a>
+                        <a class="nav-link" aria-current="page" href="/">@lang('Buy Account')</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('user.home') }}">@lang('🏠 Dashboard')</a>
@@ -31,7 +31,7 @@
                         <a class="nav-link" href="{{ route('user.profile.setting') }}">@lang('Profile')</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.change.password') }}">@lang('🔐 Change Password')</a>
+                        <a class="nav-link" href="{{ route('user.change.password') }}">@lang('Change Password')</a>
                     </li>
 
 

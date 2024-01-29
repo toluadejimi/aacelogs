@@ -101,27 +101,29 @@
 
 </div>
 
-    <div class="container">
+<div class="container">
 
-      <div class="flex">
+    <div class="flex">
+
+        @auth
         <div class="row mt-5 mb-4">
 
             <div class="col-4 mb-4">
                 @auth
-                <a href="{{ route('user.deposit.new') }}" class="btn btn--base btn-sm active text-small" role="button" aria-pressed="true"> 💰 NGN {{ number_format(Auth::user()->balance, 2) ?? "Login" }}</a>
+                <a href="{{ route('user.deposit.new') }}" class="btn btn--base btn-sm active text-small" role="button" aria-pressed="true"> NGN {{ number_format(Auth::user()->balance, 2) ?? "Login" }}</a>
                 @endauth
             </div>
             <div class="col-4 mb-4">
                 @auth
 
-                <a href="{{ route('user.deposit.new') }}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">💸 Fund Wallet</a>
+                <a href="{{ route('user.deposit.new') }}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Fund Wallet</a>
 
                 @endauth
             </div>
 
             <div class="col-4 mb-4">
                 @auth
-                <a href="{{ route('user.orders') }}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">🛍️ My Orders</a>
+                <a href="{{ route('user.orders') }}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">My Orders</a>
                 @endauth
             </div>
 
@@ -134,6 +136,8 @@
 
             </div>
         </div>
+
+        @endauth
 
 
 
@@ -212,70 +216,70 @@
             </div>
         </div>
 
-        </div>
-
-
     </div>
 
-    <style>
-        .float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #dc3545;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-        }
 
-        .my-float {
-            margin-top: 16px;
-        }
+</div>
 
-    </style>
+<style>
+    .float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #dc3545;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+    }
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <a href="https://t.me/ACELOGSTORE01" class="float" target="_blank">
-        <i class="fa fa-comment my-float"></i>
-    </a>
+    .my-float {
+        margin-top: 16px;
+    }
 
+</style>
 
-
-    <style>
-        .float2 {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            left: 40px;
-            background-color: #1ea42a;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-        }
-
-        .my-float2 {
-            margin-top: 16px;
-        }
-
-    </style>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON" class="float2" target="_blank">
-        <i class="fa fa-whatsapp my-float"></i>
-    </a>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://t.me/ACELOGSTORE01" class="float" target="_blank">
+    <i class="fa fa-comment my-float"></i>
+</a>
 
 
 
-    </div>
+<style>
+    .float2 {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        left: 40px;
+        background-color: #1ea42a;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+    }
+
+    .my-float2 {
+        margin-top: 16px;
+    }
+
+</style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON" class="float2" target="_blank">
+    <i class="fa fa-whatsapp my-float"></i>
+</a>
+
+
+
+</div>
 
 
 
