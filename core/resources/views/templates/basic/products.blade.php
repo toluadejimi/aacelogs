@@ -110,20 +110,21 @@
 
             <div class="col-4 mb-4">
                 @auth
-                <a href="{{ route('user.deposit.new') }}" class="btn btn--base btn-sm active text-small" role="button" aria-pressed="true"> NGN {{ number_format(Auth::user()->balance, 2) ?? "Login" }}</a>
+ 
+                <a href="{{ route('user.deposit.new') }}" class="badge bg-secondary"> NGN {{ number_format(Auth::user()->balance, 2) ?? "Login" }}</a>
                 @endauth
             </div>
             <div class="col-4 mb-4">
                 @auth
 
-                <a href="{{ route('user.deposit.new') }}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Fund Wallet</a>
+                <a href="{{ route('user.deposit.new') }}" class="badge bg-secondary">Fund Wallet</a>
 
                 @endauth
             </div>
 
             <div class="col-4 mb-4">
                 @auth
-                <a href="{{ route('user.orders') }}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">My Orders</a>
+                <a href="{{ route('user.orders') }}" class="badge bg-secondary">My Orders</a>
                 @endauth
             </div>
 
@@ -187,7 +188,7 @@
                 @endphp
                 <div class="catalog-item-wrapper mb-2">
                     <div class="d-grid gap-2 mb-2">
-                        <span class="heading">{{ __($category->name) }}</span>
+                        <h3 class="heading">{{ __($category->name) }}</h3>
                     </div>
                     @foreach($products->take(5) as $product)
                     @include($activeTemplate.'partials/products')

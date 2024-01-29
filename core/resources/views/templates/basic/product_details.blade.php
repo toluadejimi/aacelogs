@@ -27,11 +27,11 @@
                                     <div class="selling-card">
                                         @if ($product->in_stock)
                                             <button class="btn btn--base purchaseBtn" data-text="{{ $product->name . ' | ' . strLimit(strip_tags($product->description), 270) }}" data-price="{{ showAmount($product->price) . ' ' . $general->cur_text }}" data-qty="{{ getAmount($product->in_stock) . ' pcs' }}" data-id="{{ $product->id }}" data-amount="{{ getAmount($product->price) }}">
-                                                <i class="las la-cart-plus"></i> @lang('Buy Now')
+                                                <i class="las la-cart-plus"></i> @lang('Buy')
                                             </button>
                                         @else
                                             <button class="btn btn--base mt-2 no-drop" disabled>
-                                                <i class="las la-cart-plus"></i> @lang('Buy Now')
+                                                <i class="las la-cart-plus"></i> @lang('Buy')
                                             </button>
                                         @endif
                                     </div>

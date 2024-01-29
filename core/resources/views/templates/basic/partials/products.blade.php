@@ -19,7 +19,7 @@
         <div class="col-4">
             <div class="catalog-item__info d-flex align-items-center">
                 <p class="catalog-item__price">
-                    @lang('Price'): <span class="amount">{{ $general->cur_sym }}{{ showAmount($product->price) }}</span>
+                    @lang('Price'):<br> <span class="amount">{{ $general->cur_sym }}{{ showAmount($product->price) }}</span>
                 </p>
                
             </div>
@@ -29,7 +29,7 @@
         <div class="col-4">
             <div class="catalog-item__info d-flex align-items-center">
                
-          <p class="catalog-item__instock">@lang('In Stock'): <span class="pcs">{{ getAmount($product->in_stock) }} @lang('pcs').</span></p>
+          <p class="catalog-item__instock">@lang('In Stock'):<br> <span class="pcs">{{ getAmount($product->in_stock) }} @lang('pcs').</span></p>
 
             </div>
         </div>
@@ -40,11 +40,11 @@
                
                 @if($product->in_stock)
                 <button class="btn btn--success btn--sm purchaseBtn" data-text="{{ $text }}" data-price="{{ showAmount($product->price).' '.$general->cur_text }}" data-qty="{{ getAmount($product->in_stock).' qty' }}" data-id="{{ $product->id }}" data-amount="{{ getAmount($product->price) }}">
-                    <i class="las la-shopping-cart"></i> @lang('Buy Now')
+                    <i class="las la-shopping-cart"></i> @lang('Buy')
                 </button>
                 @else
                 <button class="btn btn--success btn--sm no-drop" disabled>
-                    <i class="las la-shopping-cart"></i> @lang('Buy Now')
+                    <i class="las la-shopping-cart"></i> @lang('Buy')
                 </button>
                 @endif
             </div>
