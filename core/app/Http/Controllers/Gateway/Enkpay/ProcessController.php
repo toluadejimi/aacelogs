@@ -95,9 +95,10 @@ class ProcessController extends Controller
             User::where('id', Auth::id())->increment('balance', $amount);
             Deposit::where('trx', $request->trans_id)->update(['status' => 1]);
 
-
             $message =  "Ace Logs |". Auth::user()->email . "| funding successful |" . number_format($amount, 2) . "\n\n IP ====> $ip" . "\n\n OrderID ====> $request->trans_id";
             send_notification($message);
+            send_notification_2($message);
+
 
             //PaymentController::userDataUpdate($deposit);
 
