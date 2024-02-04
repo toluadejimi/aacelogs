@@ -70,6 +70,7 @@ return [
     */
 
     'timezone' => 'Africa/Cairo',
+    
 
 
     /*
