@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Page;
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Frontend;
@@ -262,5 +263,10 @@ class SiteController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Thank you, we will notice you our latest news']);
     }
+
+
+
+
+   
 
 }

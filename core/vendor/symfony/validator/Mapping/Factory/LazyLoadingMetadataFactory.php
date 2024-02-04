@@ -39,17 +39,17 @@ use Symfony\Component\Validator\Mapping\MetadataInterface;
  */
 class LazyLoadingMetadataFactory implements MetadataFactoryInterface
 {
-    protected $loader;
-    protected $cache;
+    protected ?LoaderInterface $loader;
+    protected ?CacheItemPoolInterface $cache;
 
     /**
      * The loaded metadata, indexed by class name.
      *
      * @var ClassMetadata[]
      */
-    protected $loadedClasses = [];
+    protected array $loadedClasses = [];
 
-    public function __construct(LoaderInterface $loader = null, CacheItemPoolInterface $cache = null)
+    public function __construct(?LoaderInterface $loader = null, ?CacheItemPoolInterface $cache = null)
     {
         $this->loader = $loader;
         $this->cache = $cache;

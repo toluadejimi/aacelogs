@@ -15,8 +15,6 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\InvalidArgumentException;
 
 /**
- * @Annotation
- *
  * @author Colin O'Dell <colinodell@gmail.com>
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
@@ -39,11 +37,6 @@ class Uuid extends Constraint
         self::INVALID_VERSION_ERROR => 'INVALID_VERSION_ERROR',
         self::INVALID_VARIANT_ERROR => 'INVALID_VARIANT_ERROR',
     ];
-
-    /**
-     * @deprecated since Symfony 6.1, use const ERROR_NAMES instead
-     */
-    protected static $errorNames = self::ERROR_NAMES;
 
     // Possible versions defined by RFC 4122
     public const V1_MAC = 1;
@@ -74,19 +67,15 @@ class Uuid extends Constraint
 
     /**
      * Message to display when validation fails.
-     *
-     * @var string
      */
-    public $message = 'This is not a valid UUID.';
+    public string $message = 'This is not a valid UUID.';
 
     /**
      * Strict mode only allows UUIDs that meet the formal definition and formatting per RFC 4122.
      *
      * Set this to `false` to allow legacy formats with different dash positioning or wrapping characters
-     *
-     * @var bool
      */
-    public $strict = true;
+    public bool $strict = true;
 
     /**
      * Array of allowed versions (see version constants above).
@@ -95,7 +84,7 @@ class Uuid extends Constraint
      *
      * @var int[]
      */
-    public $versions = self::ALL_VERSIONS;
+    public array $versions = self::ALL_VERSIONS;
 
     /** @var callable|null */
     public $normalizer;
@@ -104,12 +93,12 @@ class Uuid extends Constraint
      * @param int[]|int|null $versions
      */
     public function __construct(
-        array $options = null,
-        string $message = null,
-        array|int $versions = null,
-        bool $strict = null,
-        callable $normalizer = null,
-        array $groups = null,
+        ?array $options = null,
+        ?string $message = null,
+        array|int|null $versions = null,
+        ?bool $strict = null,
+        ?callable $normalizer = null,
+        ?array $groups = null,
         mixed $payload = null
     ) {
         parent::__construct($options, $groups, $payload);

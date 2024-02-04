@@ -11,8 +11,6 @@ Route::get('/clear', function(){
 Route::get('verify', 'Gateway\Enkpay\ProcessController@ipn')->name('enkpay');
 
 
-Route::any('e-fund',  'User\UserController@e_fund')->name('e-fund');
-Route::any('e-check',  'User\UserController@e_check')->name('e-check');
 
 
 
@@ -31,6 +29,11 @@ Route::controller('SiteController')->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/contact', 'contactSubmit');
     Route::get('/change/{lang?}', 'changeLanguage')->name('lang');
+
+
+
+
+
 
     Route::get('cookie-policy', 'cookiePolicy')->name('cookie.policy');
 

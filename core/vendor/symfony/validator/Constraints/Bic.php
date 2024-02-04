@@ -18,9 +18,6 @@ use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\LogicException;
 
 /**
- * @Annotation
- * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
- *
  * @author Michael Hirschler <michael.vhirsch@gmail.com>
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
@@ -41,17 +38,12 @@ class Bic extends Constraint
         self::INVALID_CASE_ERROR => 'INVALID_CASE_ERROR',
     ];
 
-    /**
-     * @deprecated since Symfony 6.1, use const ERROR_NAMES instead
-     */
-    protected static $errorNames = self::ERROR_NAMES;
+    public string $message = 'This is not a valid Business Identifier Code (BIC).';
+    public string $ibanMessage = 'This Business Identifier Code (BIC) is not associated with IBAN {{ iban }}.';
+    public ?string $iban = null;
+    public ?string $ibanPropertyPath = null;
 
-    public $message = 'This is not a valid Business Identifier Code (BIC).';
-    public $ibanMessage = 'This Business Identifier Code (BIC) is not associated with IBAN {{ iban }}.';
-    public $iban;
-    public $ibanPropertyPath;
-
-    public function __construct(array $options = null, string $message = null, string $iban = null, string $ibanPropertyPath = null, string $ibanMessage = null, array $groups = null, mixed $payload = null)
+    public function __construct(?array $options = null, ?string $message = null, ?string $iban = null, ?string $ibanPropertyPath = null, ?string $ibanMessage = null, ?array $groups = null, mixed $payload = null)
     {
         if (!class_exists(Countries::class)) {
             throw new LogicException('The Intl component is required to use the Bic constraint. Try running "composer require symfony/intl".');

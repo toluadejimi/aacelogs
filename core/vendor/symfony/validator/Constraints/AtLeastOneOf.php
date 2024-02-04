@@ -11,10 +11,9 @@
 
 namespace Symfony\Component\Validator\Constraints;
 
+use Symfony\Component\Validator\Constraint;
+
 /**
- * @Annotation
- * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
- *
  * @author Przemysław Bogusz <przemyslaw.bogusz@tubotax.pl>
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
@@ -26,17 +25,12 @@ class AtLeastOneOf extends Composite
         self::AT_LEAST_ONE_OF_ERROR => 'AT_LEAST_ONE_OF_ERROR',
     ];
 
-    /**
-     * @deprecated since Symfony 6.1, use const ERROR_NAMES instead
-     */
-    protected static $errorNames = self::ERROR_NAMES;
+    public array|Constraint $constraints = [];
+    public string $message = 'This value should satisfy at least one of the following constraints:';
+    public string $messageCollection = 'Each element of this collection should satisfy its own set of constraints.';
+    public bool $includeInternalMessages = true;
 
-    public $constraints = [];
-    public $message = 'This value should satisfy at least one of the following constraints:';
-    public $messageCollection = 'Each element of this collection should satisfy its own set of constraints.';
-    public $includeInternalMessages = true;
-
-    public function __construct(mixed $constraints = null, array $groups = null, mixed $payload = null, string $message = null, string $messageCollection = null, bool $includeInternalMessages = null)
+    public function __construct(mixed $constraints = null, ?array $groups = null, mixed $payload = null, ?string $message = null, ?string $messageCollection = null, ?bool $includeInternalMessages = null)
     {
         parent::__construct($constraints ?? [], $groups, $payload);
 

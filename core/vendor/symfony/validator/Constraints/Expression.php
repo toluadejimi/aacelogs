@@ -17,9 +17,6 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\LogicException;
 
 /**
- * @Annotation
- * @Target({"CLASS", "PROPERTY", "METHOD", "ANNOTATION"})
- *
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
@@ -32,24 +29,19 @@ class Expression extends Constraint
         self::EXPRESSION_FAILED_ERROR => 'EXPRESSION_FAILED_ERROR',
     ];
 
-    /**
-     * @deprecated since Symfony 6.1, use const ERROR_NAMES instead
-     */
-    protected static $errorNames = self::ERROR_NAMES;
-
-    public $message = 'This value is not valid.';
-    public $expression;
-    public $values = [];
+    public string $message = 'This value is not valid.';
+    public string|ExpressionObject|null $expression = null;
+    public array $values = [];
     public bool $negate = true;
 
     public function __construct(
         string|ExpressionObject|array|null $expression,
-        string $message = null,
-        array $values = null,
-        array $groups = null,
+        ?string $message = null,
+        ?array $values = null,
+        ?array $groups = null,
         mixed $payload = null,
         array $options = [],
-        bool $negate = null,
+        ?bool $negate = null,
     ) {
         if (!class_exists(ExpressionLanguage::class)) {
             throw new LogicException(sprintf('The "symfony/expression-language" component is required to use the "%s" constraint. Try running "composer require symfony/expression-language".', __CLASS__));

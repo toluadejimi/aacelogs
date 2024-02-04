@@ -15,9 +15,6 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\LogicException;
 
 /**
- * @Annotation
- * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
- *
  * @author Mathieu Lechat <mathieu.lechat@les-tilleuls.coop>
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
@@ -85,15 +82,15 @@ class NoSuspiciousCharacters extends Constraint
      * @param self::RESTRICTION_LEVEL_*|null  $restrictionLevel
      */
     public function __construct(
-        array $options = null,
-        string $restrictionLevelMessage = null,
-        string $invisibleMessage = null,
-        string $mixedNumbersMessage = null,
-        string $hiddenOverlayMessage = null,
-        int $checks = null,
-        int $restrictionLevel = null,
-        array $locales = null,
-        array $groups = null,
+        ?array $options = null,
+        ?string $restrictionLevelMessage = null,
+        ?string $invisibleMessage = null,
+        ?string $mixedNumbersMessage = null,
+        ?string $hiddenOverlayMessage = null,
+        ?int $checks = null,
+        ?int $restrictionLevel = null,
+        ?array $locales = null,
+        ?array $groups = null,
         mixed $payload = null
     ) {
         if (!class_exists(\Spoofchecker::class)) {
