@@ -65,9 +65,7 @@ Route::middleware('auth')->name('user.')->group(function () {
 
                 Route::any('resolve-now', 'resolve_now')->name('resolve.now');
 
-                Route::any('e-fund',  'e_fund')->name('e-fund');
-                Route::any('e-check',  'e_check')->name('e-check');
-
+            
 
 
 

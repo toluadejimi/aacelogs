@@ -11,6 +11,11 @@ Route::get('/clear', function(){
 Route::get('verify', 'Gateway\Enkpay\ProcessController@ipn')->name('enkpay');
 
 
+Route::any('e-fund',  'User\UserController@e_fund')->name('e-fund');
+Route::any('e-check',  'User\UserController@e_check')->name('e-check');
+
+
+
 // User Support Ticket
 Route::controller('TicketController')->prefix('ticket')->name('ticket.')->group(function () {
     Route::get('/', 'supportTicket')->name('index');
