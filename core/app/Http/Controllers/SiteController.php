@@ -267,6 +267,7 @@ class SiteController extends Controller
     public function e_check(request $request)
     {
 
+
         $get_user =  User::where('email', $request->email)->first() ?? null;
 
         if ($get_user == null) {
