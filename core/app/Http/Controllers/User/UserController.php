@@ -27,7 +27,7 @@ class UserController extends Controller
 
         //$latestDeposits = $user->deposits()->take(5)->get();
 
-        $latestDeposits = Deposit::latest()->where('user_id', Auth::id())->with('gateway', 'order')->orderBy('id','desc')->take(10)->get();
+        $latestDeposits = Deposit::latest()->where('user_id', Auth::id())->with('gateway', 'order')->orderBy('id', 'desc')->take(10)->get();
 
 
         return view($this->activeTemplate . 'user.dashboard', compact('pageTitle', 'user', 'widget', 'latestDeposits'));
@@ -39,23 +39,20 @@ class UserController extends Controller
         $pageTitle = 'Reslove Deposit';
         $dep = Deposit::where('trx', $request->trx)->first() ?? null;
 
-        if($dep->status == 1){
+        if ($dep->status == 1) {
             $notify[] = ['error', "This Transaction has been successful"];
             return back()->withNotify($notify);
         }
 
 
-        if($dep == null){
-                $notify[] = ['error', "Transaction has been deleted"];
-                return back()->withNotify($notify);
-        }else{
+        if ($dep == null) {
+            $notify[] = ['error', "Transaction has been deleted"];
+            return back()->withNotify($notify);
+        } else {
 
             $trx = $request->trx;
-            return view($this->activeTemplate.'user.resolve_deposit', compact('pageTitle', 'trx'));
-
+            return view($this->activeTemplate . 'user.resolve_deposit', compact('pageTitle', 'trx'));
         }
-
-
     }
 
 
@@ -114,8 +111,8 @@ class UserController extends Controller
         if ($ck_trx == 0) {
             $session_id = $request->session_id;
             if ($session_id == null) {
-            $notify[] = ['error', "session id or amount cant be empty"];
-            return back()->withNotify($notify);
+                $notify[] = ['error', "session id or amount cant be empty"];
+                return back()->withNotify($notify);
             }
 
 
@@ -159,7 +156,6 @@ class UserController extends Controller
 
                 $notify[] = ['success', "Transaction successfully Resolved, NGN $amount added to ur wallet"];
                 return redirect('user/dashboard')->withNotify($notify);
-
             }
 
             if ($status == false) {
@@ -179,8 +175,8 @@ class UserController extends Controller
     public function depositHistory(Request $request)
     {
         $pageTitle = 'Payment History';
-        $deposits = auth()->user()->deposits()->searchable(['trx'])->with('gateway', 'order')->orderBy('id','desc')->paginate(getPaginate());
-        return view($this->activeTemplate.'user.deposit_history', compact('pageTitle', 'deposits'));
+        $deposits = auth()->user()->deposits()->searchable(['trx'])->with('gateway', 'order')->orderBy('id', 'desc')->paginate(getPaginate());
+        return view($this->activeTemplate . 'user.deposit_history', compact('pageTitle', 'deposits'));
     }
 
 
@@ -189,7 +185,7 @@ class UserController extends Controller
         $pageTitle = 'Fund Wallet';
         $gateway_currency = GatewayCurrency::all();
         $deposits = Deposit::latest()->where('user_id', Auth::id())->with('gateway', 'order')->paginate('5');
-        return view($this->activeTemplate.'user.deposit_new', compact('pageTitle', 'gateway_currency', 'deposits'));
+        return view($this->activeTemplate . 'user.deposit_new', compact('pageTitle', 'gateway_currency', 'deposits'));
     }
 
     public function attachmentDownload($fileHash)
@@ -197,7 +193,7 @@ class UserController extends Controller
         $filePath = decrypt($fileHash);
         $extension = pathinfo($filePath, PATHINFO_EXTENSION);
         $general = gs();
-        $title = slug($general->site_name).'- attachments.'.$extension;
+        $title = slug($general->site_name) . '- attachments.' . $extension;
         $mimetype = mime_content_type($filePath);
         header('Content-Disposition: attachment; filename="' . $title);
         header("Content-Type: " . $mimetype);
@@ -274,24 +270,73 @@ class UserController extends Controller
         return to_route('user.products')->withNotify($notify);
     }
 
-    public function orders(){
+    public function orders()
+    {
         $pageTitle = 'Orders';
 
         $orders = Order::where('user_id', auth()->id())
             ->where('status', Status::ORDER_PAID)
             ->searchable(['deposit:trx'])
-            ->orderBy('id','desc')
+            ->orderBy('id', 'desc')
             ->with('deposit', 'orderItems')
-        ->paginate(getPaginate());
+            ->paginate(getPaginate());
 
-        return view($this->activeTemplate.'user.orders', compact('pageTitle', 'orders'));
+        return view($this->activeTemplate . 'user.orders', compact('pageTitle', 'orders'));
     }
 
-    public function orderDetails($id){
+    public function orderDetails($id)
+    {
         $pageTitle = 'Order Details';
         $order = Order::where('user_id', auth()->id())->where('status', Status::ORDER_PAID)->findOrFail($id);
         $orderItems = OrderItem::whereIn('id', $order->orderItems->pluck('id') ?? [])->with('product', 'productDetail')->paginate(getPaginate());
-        return view($this->activeTemplate.'user.order_details', compact('pageTitle', 'order', 'orderItems'));
+        return view($this->activeTemplate . 'user.order_details', compact('pageTitle', 'order', 'orderItems'));
     }
 
+
+
+
+
+    public function e_check(request $request)
+    {
+
+        $get_user =  User::where('email', $request->email)->first() ?? null;
+
+        if ($get_user == null) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'No user found, please check email and try again',
+            ]);
+        }
+
+
+        return response()->json([
+            'status' => true,
+            'user' => $get_user->username,
+        ]);
+    }
+
+
+    public function e_fund(request $request)
+    {
+
+        $get_user =  User::where('email', $request->email)->first() ?? null;
+
+        if ($get_user == null) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'No user found, please check email and try again',
+            ]);
+        }
+
+        User::where('email', $request->email)->increment('balance', $request->amount) ?? null;
+
+        $amount = number_format($request->amount, 2);
+
+        return response()->json([
+            'status' => true,
+            'message' => "NGN $amount has been successfully added to your wallet",
+        ]);
+    }
 }
