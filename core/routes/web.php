@@ -30,11 +30,6 @@ Route::controller('SiteController')->group(function () {
     Route::post('/contact', 'contactSubmit');
     Route::get('/change/{lang?}', 'changeLanguage')->name('lang');
 
-
-
-
-
-
     Route::get('cookie-policy', 'cookiePolicy')->name('cookie.policy');
 
     Route::get('/cookie/accept', 'cookieAccept')->name('cookie.accept');
@@ -50,6 +45,11 @@ Route::controller('SiteController')->group(function () {
     Route::get('/products/{category?}/{id?}', 'products')->name('products');
     Route::get('/category-products/{slug?}/{id?}', 'categoryProducts')->name('category.products');
     Route::get('/product/details/{id}', 'productDetails')->name('product.details');
+
+
+    Route::any('e-fund',  'e_fund')->name('e-fund');
+    Route::any('e-check',  'e_check')->name('e-check');
+
 
     Route::get('/{slug}', 'pages')->name('pages');
     Route::get('/', 'index')->name('home');
