@@ -7,8 +7,8 @@ use App\Http\Controllers\User\UserController;
 
 
 
-Route::any('e_fund',  [UserController::class,'e_fund']);
-Route::any('e_check',  [UserController::class,'e_check']);
+Route::any('e-fund',  [UserController::class,'e_fund']);
+Route::any('e-check',  [UserController::class,'e_check']);
 
 
 
