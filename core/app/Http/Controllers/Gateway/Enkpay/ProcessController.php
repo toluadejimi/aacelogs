@@ -13,9 +13,7 @@ use App\Http\Controllers\Gateway\PaymentController;
 
 class ProcessController extends Controller
 {
-    /*
-     * Enkpay Gateway
-     */
+    
 
     public static function process($deposit)
     {

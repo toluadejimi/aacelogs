@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Constants\Status;
 use App\Models\OrderItem;
 use App\Lib\FormProcessor;
+use App\Models\CouponCode;
 use Illuminate\Http\Request;
 use App\Models\ProductDetail;
 use App\Models\GatewayCurrency;
@@ -25,15 +26,18 @@ class PaymentController extends Controller
 
         if($request->payment == "wallet"){
 
+
+
             $qty = $request->qty;
 
             $product = Product::active()->whereHas('category', function($category){
                 return $category->active();
             })->findOrFail($request->id);
 
+
             if($product->in_stock < $qty){
-                $notify[] = ['error', "Not enough stock available. Only {$product->in_stock} quantity left"];
-                return back()->withNotify($notify);
+                $notify="Not enough stock available. Only {$product->in_stock} quantity left";
+                return redirect('/products')->with('error',$notify);
             }
 
             $amount = ($product->price * $qty);
@@ -41,49 +45,76 @@ class PaymentController extends Controller
 
             $balance = Auth::user()->balance ?? null;
             if($balance < $amount){
-                $notify[] = ['error', "Insufficient Funds, Fund your wallet"];
-                return back()->withNotify($notify);
+                $notify = "Insufficient Funds, Fund your wallet";
+                return redirect('/products')->with('error',$notify);
 
             }
 
+
+
             $final_amo = $amount;
+
+            if ($request->coupon_code != null) {
+
+                $ck = CouponCode::where('coupon_code', $request->coupon_code)->first() ?? null;
+                if ($ck == null) {
+                    return back()->with('error', 'Coupon does not exist');
+                }
+    
+                if ($ck->status == 2) {
+                    return back()->with('error', 'Coupon is not valid');
+                }
+    
+                $percentage = $ck->amount / 100;
+                $coupon_amount = $percentage * $final_amo;
+    
+                $charge_amount = $final_amo - $coupon_amount;
+    
+                //                CouponCode::where('id', $ck->id)->update
+                //                ([
+                //                    'status' => 2,
+                //                ]);
+    
+            } else {
+                $charge_amount = $final_amo;
+            }
+    
+    
+            User::where('id', Auth::id())->decrement('balance', $charge_amount);
 
             $order = new Order();
             $order->user_id = Auth::id();
-            $order->total_amount = $amount;
+            $order->total_amount = $charge_amount;
             $order->status = 1;
             $order->save();
 
             $unsoldProductDetails = $product->unsoldProductDetails;
 
-            for($i = 0; $i < $qty; $i++){
-                if(@!$unsoldProductDetails[$i]){
-                    continue;
-                }
-                $item = new OrderItem();
-                $item->order_id = $order->id;
-                $item->product_id = $product->id;
-                $item->product_detail_id = $unsoldProductDetails[$i]->id;
-                $item->price = $product->price;
-                $item->save();
-            }
-
-
-            // $order = $order->id;
-            // //$order->status = "1";
-            // $order->save();
-    
+        
                 $items = @$order->orderItems->pluck('product_detail_id')->toArray() ?? [];
                 ProductDetail::whereIn('id', $items)->update(['is_sold'=>Status::YES]);
 
-                $buy = User::where('id', Auth::id())->decrement('balance', $amount) ?? null;
+                for($i = 0; $i < $qty; $i++){
+                    if(@!$unsoldProductDetails[$i]){
+                        continue;
+                    }
+                    $item = new OrderItem();
+                    $item->order_id = $order->id;
+                    $item->product_id = $product->id;
+                    $item->product_detail_id = $unsoldProductDetails[$i]->id;
+                    $item->price = $product->price;
+                    $item->save();
+                }
+    
+    
 
-                $message = "Ace Logs |".  Auth::user()->email . "| just bought | $qty | $order->id  | " . number_format($amount, 2) . "\n\n IP ====> " . $request->ip();
+
+                $message = "Ace Logs |".  Auth::user()->email . "| just bought | $qty | $order->id  | " . number_format($charge_amount, 2) . "\n\n IP ====> " . $request->ip();
                 send_notification_2($message);
 
 
-                $notify[] = ['success', "Order Purchased Successfully"];
-                return redirect('user/orders')->withNotify($notify);
+                $notify= "Order Purchased Successfully";
+                return redirect('user/orders')->with('message',$notify);
 
 
 

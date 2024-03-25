@@ -14,6 +14,9 @@ Route::namespace('User\Auth')->name('user.')->group(function () {
         Route::get('/login', 'showLoginForm')->name('login');
         Route::post('/login', 'login');
         Route::get('logout', 'logout')->middleware('auth')->name('logout');
+        Route::post('/buy-item', 'buy_item');
+
+       
     });
 
     Route::controller('RegisterController')->group(function(){
@@ -64,15 +67,6 @@ Route::middleware('auth')->name('user.')->group(function () {
                 Route::any('resolve-deposit', 'resloveDeposit')->name('resolve.deposit');
 
                 Route::any('resolve-now', 'resolve_now')->name('resolve.now');
-
-            
-
-
-
-                
-
-                
-
                 Route::get('attachment-download/{fil_hash}','attachmentDownload')->name('attachment.download');
 
                 Route::get('orders', 'orders')->name('orders');

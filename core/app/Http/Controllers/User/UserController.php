@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use Status;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Deposit;
+use App\Constants\Status;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Models\SupportTicket;

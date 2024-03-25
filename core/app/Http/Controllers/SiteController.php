@@ -14,6 +14,7 @@ use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use App\Models\SupportTicket;
 use App\Models\SupportMessage;
+use App\Models\GatewayCurrency;
 use App\Models\AdminNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -212,8 +213,10 @@ class SiteController extends Controller
         $categories = $categories->orderBy('name')->paginate(getPaginate());
 
         $sections = Page::where('tempname',$this->activeTemplate)->where('slug','products')->first();
+        $gateway_currency = GatewayCurrency::all();
 
-        return view($this->activeTemplate . 'products', compact('pageTitle', 'categories','sections', 'wallet'));
+
+        return view($this->activeTemplate . 'products', compact('pageTitle', 'gateway_currency', 'categories','sections', 'wallet'));
     }
 
     public function categoryProducts($category = null, $id = 0){

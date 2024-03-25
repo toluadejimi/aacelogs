@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\User\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\UserLogin;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Status;
+use App\Models\Product;
+use App\Models\UserLogin;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -153,6 +155,32 @@ class LoginController extends Controller
         }
 
         return to_route('products');
+    }
+
+
+    public function item_view(Request $request, $id)
+    {
+
+
+        $user = Auth::id();
+        if ($user == null) {
+            return view('user/login');
+        }
+
+        $pageTitle = 'Product Details';
+        $product = Product::active()->whereHas('category', function($category){
+            return $category->active();
+        })->findOrFail($id);
+
+        $relatedProducts = Product::active()->whereHas('category', function($category){
+            return $category->active();
+        })->where('category_id',$product->category_id)->orderBy('id','desc')->where('id','!=',$product->id)->limit(5)->get();
+
+        return view($this->activeTemplate . 'product_details', compact('pageTitle', 'product','relatedProducts'));
+
+
+
+        return view('item-view', compact('title', 'icon', 'inst', 'description', 'item_id', 'stock', 'amount', 'user'));
     }
 
 
