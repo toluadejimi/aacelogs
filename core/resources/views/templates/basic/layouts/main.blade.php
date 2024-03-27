@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="{{ url('') }}/assets/assets/vendor/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/assets/assets/css/style.css">
 
-    <!-- Laravel PWA -->
-    @laravelPWA
+{{--    <!-- Laravel PWA -->--}}
+{{--    @laravelPWA--}}
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
