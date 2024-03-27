@@ -216,12 +216,12 @@
                                                 alt="wallet-image">
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
+                                    {{-- <div class="swiper-slide">
                                         <div class="card">
                                             <img src="{{ url('') }}/assets/assets/images/slider/slide_5.png"
                                                 alt="wallet-image">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
