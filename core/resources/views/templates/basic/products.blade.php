@@ -162,11 +162,20 @@
                                 @foreach ($categories as $data)
                                     <div class="swiper-slide">
                                         <a href="product.html" class="categore-box style-1">
-                                            <div class="icon-bx" style="background-color: #ededed">
-                                                <img src="{{ url('') }}/assets/assets/images/{{ $data->image }}"
-                                                    alt="wallet-image" width="30" height="30">
-                                            </div>
-                                            <span class="title text-dark text-small">{{ Str::upper($data->name) }}</span>
+                                            @if($data->image == null)
+                                                <div class="icon-bx" style="background-color: #ededed">
+                                                    <img src="{{ url('') }}/assets/assets/images/fav.svg"
+                                                         alt="wallet-image" width="30" height="30">
+                                                </div>
+                                                <span class="title text-dark text-small">{{ Str::upper($data->name) }}</span>
+                                            @else
+                                                <div class="icon-bx" style="background-color: #ededed">
+                                                    <img src="{{ url('') }}/assets/assets/images/{{ $data->image }}"
+                                                         alt="wallet-image" width="30" height="30">
+                                                </div>
+                                                <span class="title text-dark text-small">{{ Str::upper($data->name) }}</span>
+                                            @endif
+
                                         </a>
                                     </div>
                                 @endforeach
