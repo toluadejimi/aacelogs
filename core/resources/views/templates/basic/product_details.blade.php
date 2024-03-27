@@ -85,7 +85,7 @@
         <div class="page-content">
             <div class="content-body fb">
                 <div class="swiper-btn-center-lr my-0">
-                    <div class="swiper-container demo-swiper">
+                    <div class="swiper-container demo-swiper2">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="dz-banner-heading">
@@ -152,7 +152,7 @@
                             <input type="text" hidden id="quantityInput" name="qty" value="1">
                             <input type="text" hidden name="id" value="{{$product->id}}">
                             <input type="text" hidden type="text" name="payment" value="wallet">
-                            <input type="text" hidden name="gateway" value="250"> 
+                            <input type="text" hidden name="gateway" value="250">
 
 
 
@@ -178,7 +178,7 @@
                                 </div>
                                 @endif
 
-                                
+
                                 <div class="container">
 
 
@@ -195,12 +195,12 @@
                                                 d="M11.3404 20.5158C11.2749 19.0196 10.0401 17.8418 8.54244 17.847C7.0023 17.9092 5.80422 19.2082 5.86645 20.7484C5.92617 22.2262 7.1283 23.4008 8.60704 23.4262H8.67432C10.2142 23.3587 11.4079 22.0557 11.3404 20.5158Z"
                                                 fill="white" />
                                         </svg>
-                                        PLACE ORDER
+                                        BUY NOW
                                     </a>
                                 </div>
                             </div>
 
-                       
+
                         </form>
 
                     </div>

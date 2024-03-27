@@ -1,8 +1,9 @@
 <div class="card">
-    <div class="card-body">
-
+    <div class="card-body ">
 
         <table class="table table-sm table-responsive-sm">
+
+
             <thead style="border-radius: 100px; background: #10113D;color: #ffffff;">
                 <tr class>
                     <th style="border-radius: 10px 0px 0px 10px;"></th>
@@ -12,7 +13,11 @@
                     <th style="border-radius: 0px 10px 10px 0px;">Stock</th>
                 </tr>
             </thead>
+
+
             <tbody>
+
+
                 <td class="">
                     <a href="#" data-help="Click to read detailed description">
                         <img src="{{ getImage(getFilePath('product') . '/' . $product->image, getFileSize('product')) }}"
@@ -37,24 +42,26 @@
                 <td class="small col-sm-12">
                 </td>
 
-                <td>
+                <td class="text-small">
                     @if ($product->in_stock == 0)
                         <div>
-                            0 pcs.
                             <button type="button" class="form-control" type="button" data-id="12005">
                                 <ion-icon class="text-dark" name="bag-add"></ion-icon>
                             </button>
                         </div>
                     @else
-                        <a>{{ $product->in_stock }} pcs.</a>
                         @auth
-                        <form action="/product/details/{{ $product->id }}" method="GET">
-                            @csrf
-                            <button style="background: linear-gradient(90deg, #0F0673 0%, #B00BD9 100%); color:#ffffff"
-                                class="btn btn-sm purchaseBtn">
-                                <ion-icon class="" style="border: 0px;" name="bag-add">buy</ion-icon>
-                            </button>
-                        </form>
+                            
+                            <form  class="" action="/product/details/{{ $product->id }}" method="GET">
+                                <span  class="text-small col-sm-12 badge bg-dark mb-1">{{ $product->in_stock }} pcs</span>
+
+                                @csrf
+                                <button style="background: linear-gradient(90deg, #0F0673 0%, #B00BD9 100%); color:#ffffff"
+                                    class="btn btn-sm purchaseBtn btn-block">
+                                    <ion-icon class="" style="border: 0px;" name="bag-add">buy</ion-icon>
+                                </button>
+
+                            </form>
                         @else
                             <form action="/user/login" method="GET">
                                 @csrf
@@ -69,17 +76,16 @@
                                 </div>
                             </form>
 
-
-
                         @endauth
                     @endif
                 </td>
 
+
             </tbody>
 
 
-
-
         </table>
+
+
     </div>
 </div>

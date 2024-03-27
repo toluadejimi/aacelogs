@@ -178,6 +178,7 @@ class ComposerStaticInit1fc782a8f9f5225e4014ca99ddba390c
             'Laravel\\SerializableClosure\\' => 28,
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
+            'LaravelPWA\\' => 11,
             'Laramin\\Utility\\' => 16,
             'Laminas\\Diactoros\\' => 18,
         ),
@@ -584,6 +585,10 @@ class ComposerStaticInit1fc782a8f9f5225e4014ca99ddba390c
         array (
             0 => __DIR__ . '/..' . '/laravel/sail/src',
         ),
+        'LaravelPWA\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/silviolleite/laravelpwa',
+        ),
         'Laramin\\Utility\\' => 
         array (
             0 => __DIR__ . '/..' . '/laramin/utility/src',
@@ -874,6 +879,7 @@ class ComposerStaticInit1fc782a8f9f5225e4014ca99ddba390c
         'App\\Models\\AdminNotification' => __DIR__ . '/../..' . '/app/Models/AdminNotification.php',
         'App\\Models\\AdminPasswordReset' => __DIR__ . '/../..' . '/app/Models/AdminPasswordReset.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\CouponCode' => __DIR__ . '/../..' . '/app/Models/CouponCode.php',
         'App\\Models\\Deposit' => __DIR__ . '/../..' . '/app/Models/Deposit.php',
         'App\\Models\\Extension' => __DIR__ . '/../..' . '/app/Models/Extension.php',
         'App\\Models\\Form' => __DIR__ . '/../..' . '/app/Models/Form.php',
@@ -3704,6 +3710,11 @@ class ComposerStaticInit1fc782a8f9f5225e4014ca99ddba390c
         'Laramin\\Utility\\Utility' => __DIR__ . '/..' . '/laramin/utility/src/Utility.php',
         'Laramin\\Utility\\UtilityServiceProvider' => __DIR__ . '/..' . '/laramin/utility/src/UtilityServiceProvider.php',
         'Laramin\\Utility\\VugiChugi' => __DIR__ . '/..' . '/laramin/utility/src/VugiChugi.php',
+        'LaravelPWA\\Http\\Controllers\\LaravelPWAController' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Http/Controllers/LaravelPWAController.php',
+        'LaravelPWA\\Providers\\LaravelPWAServiceProvider' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Providers/LaravelPWAServiceProvider.php',
+        'LaravelPWA\\Providers\\RouteServiceProvider' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Providers/RouteServiceProvider.php',
+        'LaravelPWA\\Services\\ManifestService' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Services/ManifestService.php',
+        'LaravelPWA\\Services\\MetaService' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Services/MetaService.php',
         'Laravel\\Sail\\Console\\AddCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/AddCommand.php',
         'Laravel\\Sail\\Console\\Concerns\\InteractsWithDockerComposeServices' => __DIR__ . '/..' . '/laravel/sail/src/Console/Concerns/InteractsWithDockerComposeServices.php',
         'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',

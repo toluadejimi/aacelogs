@@ -150,6 +150,7 @@
       <excludeFolder url="file://$MODULE_DIR$/core/vendor/vonage/client-core" />
       <excludeFolder url="file://$MODULE_DIR$/core/vendor/vonage/nexmo-bridge" />
       <excludeFolder url="file://$MODULE_DIR$/core/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/silviolleite/laravelpwa" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
