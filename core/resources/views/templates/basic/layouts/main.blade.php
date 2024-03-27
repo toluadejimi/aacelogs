@@ -14,6 +14,7 @@
     <meta property="og:title" content="Acelogstore"/>
     <meta property="og:description" content="Acelogstore"/>
     <meta name="format-detection" content="telephone=no">
+    @laravelPWA
 
     <!-- Favicons Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ url('') }}/assets/assets/images/fav.svg"/>
