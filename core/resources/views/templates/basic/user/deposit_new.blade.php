@@ -17,7 +17,6 @@
                         <input type="number" name="amount" class="form-control" required>
                         <input type="text" hidden value="enkpay" name="payment">
 
-
                     </div>
 
                 </div>
@@ -34,7 +33,7 @@
                                     <div class="clearfix">
                                         <input type="radio" value="{{$data->method_code}}" name="gateway" required
                                                data-gateway="{{ $data }}" class="btn-check" id="{{$data->btn_id}}"
-                                               checked="btnradio1">
+                                               checked="">
                                         <label class="btn text-small tag-btn" for="{{$data->btn_id}}">
                                             {{$data->name}}
                                         </label>
