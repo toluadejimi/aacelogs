@@ -20,10 +20,11 @@
 
                 <td class="">
                     <a href="#" data-help="Click to read detailed description">
-                        <img src="{{ getImage(getFilePath('product') . '/' . $product->image, getFileSize('product')) }}"
-                            alt="@lang('image')" height="50" width="50">
+                        <img src="{{ url('') }}/assets/images/product/{{$product->image}}" height="50" width="50">
                     </a>
                 </td>
+
+
 
                 <td class="col-sm-12">
                     @php $text = $product->name.' | '.strLimit(strip_tags($product->description), 30); @endphp
