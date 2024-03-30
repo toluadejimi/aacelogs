@@ -231,7 +231,6 @@
                     <!-- Recomended Start -->
                     <div class="title-bar">
                         <h5 class="title">Explore Product 👌</h5>
-                        <a class="btn-link" href="#">View more</a>
                     </div>
 
                     <div class="row mt-2">
@@ -261,7 +260,7 @@
                                             <div class="col-2">Stock</div>
                                         </div>
                                     </div>
-                        
+
 
 
 
@@ -275,9 +274,9 @@
                                     </table>
 
 
-                                    <div class="d-grid gap-2 mb-5">
-                                        <a href="{{ route('category.products', ['search' => request()->search, 'slug' => slug($category->name), 'id' => $category->id]) }}"
-                                            class="btn btn--base btn-block --base btn--sm">
+                                    <div class="d-grid gap-2 mb-5" >
+                                        <a style="background: linear-gradient(90deg, #0F0673 0%, #B00BD9 100%);" href="{{ route('category.products', ['search' => request()->search, 'slug' => slug($category->name), 'id' => $category->id]) }}"
+                                            class="btn  btn-block btn--sm text-white">
                                             @lang('View All')
                                         </a>
                                     </div>

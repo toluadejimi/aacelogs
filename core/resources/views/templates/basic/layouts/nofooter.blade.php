@@ -145,7 +145,12 @@
                                 <h5 class="mb-0 ms-2 text-nowrap">Orders</h5>
                             @elseif(Route::current()->getName() === 'user.order.details')
                                 <h5 class="mb-0 ms-2 text-nowrap">Order Details</h5>
+                            @elseif(Route::current()->getName() === 'category.products')
+                                <h5 class="mb-0 ms-2 text-nowrap">Products</h5>
                             @endif
+
+
+
 
 
 
