@@ -1,5 +1,8 @@
 @extends($activeTemplate.'layouts.nofooter')
 @section('content')
+
+
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -29,7 +32,7 @@
 
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('user.deposit.manual.update') }}" method="POST"
+                                <form id="myForm" action="{{ route('user.deposit.manual.update') }}" method="POST"
                                       enctype="multipart/form-data">
                                     @csrf
 
@@ -68,6 +71,7 @@
                                             <div class="container">
                                                 <button type="submit"
                                                         style="background: linear-gradient(90deg, #0F0673 0%, #B00BD9 100%); color:#ffffff;"
+                                                        id="submitButton"
                                                         class="btn btn-primary text-start w-100 btn-rounded">
                                                     <svg class="cart me-4" width="16" height="16" viewBox="0 0 18 18"
                                                          fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,6 +80,7 @@
                                                             fill="white"/>
                                                     </svg>
                                                     PAY NOW
+                                                    <span class="spinner"></span>
                                                 </button>
                                             </div>
                                         </div>
@@ -91,5 +96,37 @@
 
             </div>
         </div>
+
+
+        <script>
+            document.getElementById('myForm').addEventListener('submit', function(event) {
+                var submitButton = document.getElementById('submitButton');
+                var spinner = submitButton.querySelector('.spinner');
+
+                // Prevent form submission
+                event.preventDefault();
+
+                // Disable the button
+                submitButton.disabled = true;
+
+                // Show the spinner
+                spinner.style.display = 'inline-block';
+
+                // Simulate submission delay (remove setTimeout in actual implementation)
+                setTimeout(function() {
+                    // Re-enable the button
+                    submitButton.disabled = true;
+
+                    // Hide the spinner
+                    spinner.style.display = 'none';
+
+                    document.getElementById('myForm').submit();
+                    // You can add code to submit the form data here
+
+                }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
+            });
+        </script>
+
+
     </div>
 @endsection

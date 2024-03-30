@@ -40,6 +40,28 @@
         href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Roboto+Slab:wght@100;300;500;600;800&display=swap"
         rel="stylesheet">
 
+
+    <style>
+        /* Styles for the spinner */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: white;
+            border-radius: 50%;
+            width: 20px;
+            color:  v;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin-right: 5px;
+            display: none; /* Initially hidden */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+
 </head>
 
 <body class="bg-white">

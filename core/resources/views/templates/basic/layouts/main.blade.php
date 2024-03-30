@@ -277,7 +277,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span>Logout</span>
+                        <span>Login</span>
                     </a></li>
 
 
