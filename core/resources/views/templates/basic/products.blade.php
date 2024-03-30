@@ -253,6 +253,16 @@
                                         </strong>
                                     </div>
 
+                                    <div style="border-radius: 100px; background: #10113D;color: #ffffff;">
+                                        <div class="row">
+                                            <div class="col-2"></div>
+                                            <div class="col-3">Product</div>
+                                            <div class="col-5">Price</div>
+                                            <div class="col-2">Stock</div>
+                                        </div>
+                                    </div>
+                        
+
 
 
                                             @foreach ($products->take(5) as $product)

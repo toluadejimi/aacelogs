@@ -14,7 +14,7 @@
     <meta property="og:title" content="Acelogstore"/>
     <meta property="og:description" content="Acelogstore"/>
     <meta name="format-detection" content="telephone=no">
-    
+
     @laravelPWA
 
     <!-- Favicons Icon -->
@@ -162,26 +162,19 @@
     <div class="sidebar">
         <div class="author-box">
             <div class="dz-media">
-                <img src="{{ url('') }}/assets/assets/images/message/pic5.jpg" alt="author-image">
+                <img src="{{ url('') }}/assets/assets/images/emoji/emoji-1.png" alt="author-image">
             </div>
             <div class="dz-info">
-                <span>Good Morning</span>
-                <h5 class="name">Henry Decosta</h5>
+                <span>Hi</span>
+                @auth
+                <h5 class="name">{{Auth::user()->username}}</h5>
+                @endauth
             </div>
         </div>
         <ul class="nav navbar-nav">
             <li class="nav-label">Main Menu</li>
-            <li><a class="nav-link" href="welcome.html">
-                        <span class="dz-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
-                                 fill="#000000">
-                                <path
-                                    d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"/>
-                            </svg>
-                        </span>
-                    <span>Welcome</span>
-                </a></li>
-            <li><a class="nav-link" href="index.html">
+
+            <li><a class="nav-link" href="/">
                         <span class="dz-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
                                  width="24px" fill="#000000">
@@ -191,7 +184,7 @@
                         </span>
                     <span>Home</span>
                 </a></li>
-            <li><a class="nav-link" href="pages.html">
+            <li><a class="nav-link" href="/user/orders">
                         <span class="dz-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
                                  width="24px" fill="#000000">
@@ -199,29 +192,29 @@
                                     d="M12.6 18.06c-.36.28-.87.28-1.23 0l-6.15-4.78c-.36-.28-.86-.28-1.22 0-.51.4-.51 1.17 0 1.57l6.76 5.26c.72.56 1.73.56 2.46 0l6.76-5.26c.51-.4.51-1.17 0-1.57l-.01-.01c-.36-.28-.86-.28-1.22 0l-6.15 4.79zm.63-3.02l6.76-5.26c.51-.4.51-1.18 0-1.58l-6.76-5.26c-.72-.56-1.73-.56-2.46 0L4.01 8.21c-.51.4-.51 1.18 0 1.58l6.76 5.26c.72.56 1.74.56 2.46-.01z"/>
                             </svg>
                         </span>
-                    <span>Pages</span>
+                    <span>Orders</span>
                 </a></li>
-            <li><a class="nav-link" href="ui-components.html">
+
+
+
+            <li><a class="nav-link" href="/user/deposit/new">
                         <span class="dz-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
-                                 width="24px" fill="#000000">
-                                <path
-                                    d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
-                            </svg>
+                             <svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M2.11538 2.74541C1.55435 2.74541 1.01629 2.99027 0.619582 3.42613C0.22287 3.862 0 4.45315 0 5.06955V12.6759C0 13.2923 0.22287 13.8834 0.619582 14.3193C1.01629 14.7551 1.55435 15 2.11538 15H12.8846C13.4457 15 13.9837 14.7551 14.3804 14.3193C14.7771 13.8834 15 13.2923 15 12.6759V5.06955C15 4.45315 14.7771 3.862 14.3804 3.42613C13.9837 2.99027 13.4457 2.74541 12.8846 2.74541H2.11538ZM10.9615 7.81627C10.7065 7.81627 10.462 7.92758 10.2816 8.1257C10.1013 8.32382 10 8.59252 10 8.87271C10 9.15289 10.1013 9.4216 10.2816 9.61972C10.462 9.81783 10.7065 9.92914 10.9615 9.92914C11.2166 9.92914 11.4611 9.81783 11.6414 9.61972C11.8218 9.4216 11.9231 9.15289 11.9231 8.87271C11.9231 8.59252 11.8218 8.32382 11.6414 8.1257C11.4611 7.92758 11.2166 7.81627 10.9615 7.81627Z"
+                              fill="#C1C9D9"/>
+                        <path
+                            d="M10.95 0.0569996C11.1778 -0.00968363 11.4164 -0.0179794 11.6475 0.0327525C11.8787 0.0834844 12.0961 0.191887 12.2831 0.349595C12.47 0.507302 12.6215 0.710096 12.7258 0.942326C12.8301 1.17456 12.8844 1.43001 12.8846 1.68897H5.19231L10.95 0.0569996Z"
+                            fill="#C1C9D9"/>
+                    </svg>
                         </span>
-                    <span>Components</span>
+                    <span>Wallet</span>
                 </a></li>
-            <li><a class="nav-link" href="notification.html">
-                        <span class="dz-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
-                                 width="24px" fill="#000000">
-                                <path
-                                    d="M18 16v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.68-1.5-1.51-1.5S10.5 3.17 10.5 4v.68C7.63 5.36 6 7.92 6 11v5l-1.3 1.29c-.63.63-.19 1.71.7 1.71h13.17c.89 0 1.34-1.08.71-1.71L18 16zm-6.01 6c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zM6.77 4.73c.42-.38.43-1.03.03-1.43-.38-.38-1-.39-1.39-.02C3.7 4.84 2.52 6.96 2.14 9.34c-.09.61.38 1.16 1 1.16.48 0 .9-.35.98-.83.3-1.94 1.26-3.67 2.65-4.94zM18.6 3.28c-.4-.37-1.02-.36-1.4.02-.4.4-.38 1.04.03 1.42 1.38 1.27 2.35 3 2.65 4.94.07.48.49.83.98.83.61 0 1.09-.55.99-1.16-.38-2.37-1.55-4.48-3.25-6.05z"/>
-                            </svg>
-                        </span>
-                    <span>Notification</span>
-                    <span class="badge badge-circle badge-danger">1</span>
-                </a></li>
+
+
+
+
+
             <li><a class="nav-link" href="profile.html">
                         <span class="dz-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
@@ -232,7 +225,10 @@
                         </span>
                     <span>Profile</span>
                 </a></li>
-            <li><a class="nav-link" href="messages.html">
+
+
+
+            <li><a class="nav-link" href="/user/support">
                         <span class="dz-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
                                  width="24px" fill="#000000">
@@ -240,10 +236,14 @@
                                     d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM7 9h10c.55 0 1 .45 1 1s-.45 1-1 1H7c-.55 0-1-.45-1-1s.45-1 1-1zm6 5H7c-.55 0-1-.45-1-1s.45-1 1-1h6c.55 0 1 .45 1 1s-.45 1-1 1zm4-6H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1z"/>
                             </svg>
                         </span>
-                    <span>Chat</span>
+                    <span>Support</span>
                     <span class="badge badge-circle badge-info">5</span>
                 </a></li>
-            <li><a class="nav-link" href="onboading.html">
+
+
+
+
+            <li><a class="nav-link" href="/user/logout">
                         <span class="dz-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px"
                                  viewBox="0 0 24 24" width="24px" fill="#000000">
@@ -260,20 +260,12 @@
                         </span>
                     <span>Logout</span>
                 </a></li>
+
+
+
+
             <li class="nav-label">Settings</li>
-            <li class="nav-color" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
-                aria-controls="offcanvasBottom">
-                <a href="javascript:void(0);" class="nav-link">
-                        <span class="dz-icon">
-                            <svg class="color-plate" xmlns="http://www.w3.org/2000/svg" height="30px"
-                                 viewBox="0 0 24 24" width="30px" fill="#000000">
-                                <path
-                                    d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-                            </svg>
-                        </span>
-                    <span>Highlights</span>
-                </a>
-            </li>
+
             <li>
                 <div class="mode">
                         <span class="dz-icon">
@@ -299,7 +291,7 @@
             </li>
         </ul>
         <div class="sidebar-bottom">
-            <h6 class="name">Foodia - Food Restaurant</h6>
+            <h6 class="name">♠️ ACELOGSTORE</h6>
             <p>App Version 1.0</p>
         </div>
     </div>
@@ -367,7 +359,7 @@
 
 
 
-            <a href="order-list.html" class="nav-link">
+            <a href="/user/orders" class="nav-link">
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M1.27866 13.3041V4.06117L0.0732802 1.22047C-0.0174476 1.00848 -0.0239282 0.792812 0.0538385 0.573471C0.131605 0.354129 0.267697 0.195276 0.462114 0.0969109C0.65653 -0.002019 0.854317 -0.0124773 1.05547 0.0655361C1.25663 0.143549 1.40231 0.28827 1.49252 0.499697L2.98953 4.01878H12.0105L13.5075 0.499697C13.5982 0.287704 13.7441 0.13931 13.9453 0.0545124C14.1465 -0.0302847 14.344 -0.0161519 14.5379 0.0969109C14.7323 0.195841 14.8684 0.354977 14.9462 0.574319C15.0239 0.79366 15.0174 1.00905 14.9267 1.22047L13.7213 4.06117V13.3041C13.7213 13.7704 13.5692 14.1698 13.2648 14.5022C12.9605 14.8346 12.5942 15.0006 12.166 15H2.834C2.40628 15 2.04026 14.8341 1.73593 14.5022C1.43161 14.1704 1.27918 13.771 1.27866 13.3041ZM5.94467 9.0642H9.05533C9.27567 9.0642 9.4605 8.9828 9.60981 8.81999C9.75912 8.65718 9.83352 8.45592 9.833 8.21623C9.833 7.97597 9.75835 7.77472 9.60903 7.61248C9.45972 7.45023 9.27516 7.36883 9.05533 7.36826H5.94467C5.72433 7.36826 5.53976 7.44967 5.39097 7.61248C5.24217 7.77529 5.16752 7.97654 5.167 8.21623C5.167 8.45649 5.24166 8.65802 5.39097 8.82084C5.54028 8.98365 5.72485 9.06477 5.94467 9.0642Z"

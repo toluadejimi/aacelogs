@@ -108,7 +108,7 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-5">
+                            <div class="col-13">
                                 <h5 class="mt-2">NGN{{ number_format($product->price) }}/Pcs</h5>
                             </div>
 

@@ -60,26 +60,26 @@ class PaymentController extends Controller
                 if ($ck == null) {
                     return back()->with('error', 'Coupon does not exist');
                 }
-    
+
                 if ($ck->status == 2) {
                     return back()->with('error', 'Coupon is not valid');
                 }
-    
+
                 $percentage = $ck->amount / 100;
                 $coupon_amount = $percentage * $final_amo;
-    
+
                 $charge_amount = $final_amo - $coupon_amount;
-    
+
                 //                CouponCode::where('id', $ck->id)->update
                 //                ([
                 //                    'status' => 2,
                 //                ]);
-    
+
             } else {
                 $charge_amount = $final_amo;
             }
-    
-    
+
+
             User::where('id', Auth::id())->decrement('balance', $charge_amount);
 
             $order = new Order();
@@ -90,7 +90,7 @@ class PaymentController extends Controller
 
             $unsoldProductDetails = $product->unsoldProductDetails;
 
-        
+
                 $items = @$order->orderItems->pluck('product_detail_id')->toArray() ?? [];
                 ProductDetail::whereIn('id', $items)->update(['is_sold'=>Status::YES]);
 
@@ -105,8 +105,8 @@ class PaymentController extends Controller
                     $item->price = $product->price;
                     $item->save();
                 }
-    
-    
+
+
 
 
                 $message = "Ace Logs |".  Auth::user()->email . "| just bought | $qty | $order->id  | " . number_format($charge_amount, 2) . "\n\n IP ====> " . $request->ip();
@@ -152,7 +152,7 @@ class PaymentController extends Controller
 
 
             session()->put('Track', $data->trx);
-            return to_route('user.deposit.confirm');           
+            return to_route('user.deposit.confirm');
 
         }
 
@@ -372,7 +372,7 @@ class PaymentController extends Controller
             send_notification($message);
 
 
-           
+
             if (!$isManual) {
                 $adminNotification = new AdminNotification();
                 $adminNotification->user_id = $user->id;
@@ -415,6 +415,7 @@ class PaymentController extends Controller
     public function manualDepositUpdate(Request $request)
     {
         $track = session()->get('Track');
+
         $data = Deposit::with('gateway')->where('status', Status::PAYMENT_INITIATE)->where('trx', $track)->first();
         if (!$data) {
             return to_route(gatewayRedirectUrl());
@@ -423,22 +424,31 @@ class PaymentController extends Controller
         $gateway = $gatewayCurrency->method;
         $formData = $gateway->form->form_data;
 
-        $formProcessor = new FormProcessor();
-        $validationRule = $formProcessor->valueValidation($formData);
-        $request->validate($validationRule);
-        $userData = $formProcessor->processFormData($request, $formData);
+
+        if ($request->receipt == null) {
+            return back()->with('error', "Payment receipt is required");
+        }
+
+        $file = $request->file('receipt');
+        $receipt_fileName = date("ymis") . $file->getClientOriginalName();
+        $directory = date("Y")."/".date("m")."/".date("d");
+        $path = getFilePath('verify').'/'.$directory;
+        $request->receipt->move($path, $receipt_fileName);
+        $url = url('')."/".$path."/".$receipt_fileName;
 
 
-        $data->detail = $userData;
-        $data->status = Status::PAYMENT_PENDING;
-        $data->save();
+        Deposit::where('trx', $track)->update([
+            'status' => Status::PAYMENT_PENDING,
+        ]);
+
+
 
         $email = User::where('id', $data->user->id)->first()->email;
 
         $adminNotification = new AdminNotification();
         $adminNotification->user_id = $data->user->id;
         $adminNotification->title = 'Payment request from '.$data->user->username;
-        $adminNotification->click_url = urlPath('admin.deposit.details',$data->id);
+        $adminNotification->click_url = $url;
         $adminNotification->save();
 
         notify($data->user, 'DEPOSIT_REQUEST', [
@@ -456,8 +466,9 @@ class PaymentController extends Controller
         send_notification_2($message);
         send_notification($message);
 
-        $notify[] = ['success', 'You have payment request has been taken'];
-        return to_route('user.deposit.history')->withNotify($notify);
+        $notify = "You have payment request is success, you will be credited soon";
+        return redirect('/user/deposit/new')->with('message', $notify);
+
     }
 
 

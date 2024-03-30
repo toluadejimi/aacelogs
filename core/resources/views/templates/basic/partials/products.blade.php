@@ -4,16 +4,7 @@
         <table class="table table-sm table-responsive-sm">
 
 
-            <thead style="border-radius: 100px; background: #10113D;color: #ffffff;">
-                <tr class>
-                    <th style="border-radius: 10px 0px 0px 10px;"></th>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th></th>
-                    <th style="border-radius: 0px 10px 10px 0px;">Stock</th>
-                </tr>
-            </thead>
-
+           
 
             <tbody>
 

@@ -13,7 +13,7 @@ use App\Http\Controllers\Gateway\PaymentController;
 
 class ProcessController extends Controller
 {
-    
+
 
     public static function process($deposit)
     {
@@ -25,7 +25,7 @@ class ProcessController extends Controller
         $url = "https://web.enkpay.com/pay?amount=$amount&key=$key&ref=$deposit->trx&email=$email";
         $send['url'] =  $url;
 
-  
+
         $alias = $deposit->gateway->alias;
 
         $send['view'] = 'user.payment.'.$alias;
@@ -50,7 +50,7 @@ class ProcessController extends Controller
             return to_route(gatewayRedirectUrl())->withNotify($notify);
         }
 
-       
+
 
         if (!isset($request->trans_id)) {
             $message = 'Unable to process';
@@ -68,7 +68,7 @@ class ProcessController extends Controller
             return to_route(gatewayRedirectUrl())->withNotify($notify);
         }
 
-        
+
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://web.enkpay.com/api/verify',
@@ -100,11 +100,8 @@ class ProcessController extends Controller
 
             //PaymentController::userDataUpdate($deposit);
 
-            $message = 'Transaction was successful, Ref: ' . $request->trans_id;
-            $notify[] = ['success', $message];
-            $notifyApi[] = $message;
-
-            return to_route(gatewayRedirectUrl(true))->withNotify($notify);
+            $notify = "Transaction Successful";
+            return redirect('/user/deposit/new')->with('message', $notify);
         }
 
         $message = 'Unable to process';
@@ -128,7 +125,7 @@ class ProcessController extends Controller
 
 
 
-    
+
 
 
 

@@ -109,11 +109,28 @@
                                 </svg>
 
                             </a>
-                            @if(Route::current()->getName() ===  'user.deposit.new')
+                            @if (Route::current()->getName() ===  null)
+                                <h5 class="mb-0 ms-2 text-nowrap">Error</h5>
+                            @elseif(Route::current()->getName() ===  'user.deposit.new')
                                 <h5 class="mb-0 ms-2 text-nowrap">Fund Wallet</h5>
                             @elseif(Route::current()->getName() ===  'user.resolve.deposit')
                                 <h5 class="mb-0 ms-2 text-nowrap">Resolve Deposit</h5>
+                            @elseif(Route::current()->getName() ===  'user.deposit.confirm')
+                                <h5 class="mb-0 ms-2 text-nowrap">Confirm Payment</h5>
+                            @elseif(Route::current()->getName() === 'user.deposit.manual.confirm')
+                                <h5 class="mb-0 ms-2 text-nowrap">Confirm Manual Payment</h5>
+                            @elseif(Route::current()->getName() === 'user.orders')
+                                <h5 class="mb-0 ms-2 text-nowrap">Orders</h5>
+                            @elseif(Route::current()->getName() === 'user.order.details')
+                                <h5 class="mb-0 ms-2 text-nowrap">Order Details</h5>
                             @endif
+
+
+
+
+
+
+
 
 
 

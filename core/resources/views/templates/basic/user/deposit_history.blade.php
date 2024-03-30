@@ -1,7 +1,10 @@
 @extends($activeTemplate.'layouts.master')
 
 @section('content')
-<div class="row justify-content-end mb-4">
+
+    <div class="container">
+
+    <div class="row justify-content-end mb-4">
     <div class="col-xl-4 col-md-6">
         <form action="">
             <div class="input-group">
@@ -56,7 +59,7 @@
                                  @endif
 
                         </td>
-                       
+
 
 
                     </tr>
@@ -91,6 +94,8 @@
         </div>
     </div>
 </div>
+    </div>
+
 @endsection
 
 @push('script')
@@ -114,7 +119,7 @@
                         }
                     });
                 }
-                
+
                 if($(this).data('admin_feedback') != undefined){
                     var adminFeedback = `
                         <div class="my-3 ms-2">
