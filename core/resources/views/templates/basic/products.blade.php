@@ -49,8 +49,8 @@
                 <div class="dz-info">
                     <img src="{{ url('') }}/assets/assets/images/wallet.svg" alt="wallet-image" width="30"
                         height="30">
-                    <span class="text-dark">NGN1,000</span><br>
-                    <a href="/user/deposit/new" class="position-relative me-2 btn btn-sm btn-dark">
+                    <strong class="text-dark">NGN{{number_format(Auth::user()->balance)}}</strong><br>
+                    <a href="/user/deposit/new" class="position-relative me-2 btn btn-block btn-dark">
                         Fund Wallet
                     </a>
 
