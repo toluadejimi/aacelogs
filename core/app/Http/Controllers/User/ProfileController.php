@@ -3,12 +3,29 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
 {
+
+
+    public function profile_view()
+    {
+        $pageTitle = "Profile";
+        $user = auth()->user();
+
+
+        $orders = Order::where('user_id', Auth::id())->where('status', 1)->count();
+        $spent = Order::where('user_id', Auth::id())->where('status', 1)->sum('total_amount');
+
+        $deposit = auth()->user();
+        return view($this->activeTemplate. 'user.profile', compact('pageTitle','user', 'spent', 'orders'));
+
+    }
     public function profile()
     {
         $pageTitle = "Profile Setting";
@@ -68,11 +85,11 @@ class ProfileController extends Controller
             $password = Hash::make($request->password);
             $user->password = $password;
             $user->save();
-            $notify[] = ['success', 'Password changes successfully'];
-            return back()->withNotify($notify);
+            return redirect('/')->with('message','Password changes successfully');
+
         } else {
-            $notify[] = ['error', 'The password doesn\'t match!'];
-            return back()->withNotify($notify);
+            $notify = "The password doesn\'t match!";
+            return back()->with('error', $notify);
         }
     }
 }

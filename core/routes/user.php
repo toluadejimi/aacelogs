@@ -16,7 +16,7 @@ Route::namespace('User\Auth')->name('user.')->group(function () {
         Route::get('logout', 'logout')->middleware('auth')->name('logout');
         Route::post('/buy-item', 'buy_item');
 
-       
+
     });
 
     Route::controller('RegisterController')->group(function(){
@@ -76,6 +76,7 @@ Route::middleware('auth')->name('user.')->group(function () {
             //Profile setting
             Route::controller('ProfileController')->group(function(){
                 Route::get('profile-setting', 'profile')->name('profile.setting');
+                Route::get('profile', 'profile_view')->name('profile');
                 Route::post('profile-setting', 'submitProfile');
                 Route::get('change-password', 'changePassword')->name('change.password');
                 Route::post('change-password', 'submitPassword');
@@ -92,4 +93,3 @@ Route::middleware('auth')->name('user.')->group(function () {
         });
     });
 });
- 

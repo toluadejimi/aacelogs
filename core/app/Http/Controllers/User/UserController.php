@@ -281,7 +281,11 @@ class UserController extends Controller
             ->with('deposit', 'orderItems')
             ->paginate(getPaginate());
 
-        return view($this->activeTemplate . 'user.orders', compact('pageTitle', 'orders'));
+        $count_order = Order::where('user_id', Auth::id())->where('status', 1)->count();
+        $order_sum = Order::where('user_id', Auth::id())->where('status', 1)->sum('total_amount');
+
+
+        return view($this->activeTemplate . 'user.orders', compact('pageTitle', 'orders', 'count_order', 'order_sum'));
     }
 
     public function orderDetails($id)

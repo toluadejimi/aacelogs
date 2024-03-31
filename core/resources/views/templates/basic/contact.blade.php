@@ -1,116 +1,130 @@
-@extends($activeTemplate . 'layouts.frontend')
+@extends($activeTemplate . 'layouts.nofooter')
 @section('content')
     @php
         $contactContent = getContent('contact_us.content', true);
     @endphp
 
-    <section class="contact-section py-120">
-        <div class="container">
-            <div class="row align-items-center flex-wrap-reverse">
-                <div class="col-lg-5 col-xl-4">
-                    <h4 class="heading text--base">{{ __(@$contactContent->data_values->heading) }}</h4>
-                    <p class="subheading mb-5">
-                        {{ __(@$contactContent->data_values->subheading) }}
-                    </p>
-                    <div class="contact-info-wrapper row">
-                        <div class="col-lg-12 col-md-6">
-                            <div class="contact-info">
-                                <span class="contact-info__icon"><i class="las la-envelope"></i></span>
-                                <div class="contact-info__content">
-                                    <h5 class="contact-info__title">@lang('Mail Us')</h5>
-                                    <a href="mailto:{{ @$contactContent->data_values->email_address }}"
-                                        class="contact-info__link">{{ @$contactContent->data_values->email_address }}</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="contact-info">
-                                <span class="contact-info__icon"><i class="las la-phone-volume"></i></span>
-                                <div class="contact-info__content">
-                                    <h5 class="contact-info__title">@lang('Phone')</h5>
-                                    <a href="tel:{{ @$contactContent->data_values->contact_number }}"
-                                        class="contact-info__link">{{ @$contactContent->data_values->contact_number }}</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="contact-info">
-                                <span class="contact-info__icon"><i class="las la-map-marker"></i></span>
-                                <div class="contact-info__content">
-                                    <h5 class="contact-info__title">@lang('Location')</h5>
-                                    <p class="contact-info__desc">
-                                        {{ __(@$contactContent->data_values->contact_details) }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container">
+
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-12">
+                        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0069 10.4582 14.006 10.4252 13.9973 10.3938C13.9886 10.3624 13.9724 10.3337 13.95 10.31C13.89 10.26 13.81 10.28 13.74 10.29C13.65 10.31 12.25 11.24 9.52 13.08C9.12 13.35 8.76 13.49 8.44 13.48C8.08 13.47 7.4 13.28 6.89 13.11C6.26 12.91 5.77 12.8 5.81 12.45C5.83 12.27 6.08 12.09 6.55 11.9C9.47 10.63 11.41 9.79 12.38 9.39C15.16 8.23 15.73 8.03 16.11 8.03C16.19 8.03 16.38 8.05 16.5 8.15C16.6 8.23 16.63 8.34 16.64 8.42C16.63 8.48 16.65 8.66 16.64 8.8Z"
+                                fill="#1877F2"/>
+                        </svg>
+                        <a href="" class="text-dark">Connect with us on telegram</a>
+
                     </div>
-                </div>
-                <div class="col-lg-7 offset-xl-1">
-                    <div class="contact-form">
-                        <form method="post" action="" class="verify-gcaptcha">
-                            @csrf
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="form--label">@lang('Name')</label>
-                                        <input type="text" name="name" class="form--control"
-                                            value="{{ old('name', @$user->fullname) }}"
-                                            @if ($user) readonly @endif required>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="form--label">@lang('Email')</label>
-                                        <input type="email" name="email" class="form--control"
-                                            value="{{ old('email', @$user->email) }}"
-                                            @if ($user) readonly @endif required>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form--label">@lang('Subject')</label>
-                                        <input type="text" name="subject" class="form--control"
-                                            value="{{ old('subject') }}" required>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form--label">@lang('Message')</label>
-                                        <textarea class="form--control" name="message" required>{{ old('message') }}</textarea>
-                                    </div>
-                                </div>
-                                <x-captcha />
-                                <div class="col-sm-12">
-                                    <div class="form-group mb-0">
-                                        <button class=" btn btn--base w-100" type="submit">@lang('Send Message')</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="contact-map-section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 px-0">
-                    <div class="contact-map">
-                        <iframe
-                            src="https://maps.google.com/maps?q={{ @$contactContent->data_values->latitude }},{{ @$contactContent->data_values->longitude }}&hl=es;z=14&amp;output=embed"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_54_995)">
+                                <path d="M0.512212 11.8564C0.511649 13.8728 1.04265 15.8418 2.05234 17.5772L0.415649 23.5067L6.53115 21.9156C8.22261 22.8293 10.1178 23.3081 12.0436 23.3082H12.0487C18.4064 23.3082 23.5816 18.1749 23.5844 11.8654C23.5856 8.80798 22.3867 5.93301 20.2085 3.77003C18.0307 1.60724 15.1343 0.415519 12.0482 0.414124C5.68984 0.414124 0.514931 5.54715 0.512306 11.8564" fill="url(#paint0_linear_54_995)"/>
+                                <path d="M0.100313 11.8527C0.0996563 13.9417 0.649687 15.981 1.69537 17.7786L0 23.9207L6.33478 22.2726C8.08022 23.2168 10.0454 23.7147 12.0451 23.7154H12.0502C18.636 23.7154 23.9972 18.3975 24 11.8621C24.0011 8.69488 22.7591 5.71656 20.5031 3.47609C18.2468 1.23591 15.2468 0.00130233 12.0502 0C5.46337 0 0.102938 5.31721 0.100313 11.8527ZM3.87291 17.469L3.63637 17.0965C2.64206 15.5277 2.11725 13.7149 2.118 11.8534C2.12006 6.4213 6.57544 2.00186 12.054 2.00186C14.7071 2.00298 17.2005 3.02921 19.0759 4.89116C20.9512 6.7533 21.9831 9.22865 21.9824 11.8614C21.98 17.2935 17.5245 21.7135 12.0502 21.7135H12.0463C10.2638 21.7126 8.51569 21.2376 6.99113 20.34L6.62831 20.1265L2.86912 21.1045L3.87291 17.469Z" fill="url(#paint1_linear_54_995)"/>
+                                <path d="M9.06358 6.89746C8.8399 6.40416 8.60449 6.39421 8.39177 6.38556C8.21758 6.37811 8.01846 6.37867 7.81952 6.37867C7.6204 6.37867 7.29687 6.453 7.0234 6.74928C6.74965 7.04583 5.97827 7.76249 5.97827 9.22007C5.97827 10.6777 7.04824 12.0864 7.1974 12.2843C7.34674 12.4817 9.26299 15.5686 12.2979 16.7562C14.8201 17.743 15.3334 17.5468 15.8808 17.4973C16.4283 17.448 17.6474 16.7808 17.8961 16.089C18.1451 15.3973 18.1451 14.8043 18.0704 14.6804C17.9958 14.557 17.7967 14.4829 17.4981 14.3348C17.1994 14.1866 15.7315 13.4698 15.4578 13.371C15.1841 13.2722 14.985 13.2229 14.7859 13.5195C14.5868 13.8157 14.015 14.4829 13.8407 14.6804C13.6666 14.8785 13.4923 14.9031 13.1938 14.755C12.8951 14.6063 11.9335 14.2938 10.7926 13.2846C9.90499 12.4993 9.30574 11.5296 9.13155 11.2329C8.95737 10.9367 9.1129 10.7762 9.26262 10.6285C9.39677 10.4958 9.5613 10.2826 9.71074 10.1096C9.85962 9.93663 9.9093 9.81318 10.0089 9.6156C10.1085 9.41783 10.0586 9.24481 9.98412 9.09663C9.9093 8.94844 9.32908 7.48323 9.06358 6.89746Z" fill="white"/>
+                            </g>
+                            <defs>
+                                <linearGradient id="paint0_linear_54_995" x1="1158.85" y1="2309.67" x2="1158.85" y2="0.414124" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#1FAF38"/>
+                                    <stop offset="1" stop-color="#60D669"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_54_995" x1="1200" y1="2392.07" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#F9F9F9"/>
+                                    <stop offset="1" stop-color="white"/>
+                                </linearGradient>
+                                <clipPath id="clip0_54_995">
+                                    <rect width="24" height="24" fill="white"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+                        <a href="" class="text-dark">Connect with us on Whatsapp</a>
+
                     </div>
+
                 </div>
             </div>
         </div>
-    </section>
 
-    @if ($sections->secs != null)
-        @foreach (json_decode($sections->secs) as $sec)
-            @include($activeTemplate . 'sections.' . $sec)
-        @endforeach
-    @endif
-@endsection 
+        <div class="p-2">
+            <h6>Other Links</h6>
+        </div>
+
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+
+                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.699126 22.1299L11.4851 0.936473C11.6065 0.697285 11.7856 0.49768 12.0036 0.358621C12.2215 0.219562 12.4703 0.146179 12.7237 0.146179C12.9772 0.146179 13.2259 0.219562 13.4439 0.358621C13.6618 0.49768 13.841 0.697285 13.9624 0.936473L24.7483 22.1299C24.8658 22.3607 24.9253 22.6205 24.9209 22.8835C24.9165 23.1466 24.8484 23.4039 24.7234 23.6301C24.5983 23.8562 24.4206 24.0434 24.2078 24.1732C23.995 24.303 23.7543 24.3708 23.5097 24.3701H1.93781C1.69314 24.3708 1.45252 24.303 1.23968 24.1732C1.02684 24.0434 0.849131 23.8562 0.724084 23.6301C0.599037 23.4039 0.530969 23.1466 0.526592 22.8835C0.522216 22.6205 0.581682 22.3607 0.699126 22.1299ZM14.2252 14.2749L14.9815 9.39487C15.0039 9.25037 14.9967 9.10237 14.9605 8.96116C14.9243 8.81995 14.8599 8.6889 14.7719 8.57713C14.6838 8.46536 14.5742 8.37554 14.4506 8.31391C14.327 8.25228 14.1925 8.22033 14.0563 8.22026H11.3912C11.255 8.22033 11.1204 8.25228 10.9969 8.31391C10.8733 8.37554 10.7637 8.46536 10.6756 8.57713C10.5876 8.6889 10.5232 8.81995 10.487 8.96116C10.4508 9.10237 10.4436 9.25037 10.466 9.39487L11.2223 14.2749H14.2252ZM14.7882 18.1096C14.7882 17.5208 14.5707 16.9561 14.1835 16.5398C13.7964 16.1234 13.2713 15.8895 12.7237 15.8895C12.1762 15.8895 11.6511 16.1234 11.2639 16.5398C10.8768 16.9561 10.6593 17.5208 10.6593 18.1096C10.6593 18.6984 10.8768 19.2631 11.2639 19.6794C11.6511 20.0957 12.1762 20.3296 12.7237 20.3296C13.2713 20.3296 13.7964 20.0957 14.1835 19.6794C14.5707 19.2631 14.7882 18.6984 14.7882 18.1096Z" fill="#EA4335"/>
+                        </svg>
+
+
+                        <a href="" class="text-dark">Terms and Condition</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer fixed">
+
+            @if ($errors->any())
+                <div class="alert alert-danger my-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+            @if (session()->has('error'))
+                <div class="alert alert-danger mt-2">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+
+
+            <div class="container">
+
+
+                <a href="/" style="background: linear-gradient(90deg, #0F0673 0%, #B00BD9 100%); color:#ffffff;"
+                   class="btn btn-primary text-start w-100 btn-rounded">
+
+                    <svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15 14.0476V5.95238C15 5.80453 14.9661 5.65871 14.901 5.52646C14.8359 5.39422 14.7414 5.27919 14.625 5.19048L8.0625 0.190476C7.90022 0.0668359 7.70285 0 7.5 0C7.29715 0 7.09978 0.0668359 6.9375 0.190476L0.375 5.19048C0.258566 5.27919 0.164063 5.39422 0.0989744 5.52646C0.0338859 5.65871 0 5.80453 0 5.95238V14.0476C0 14.3002 0.0987722 14.5424 0.274588 14.7211C0.450403 14.8997 0.68886 15 0.9375 15H4.6875C4.93614 15 5.1746 14.8997 5.35041 14.7211C5.52623 14.5424 5.625 14.3002 5.625 14.0476V11.1905C5.625 10.9379 5.72377 10.6956 5.89959 10.517C6.0754 10.3384 6.31386 10.2381 6.5625 10.2381H8.4375C8.68614 10.2381 8.9246 10.3384 9.10041 10.517C9.27623 10.6956 9.375 10.9379 9.375 11.1905V14.0476C9.375 14.3002 9.47377 14.5424 9.64959 14.7211C9.8254 14.8997 10.0639 15 10.3125 15H14.0625C14.3111 15 14.5496 14.8997 14.7254 14.7211C14.9012 14.5424 15 14.3002 15 14.0476Z"
+                            fill="white"/>
+                    </svg>
+
+                </a>
+            </div>
+        </div>
+
+
+
+
+        </section>
+
+@endsection

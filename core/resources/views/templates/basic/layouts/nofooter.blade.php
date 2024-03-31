@@ -48,7 +48,7 @@
             border-left-color: white;
             border-radius: 50%;
             width: 20px;
-            color:  v;
+            color: v;
             height: 20px;
             animation: spin 1s linear infinite;
             margin-right: 5px;
@@ -56,8 +56,12 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 
@@ -125,9 +129,14 @@
                     <div class="header-content">
                         <div class="left-content">
                             <a href="javascript:void(0);" class="back-btn">
-                                <svg width="20" height="20" viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.12781 14.0645H34.3778C34.7922 14.0645 35.1896 14.2291 35.4827 14.5221C35.7757 14.8151 35.9403 15.2126 35.9403 15.627C35.9403 16.0414 35.7757 16.4388 35.4827 16.7318C35.1896 17.0248 34.7922 17.1895 34.3778 17.1895H3.12781C2.71341 17.1895 2.31598 17.0248 2.02295 16.7318C1.72993 16.4388 1.56531 16.0414 1.56531 15.627C1.56531 15.2126 1.72993 14.8151 2.02295 14.5221C2.31598 14.2291 2.71341 14.0645 3.12781 14.0645Z" fill="#5E5E5E"/>
-                                    <path d="M3.77467 15.627L16.734 28.5832C17.0274 28.8766 17.1923 29.2745 17.1923 29.6895C17.1923 30.1044 17.0274 30.5023 16.734 30.7957C16.4406 31.0891 16.0427 31.2539 15.6278 31.2539C15.2129 31.2539 14.8149 31.0891 14.5215 30.7957L0.459043 16.7332C0.313533 16.5881 0.198087 16.4157 0.119317 16.2258C0.0405464 16.036 0 15.8325 0 15.627C0 15.4215 0.0405464 15.2179 0.119317 15.0281C0.198087 14.8383 0.313533 14.6659 0.459043 14.5207L14.5215 0.458223C14.8149 0.164828 15.2129 0 15.6278 0C16.0427 0 16.4406 0.164828 16.734 0.458223C17.0274 0.751619 17.1923 1.14955 17.1923 1.56447C17.1923 1.9794 17.0274 2.37733 16.734 2.67072L3.77467 15.627Z" fill="#5E5E5E"/>
+                                <svg width="20" height="20" viewBox="0 0 36 32" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3.12781 14.0645H34.3778C34.7922 14.0645 35.1896 14.2291 35.4827 14.5221C35.7757 14.8151 35.9403 15.2126 35.9403 15.627C35.9403 16.0414 35.7757 16.4388 35.4827 16.7318C35.1896 17.0248 34.7922 17.1895 34.3778 17.1895H3.12781C2.71341 17.1895 2.31598 17.0248 2.02295 16.7318C1.72993 16.4388 1.56531 16.0414 1.56531 15.627C1.56531 15.2126 1.72993 14.8151 2.02295 14.5221C2.31598 14.2291 2.71341 14.0645 3.12781 14.0645Z"
+                                        fill="#5E5E5E"/>
+                                    <path
+                                        d="M3.77467 15.627L16.734 28.5832C17.0274 28.8766 17.1923 29.2745 17.1923 29.6895C17.1923 30.1044 17.0274 30.5023 16.734 30.7957C16.4406 31.0891 16.0427 31.2539 15.6278 31.2539C15.2129 31.2539 14.8149 31.0891 14.5215 30.7957L0.459043 16.7332C0.313533 16.5881 0.198087 16.4157 0.119317 16.2258C0.0405464 16.036 0 15.8325 0 15.627C0 15.4215 0.0405464 15.2179 0.119317 15.0281C0.198087 14.8383 0.313533 14.6659 0.459043 14.5207L14.5215 0.458223C14.8149 0.164828 15.2129 0 15.6278 0C16.0427 0 16.4406 0.164828 16.734 0.458223C17.0274 0.751619 17.1923 1.14955 17.1923 1.56447C17.1923 1.9794 17.0274 2.37733 16.734 2.67072L3.77467 15.627Z"
+                                        fill="#5E5E5E"/>
                                 </svg>
 
                             </a>
@@ -147,29 +156,33 @@
                                 <h5 class="mb-0 ms-2 text-nowrap">Order Details</h5>
                             @elseif(Route::current()->getName() === 'category.products')
                                 <h5 class="mb-0 ms-2 text-nowrap">Products</h5>
+                            @elseif(Route::current()->getName() === 'contact')
+                                <h5 class="mb-0 ms-2 text-nowrap">Support</h5>
+                            @elseif(Route::current()->getName() === 'user.profile')
+                                <h5 class="mb-0 ms-2 text-nowrap">Account</h5>
+                            @elseif(Route::current()->getName() === 'user.change.password')
+                                <h5 class="mb-0 ms-2 text-nowrap">Reset Password</h5>
                             @endif
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         </div>
                         <div class="mid-content">
                         </div>
 
+                        <div class="icon-bx">
+                            <a href="/products">
+                                <img src="{{ url('') }}/assets/assets/images/fav.svg"
+                                     alt="wallet-image" width="20" height="20">
+                            </a>
+
+                        </div>
+
                         <div class="right-content d-flex align-items-center">
                             <a href="javascript:void(0);" class="item-bookmark icon-2 mt-2">
-                                <img src="{{url('')}}/assets/assets/images/wallet.svg" alt="wallet-image" width="30" height="30">
-                                <span class="text-muted text-bold">{{number_format(Auth::user()->balance, 2)}}</span><br>
+                                <img src="{{url('')}}/assets/assets/images/wallet.svg" alt="wallet-image" width="30"
+                                     height="30">
+                                <span
+                                    class="text-muted text-bold">{{number_format(Auth::user()->balance, 2)}}</span><br>
                             </a>
                         </div>
 

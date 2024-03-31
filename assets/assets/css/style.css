@@ -8354,7 +8354,7 @@ fieldset:disabled .btn {
 
 .text-white {
     --bs-text-opacity: 1;
-    color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+    color: rgb(177 177 177) !important;
 }
 
 .text-body {
@@ -17166,7 +17166,7 @@ a[class*="badge-outline-"]:hover {
 }
 
 .btn {
-    font-size: 0.875rem;
+    font-size: 12px;
     font-weight: 600;
     padding: 15px 25px;
     line-height: 1;
