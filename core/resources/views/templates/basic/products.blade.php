@@ -252,7 +252,7 @@
                                         </strong>
                                     </div>
 
-                                    <div style="border-radius: 100px; background: #10113D;color: #ffffff;">
+                                    <div style="font-size: 11px; border-radius: 100px; background: #10113D;color: #ffffff;">
                                         <div class="row">
                                             <div class="col-2"></div>
                                             <div class="col-3">Product</div>

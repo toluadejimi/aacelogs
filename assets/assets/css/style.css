@@ -22730,4 +22730,21 @@ ul.list-check li:after {
     }
 }
 
+.btn4 {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 11px 11px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    justify-content: center;
+    text-decoration: none !important;
+    border-radius: var(--border-radius-base);
+    border-width: 1px;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
 /*# sourceMappingURL=style.css.map */

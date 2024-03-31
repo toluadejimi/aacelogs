@@ -133,11 +133,11 @@
                     <div class="card">
 
 
-                        <div class="card-body">
+                        <div class="card-body" style="font-size: 10px;">
 
 
                             <div class="product-right">
-                                <div class="row">
+                                <div class="row" style="font-size: 10px;">
                                     <div class="col-2">
                                         <a href="#" data-help="Click to read detailed description">
                                             <img src="{{ url('') }}/public/storage/content/images/{{ $icon }}" height="30" width="30" loading="lazy">
@@ -145,13 +145,13 @@
                                     </div>
 
                                     <div class="col-10">
-                                        <h4 class="mb-3">{{ $title }}</h4>
+                                        <h4 class="mb-3 " style="font-size: 8px;">{{ $title }}</h4>
                                     </div>
                                 </div>
 
 
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-5" style="font-size: 8px;">
                                         <h5 class="">NGN{{ number_format($amount, 2) }}/Pcs</h5>
                                     </div>
 

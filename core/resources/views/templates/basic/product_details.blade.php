@@ -109,13 +109,13 @@
                         <hr>
                         <div class="row">
                             <div class="col-13">
-                                <h5 class="mt-2">NGN{{ number_format($product->price) }}/Pcs</h5>
+                                <h6 class="mt-2">NGN{{ number_format($product->price) }}/Pcs</h6>
                             </div>
 
                             <div class="col-7">
                                 <button type="button"
                                     style="background: linear-gradient(90deg, #0F0673 0%, #B00BD9 100%); color:#ffffff;"
-                                    class="btn btn-block"> {{ number_format($product->in_stock) }} Available in
+                                    class="btn btn-block"> {{ number_format($product->in_stock) }} pcs in
                                     stock</button>
                                 </span>
                             </div>
@@ -125,11 +125,11 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <button style="background-color: #4d4d4d; color: white" class="btn"
+                                <button style="background-color: #4d4d4d; color: white" class="btn4"
                                     onclick="decrementQuantity()">-
                                 </button>
                                 <span class="p-2" id="quantity">1</span>
-                                <button style="background-color: #110248; color: white" class="btn"
+                                <button style="background-color: #110248; color: white" class="btn4"
                                     onclick="incrementQuantity()">+
                                 </button>
                             </div>
