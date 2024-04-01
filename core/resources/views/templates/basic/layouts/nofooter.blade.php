@@ -162,7 +162,10 @@
                                 <h5 class="mb-0 ms-2 text-nowrap">Account</h5>
                             @elseif(Route::current()->getName() === 'user.change.password')
                                 <h5 class="mb-0 ms-2 text-nowrap">Reset Password</h5>
+                            @elseif(Route::current()->getName() === 'product.details')
+                                <h5 class="mb-0 ms-2 text-nowrap">Product Details</h5>
                             @endif
+
 
 
                         </div>

@@ -71,6 +71,8 @@ Route::middleware('auth')->name('user.')->group(function () {
 
                 Route::get('orders', 'orders')->name('orders');
                 Route::get('order/details/{id}', 'orderDetails')->name('order.details');
+                Route::get('copy/{id}', 'copy')->name('copy');
+
             });
 
             //Profile setting

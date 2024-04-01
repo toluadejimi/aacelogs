@@ -87,6 +87,9 @@
             <div class="col-md-12">
 
                 <h5 class="mt-4 mb-4">@lang('Latest Payments History')</h5>
+                <div class="col d-flex justify-content-start">
+                    {{ paginateLinks($deposits) }}
+                </div>
 
                 @forelse($deposits as $deposit)
                     <div class="item-box">

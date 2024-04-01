@@ -32,6 +32,16 @@
 
         </div>
 
+        <div class="row my-2">
+            <div class="col d-flex justify-content-start">
+                {{ paginateLinks($orderItems) }}
+            </div>
+
+            <div class="col d-flex justify-content-end">
+                <a href="/user/copy/{{$get_id}}" class="btn btn-sm btn-dark">Copy all</a>
+            </div>
+        </div>
+
         <div class="col-lg-12">
 
             <div style="border-radius: 100px; background: #10113D;color: #ffffff; font-size: 11px">
@@ -41,7 +51,10 @@
                 </div>
             </div>
 
-            @forelse($orderItems as $item)
+
+
+
+        @forelse($orderItems as $item)
 
                 <div class="card">
                     <div class="card-body " style="font-size: 11px;">
@@ -117,7 +130,6 @@
                 </div>
 
             @endforelse
-            {{ paginateLinks($orderItems) }}
         </div>
 
 

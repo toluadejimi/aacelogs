@@ -44,6 +44,12 @@ class SiteController extends Controller
 
     public function contact()
     {
+
+        $auth = Auth::check();
+        if($auth == false){
+            return redirect('/user/login');
+        }
+
         $pageTitle = "Contact Us";
         $user = auth()->user();
         $sections  = Page::where('tempname', $this->activeTemplate)->where('slug', 'contact')->first();
@@ -204,7 +210,7 @@ class SiteController extends Controller
 
         $pageTitle = 'Products ';
 
-        $get_wallet = Auth::user()->wallet ?? null; 
+        $get_wallet = Auth::user()->wallet ?? null;
         if($get_wallet == null){
             $wallet = null;
         }else{
@@ -220,6 +226,13 @@ class SiteController extends Controller
     }
 
     public function categoryProducts($category = null, $id = 0){
+
+
+        $chk = Auth::check();
+        if($chk == false){
+            return redirect('user/login');
+        }
+
 
         $category = Category::active()->findOrFail($id);
         $pageTitle = $category->name;
@@ -315,6 +328,6 @@ class SiteController extends Controller
 
 
 
-   
+
 
 }

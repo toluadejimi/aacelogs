@@ -10,6 +10,7 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Models\SupportTicket;
 use App\Models\GatewayCurrency;
+use Illuminate\Support\Facades\Storage;
 use Stripe\Issuing\Transaction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -293,10 +294,33 @@ class UserController extends Controller
         $pageTitle = 'Order Details';
         $order = Order::where('user_id', auth()->id())->where('status', Status::ORDER_PAID)->findOrFail($id);
         $orderItems = OrderItem::whereIn('id', $order->orderItems->pluck('id') ?? [])->with('product', 'productDetail')->paginate(getPaginate());
-        return view($this->activeTemplate . 'user.order_details', compact('pageTitle', 'order', 'orderItems'));
+
+        $get_id = $id;
+
+        return view($this->activeTemplate . 'user.order_details', compact('pageTitle', 'order', 'orderItems', 'get_id'));
     }
 
 
+
+    public function copy($id)
+    {
+
+        $order = Order::where('user_id', auth()->id())->where('status', Status::ORDER_PAID)->findOrFail($id);
+        $copyall = OrderItem::whereIn('id', $order->orderItems->pluck('id') ?? [])->with('product', 'productDetail')->get();
+
+        $result = [];
+        foreach ($copyall as $data){
+            $result[] = $data->productDetail->details;
+        }
+
+        $text = implode(PHP_EOL, $result);
+        Storage::put('result.txt', $text);
+        $filePath = storage_path('app/result.txt');
+        return response()->download($filePath, 'result.txt');
+
+
+
+    }
 
 
 

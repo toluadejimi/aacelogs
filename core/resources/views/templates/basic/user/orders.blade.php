@@ -36,6 +36,9 @@
             </div>
         </div>
 
+        <div class="col d-flex justify-content-start">
+            {{ paginateLinks($orders) }}
+        </div>
 
         <div style="border-radius: 100px; background: #10113D;color: #ffffff; font-size: 11px">
             <div class="row">
@@ -91,7 +94,6 @@
             </div>
         @endforelse
     </div>
-    {{ paginateLinks($orders) }}
 
 
 
