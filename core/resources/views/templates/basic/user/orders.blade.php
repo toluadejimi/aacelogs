@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <div class="col d-flex justify-content-start">
+        <div class="col d-flex justify-content-start my-3">
             {{ paginateLinks($orders) }}
         </div>
 

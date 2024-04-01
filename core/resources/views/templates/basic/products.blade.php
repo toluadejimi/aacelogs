@@ -193,28 +193,36 @@
                             <div class="swiper-container tag-group mt-4 demo-swiper">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
+                                        <a href="#">
                                         <div class="card">
                                             <img src="{{ url('') }}/assets/assets/images/slider/slide_1.png"
                                                 alt="wallet-image">
                                         </div>
+                                        </a>
                                     </div>
                                     <div class="swiper-slide active">
+                                        <a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON">
                                         <div class="card">
                                             <img src="{{ url('') }}/assets/assets/images/slider/slide_2.png"
                                                 alt="wallet-image">
                                         </div>
+                                        </a>
                                     </div>
                                     <div class="swiper-slide ">
+                                        <a href="https://t.me/ACELOGSTORE01">
                                         <div class="card">
                                             <img src="{{ url('') }}/assets/assets/images/slider/slide_3.png"
                                                 alt="wallet-image">
                                         </div>
+                                        </a>
                                     </div>
                                     <div class="swiper-slide">
+                                        <a href="https://t.me/acelogstoreteam">
                                         <div class="card">
                                             <img src="{{ url('') }}/assets/assets/images/slider/slide_4.png"
                                                 alt="wallet-image">
                                         </div>
+                                        </a>
                                     </div>
                                     {{-- <div class="swiper-slide">
                                         <div class="card">

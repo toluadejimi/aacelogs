@@ -168,24 +168,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Header End -->
 
     <!-- Preloader -->
@@ -365,8 +347,8 @@
 
 
     <!-- Menubar -->
-    <div class="menubar-area">
-        <div class="toolbar-inner menubar-nav">
+    <div class="menubar-area" style="font-size: 10px">
+        <div class="toolbar-inner menubar-nav" style="font-size: 10px">
 
             @if(Route::current()->getName() === 'user.deposit.new')
                 <a href="/user/deposit/new" class="nav-link active">

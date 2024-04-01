@@ -33,7 +33,7 @@
         </div>
 
         <div class="row my-2">
-            <div class="col d-flex justify-content-start">
+            <div class="col d-flex justify-content-start my-3">
                 {{ paginateLinks($orderItems) }}
             </div>
 
