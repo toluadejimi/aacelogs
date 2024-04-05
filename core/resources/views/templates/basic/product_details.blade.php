@@ -77,7 +77,7 @@
 
                         <div class="text-center">
                             <p>By purchasing any product, you agree that you are fully aware of these
-                                terms/conditions and agree to follow them! 👉🏽<a href="/terms"> TERMS AND
+                                terms/conditions and agree to follow them! 👉🏽<a href="/user/rules"> TERMS AND
                                     CONDITIONS</a></p>
 
                         </div>

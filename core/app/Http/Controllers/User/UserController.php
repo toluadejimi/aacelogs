@@ -214,6 +214,13 @@ class UserController extends Controller
         return view($this->activeTemplate . 'user.user_data', compact('pageTitle', 'user', 'mobileCode', 'countries'));
     }
 
+    public function rules(Request $request)
+    {
+
+        return view($this->activeTemplate . 'user.rules');
+
+    }
+
     public function userDataSubmit(Request $request)
     {
         $user = auth()->user();
