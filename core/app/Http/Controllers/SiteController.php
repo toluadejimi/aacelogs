@@ -225,6 +225,30 @@ class SiteController extends Controller
         return view($this->activeTemplate . 'products', compact('pageTitle', 'gateway_currency', 'categories','sections', 'wallet'));
     }
 
+
+    public function search(Request $request)
+    {
+
+        $cat = Category::where('name', 'LIKE', "%$request->keyword%")->first() ?? null;
+
+        if($cat == null){
+
+            return back()->with('error', "No category found");
+
+        }
+
+        $title = Category::where('id', $cat->id)->first()->title;
+
+        $products = Product::where('category_id', $cat->id)->get();
+
+        $user = Auth::id() ?? null;
+
+
+        return view('template/basic/category_products', compact('title', 'user', 'products'));
+
+
+    }
+
     public function categoryProducts($category = null, $id = 0){
 
 
