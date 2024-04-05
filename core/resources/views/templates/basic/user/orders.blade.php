@@ -42,6 +42,7 @@
 
         <div style="border-radius: 100px; background: #10113D;color: #ffffff; font-size: 11px">
             <div class="row">
+                <div class="col">ID</div>
                 <div class="col">Date</div>
                 <div class="col">Amount(NGN)</div>
                 <div class="col">Qty</div>
@@ -56,6 +57,11 @@
             <div class="card">
                 <div class="card-body " style="font-size: 11px;">
                     <div class="row">
+
+                        <div class="col">
+                            {{ $order->id }}
+                        </div>
+
                         <div class="col">
                             {{ diffForHumans($order->created_at) }}
                         </div>
