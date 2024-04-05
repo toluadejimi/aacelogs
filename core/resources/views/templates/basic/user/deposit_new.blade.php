@@ -109,7 +109,7 @@
                         @else
 
                             <div class="item-media mt-2">
-                                <svg width="70" height="70" viewBox="0 0 26 26" fill="none"
+                                <svg width="60" height="60" viewBox="0 0 26 26" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M9.75975 21.9163L15.7576 22.0772C18.5846 22.153 19.9991 22.191 20.9003 21.3358C21.8025 20.4817 21.8405 19.0672 21.9163 16.2402L22.0772 10.2424C22.153 7.41539 22.1909 6.0009 21.3358 5.09965C20.4817 4.19743 19.0672 4.15949 16.2402 4.08367L10.2423 3.9228C7.41536 3.84698 6.00087 3.80904 5.09962 4.66418C4.19739 5.5183 4.15946 6.93279 4.08363 9.75978L3.92277 15.7576"
@@ -125,32 +125,22 @@
 
 
                             @if($deposit->method_code == 1000)
-                                <h6 class="mb-0">Manual Deposit</h6></a>
+                                <h6 class="mb-0 text-small">Manual Deposit</h6></a>
                                 <div class="item-footer">
                                     <h6>{{number_format($deposit->amount, 2)}}</h6>
-                                    <div class="col-1 mt-1">
-                                    @if($deposit->status == 1)
-                                        <span  class="text-small col-sm-12 badge bg-success mb-1">Successful</span>
-                                    @elseif($deposit->status == 2)
-                                        <span  class="text-small col-sm-12 badge bg-warning mb-1">Pending</span>
-                                    @elseif($deposit->status == 3)
-                                        <span  class="text-small col-sm-12 badge bg-danger mb-1">Canceled</span>
-                                    @else
-                                        <span  class="text-small col-sm-12 badge bg-warning mb-1">Pending</span>
-                                    @endif
-                                    </div>
 
-                                    <a href="javascript:void(0);" class="item-bookmark">
+                                    <a href="javascript:void(0);" class="item- text-small d-flex justify-content-end">
                                         @if($deposit->status == 1)
                                             <a href="#" class="btn btn-success btn-sm">Completed</a>
                                         @elseif($deposit->status == 2)
-                                            <a href="/user/resolve-deposit?trx={{$deposit->trx}}"
-                                               class="btn btn-dark btn-sm">Resolve</a>
+                                            <a href="#"
+                                               class="btn btn-warning btn-sm">Pending</a>
                                         @elseif($deposit->status == 3)
                                             <a href="#" class="btn btn-danger btn-sm">Rejected</a>
                                         @else
-                                            <a href="/user/resolve-deposit?trx={{$deposit->trx}}"
-                                               class="btn btn-dark btn-sm">Resolve</a>
+                                            <a href="#"
+                                               class="btn btn-warning btn-sm">Pending</a>
+
                                         @endif
 
                                     </a>
