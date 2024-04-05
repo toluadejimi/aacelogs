@@ -14,7 +14,7 @@
                             @lang('Transaction Number')
                             <span class="fw-bold">{{ $deposit->trx }}</span>
                         </li>
- 
+
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Order')
                             <a href="{{ route('admin.report.order.history', ['search'=>$deposit->trx]) }}" class="fw-bold">@lang('View Details')</a>
@@ -34,19 +34,8 @@
                             @lang('Amount')
                             <span class="fw-bold">{{ showAmount($deposit->amount ) }} {{ __($general->cur_text) }}</span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Charge')
-                            <span class="fw-bold">{{ showAmount($deposit->charge ) }} {{ __($general->cur_text) }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('After Charge')
-                            <span class="fw-bold">{{ showAmount($deposit->amount+$deposit->charge ) }} {{ __($general->cur_text) }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @lang('Rate')
-                            <span class="fw-bold">1 {{__($general->cur_text)}}
-                                = {{ showAmount($deposit->rate) }} {{__($deposit->baseCurrency())}}</span>
-                        </li>
+
+
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Payable')
                             <span class="fw-bold">{{ showAmount($deposit->final_amo ) }} {{__($deposit->method_currency)}}</span>
@@ -71,31 +60,12 @@
             <div class="card b-radius--10 overflow-hidden box--shadow1">
                 <div class="card-body">
                     <h5 class="card-title mb-50 border-bottom pb-2">@lang('User Payment Information')</h5>
-                    @if($details != null)
-                        @foreach(json_decode($details) as $val)
-                            @if($deposit->method_code >= 1000)
-                            <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <h6>{{__($val->name)}}</h6>
-                                    @if($val->type == 'checkbox')
-                                        {{ implode(',',$val->value) }}
-                                    @elseif($val->type == 'file')
-                                        @if($val->value)
-                                            <a href="{{ route('admin.download.attachment',encrypt(getFilePath('verify').'/'.$val->value)) }}" class="me-3"><i class="fa fa-file"></i>  @lang('Attachment') </a>
-                                        @else
-                                            @lang('No File')
-                                        @endif
-                                    @else
-                                    <p>{{__($val->value)}}</p>
-                                    @endif
-                                </div>
-                            </div>
-                            @endif
-                        @endforeach
+                    @if($deposit->url != null)
+                        <a href="{{ $deposit->url }}" >View Recepit</a>
+                    @endif
                         @if($deposit->method_code < 1000)
                             @include('admin.deposit.gateway_data',['details'=>json_decode($details)])
                         @endif
-                    @endif
                     @if($deposit->status == Status::PAYMENT_PENDING)
                         <div class="row mt-4">
                             <div class="col-md-12">

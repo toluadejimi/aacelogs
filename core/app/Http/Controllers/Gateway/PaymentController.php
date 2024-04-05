@@ -439,6 +439,7 @@ class PaymentController extends Controller
 
         Deposit::where('trx', $track)->update([
             'status' => Status::PAYMENT_PENDING,
+            'url' => $url,
         ]);
 
 

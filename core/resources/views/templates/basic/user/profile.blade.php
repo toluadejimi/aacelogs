@@ -5,11 +5,8 @@
         <div class="container profile-area">
             <div class="profile">
                 <div class="media media-100">
-                    <img src="{{url('')}}/assets/assets/images/emoji/emoji-1.png" alt="/">
-                    <svg class="progress-style" height="100" width="100">
-                        <circle id="round-1" cx="60" cy="60" r="50" stroke="#E8EFF3" stroke-width="7" fill="none" />
-                        <circle id="round-2" cx="60" cy="60" r="50" stroke="#C3AC58" stroke-width="7" fill="none" />
-                    </svg>
+                    <img src="{{ url('') }}/assets/assets/images/fav.svg" alt="author-image" height="100px" width="100px">
+
                 </div>
                 <div class="mb-2">
                     <h4>{{$user->username}}</h4>
@@ -75,9 +72,8 @@
                                     <div class="offer-content">
                                         <h6>Total Spent(NGN)</h6>
                                     </div>
-                                    <div class="point">
-                                        <h5 class="title">{{number_format($spent)}}</h5>
-                                    </div>
+                                        <h5 style="color: white" class="title">{{number_format($spent)}}</h5>
+
                                 </div>
                             </div>
 {{--                            <div class="swiper-slide">--}}
