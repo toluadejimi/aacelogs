@@ -6,6 +6,7 @@ use App\Constants\Status;
 use App\Http\Controllers\Controller;
 use App\Lib\CurlRequest;
 use App\Models\AdminNotification;
+use App\Models\CouponCode;
 use App\Models\Deposit;
 use App\Models\Order;
 use App\Models\Product;
@@ -19,8 +20,53 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
 
+
+    public function coupon(request $request)
+    {
+
+        $data['pageTitle'] = "Coupon";
+        $data['coupons'] = CouponCode::where('id', 2)->first() ?? null;
+
+        return view('admin.coupon', $data);
+
+    }
+
+    public function new_coupon(request $request)
+    {
+
+        $cup = new CouponCode();
+        $cup->coupon_code = $request->coupon_code;
+        $cup->amount = $request->amount;
+        $cup->save();
+        return back()->with('message', 'Cuopon Created Successfully');
+
+    }
+
+    public function update_coupon(request $request)
+    {
+        CouponCode::where('id', $request->id)->update
+        ([
+            'coupon_code' => $request->coupon_code,
+            'amount' => $request->amount,
+            'status' => $request->status
+        ]);
+
+        return back()->with('message', 'Cuopon Updated Successfully');
+
+    }
+
+
+    public function delete_coupon(request $request)
+    {
+        CouponCode::where('id', $request->id)->delete();
+        return back()->with('message', 'Cuopon Deleted Successfully');
+
+    }
+
+
+
     public function dashboard()
-    {   
+    {
         $pageTitle = 'Dashboard';
 
         // User Info
@@ -33,7 +79,7 @@ class AdminController extends Controller
         $widget['total_paid_orders'] = Order::paid()->count();
         $widget['total_unpaid_orders'] = Order::unpaid()->count();
         $widget['total_products'] = Product::count();
-        
+
 
         // user Browsing, Country, Operating Log
         $userLoginData = UserLogin::where('created_at', '>=', Carbon::now()->subDay(30))->get(['browser', 'os', 'country']);

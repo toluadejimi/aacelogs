@@ -42,7 +42,7 @@
 
 
                 <div class="dz-info">
-                    <span class="text-dark">Good Morning</span>
+                    <span class="text-dark">{{$greetings}}</span>
                     <h3 class="name mb-0">{{ Auth::user()->username }} 👋</h3>
                 </div>
 

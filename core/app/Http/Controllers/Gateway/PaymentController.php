@@ -65,6 +65,8 @@ class PaymentController extends Controller
                     return back()->with('error', 'Coupon is not valid');
                 }
 
+
+
                 $percentage = $ck->amount / 100;
                 $coupon_amount = $percentage * $final_amo;
 
@@ -90,9 +92,14 @@ class PaymentController extends Controller
 
             $unsoldProductDetails = $product->unsoldProductDetails;
 
+            $pp = $product->productDetails;
 
-                $items = @$order->orderItems->pluck('product_detail_id')->toArray() ?? [];
-                ProductDetail::whereIn('id', $items)->update(['is_sold'=>Status::YES]);
+            $id = [];
+            foreach($pp as $data){
+                $id[] = $data->id;
+            }
+
+            $update = ProductDetail::whereIn('id', $id)->update(['is_sold'=>Status::YES]);
 
                 for($i = 0; $i < $qty; $i++){
                     if(@!$unsoldProductDetails[$i]){
@@ -104,12 +111,19 @@ class PaymentController extends Controller
                     $item->product_detail_id = $unsoldProductDetails[$i]->id;
                     $item->price = $product->price;
                     $item->save();
+
+
                 }
 
 
 
 
-                $message = "Ace Logs |".  Auth::user()->email . "| just bought | $qty | $order->id  | " . number_format($charge_amount, 2) . "\n\n IP ====> " . $request->ip();
+
+
+
+
+
+            $message = "Ace Logs |".  Auth::user()->email . "| just bought | $qty | $order->id  | " . number_format($charge_amount, 2) . "\n\n IP ====> " . $request->ip();
                 send_notification_2($message);
 
 

@@ -183,15 +183,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="author-box">
-            <div class="dz-media">
-                <img src="{{ url('') }}/assets/assets/images/fav.svg" alt="author-image" height="100px" width="100px">
-            </div>
-            <div class="dz-info">
-                <span class="text-dark">Hi</span>
-                @auth
-                    <h5 class="text-dark  name">{{Auth::user()->username}}</h5>
-                @endauth
-            </div>
+            <img src="{{url('')}}/assets/assets/images/logo.svg" width="300" height="250">
         </div>
 
 

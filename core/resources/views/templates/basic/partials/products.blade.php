@@ -59,6 +59,8 @@
                         @else
                             <form action="/user/login" method="GET">
                                 @csrf
+                                <span  class="text-small col-sm-12 badge bg-dark mb-1">{{ $product->in_stock }} pcs</span>
+
                                 <div class="button-wrap" onclick="subscribeBuyItem(6);">
                                     <div data-help="Buy Now">
                                         <button

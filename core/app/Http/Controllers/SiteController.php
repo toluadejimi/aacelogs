@@ -218,11 +218,25 @@ class SiteController extends Controller
         }
         $categories = $categories->orderBy('name')->paginate(getPaginate());
 
+
+        $hour = now()->hour;
+
+        if ($hour < 12) {
+            $greeting = 'Good morning';
+        } elseif ($hour < 18) {
+            $greeting = 'Good afternoon';
+        } else {
+            $greeting = 'Good evening';
+        }
+
+        $greetings = $greeting;
+
+
         $sections = Page::where('tempname',$this->activeTemplate)->where('slug','products')->first();
         $gateway_currency = GatewayCurrency::all();
 
 
-        return view($this->activeTemplate . 'products', compact('pageTitle', 'gateway_currency', 'categories','sections', 'wallet'));
+        return view($this->activeTemplate . 'products', compact('pageTitle', 'gateway_currency', 'greetings', 'categories','sections', 'wallet'));
     }
 
 

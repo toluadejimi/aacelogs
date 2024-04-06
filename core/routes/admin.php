@@ -31,6 +31,12 @@ Route::middleware('admin')->group(function () {
         Route::post('profile', 'profileUpdate')->name('profile.update');
         Route::get('password', 'password')->name('password');
         Route::post('password', 'passwordUpdate')->name('password.update');
+        Route::get('coupon',  'coupon')->name('coupon');
+        Route::post('new-coupon',  'new_coupon')->name('new.coupon');
+        Route::get('delete-coupon',  'delete_coupon')->name('delete.coupon');
+        Route::post('update-coupon',  'update_coupon')->name('update.coupon');
+
+
 
         //Notification
         Route::get('notifications','notifications')->name('notifications');
@@ -65,6 +71,7 @@ Route::middleware('admin')->group(function () {
         Route::post('delete/account/{id}', 'deleteAccount')->name('delete.account');
         Route::post('update/account', 'updateAccount')->name('update.account');
         Route::get('/download/demo/txt', 'downloadDemoTxt')->name('download.demo.txt');
+
     });
 
     // Users Manager

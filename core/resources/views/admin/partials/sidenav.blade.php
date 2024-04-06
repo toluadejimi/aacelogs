@@ -27,7 +27,7 @@
                         <span class="menu-title">@lang('Products')</span>
                     </a>
                 </li>
- 
+
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.users*',3)}}">
                         <i class="menu-icon las la-users"></i>
@@ -245,7 +245,7 @@
                                     <span class="menu-title">@lang('Order History')</span>
                                 </a>
                             </li>
-                            
+
                             <li class="sidebar-menu-item {{menuActive(['admin.report.login.history','admin.report.login.ipHistory'])}}">
                                 <a href="{{route('admin.report.login.history')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
@@ -265,11 +265,11 @@
                 </li>
 
 
-                <li class="sidebar-menu-item  {{menuActive('admin.subscriber.*')}}">
-                    <a href="{{route('admin.subscriber.index')}}" class="nav-link"
-                       data-default-url="{{ route('admin.subscriber.index') }}">
+                <li class="sidebar-menu-item ">
+                    <a href="{{route('admin.coupon')}}" class="nav-link"
+                       data-default-url="{{route('admin.coupon')}}">
                         <i class="menu-icon las la-thumbs-up"></i>
-                        <span class="menu-title">@lang('Subscribers') </span>
+                        <span class="menu-title">@lang('Coupon') </span>
                     </a>
                 </li>
 
