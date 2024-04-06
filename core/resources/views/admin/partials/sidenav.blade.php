@@ -274,6 +274,7 @@
                 </li>
 
 
+
                 <li class="sidebar__menu-header">@lang('Settings')</li>
 
                 <li class="sidebar-menu-item {{menuActive('admin.setting.index')}}">
