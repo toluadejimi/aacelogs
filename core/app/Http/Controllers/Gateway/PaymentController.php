@@ -92,14 +92,6 @@ class PaymentController extends Controller
 
             $unsoldProductDetails = $product->unsoldProductDetails;
 
-            $pp = $product->productDetails;
-
-            $id = [];
-            foreach($pp as $data){
-                $id[] = $data->id;
-            }
-
-            $update = ProductDetail::whereIn('id', $id)->update(['is_sold'=>Status::YES]);
 
                 for($i = 0; $i < $qty; $i++){
                     if(@!$unsoldProductDetails[$i]){

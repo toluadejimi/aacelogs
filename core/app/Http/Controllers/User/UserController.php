@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\ProductDetail;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Deposit;
@@ -289,6 +290,9 @@ class UserController extends Controller
             ->with('deposit', 'orderItems')
             ->paginate(getPaginate());
 
+
+
+
         $count_order = Order::where('user_id', Auth::id())->where('status', 1)->count();
         $order_sum = Order::where('user_id', Auth::id())->where('status', 1)->sum('total_amount');
 
@@ -301,6 +305,14 @@ class UserController extends Controller
         $pageTitle = 'Order Details';
         $order = Order::where('user_id', auth()->id())->where('status', Status::ORDER_PAID)->findOrFail($id);
         $orderItems = OrderItem::whereIn('id', $order->orderItems->pluck('id') ?? [])->with('product', 'productDetail')->paginate(getPaginate());
+        $orderd = OrderItem::whereIn('id', $order->orderItems->pluck('id') ?? [])->with('productDetail')->get();
+
+        foreach ($orderd as $product)
+        {
+            $item[] = $product->productDetail->id;
+        }
+
+        $update = ProductDetail::whereIn('id', $item)->update(['is_sold'=>Status::YES]);
 
         $get_id = $id;
 
