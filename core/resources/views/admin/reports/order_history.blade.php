@@ -53,7 +53,7 @@
                         </thead>
                         <tbody>
                             @forelse($orders as $order)
-                                @php 
+                                @php
                                     $qty = @$order->orderItems->count();
                                     $perUnitPrice = @$order->orderItems->first()->price;
                                 @endphp
@@ -67,9 +67,9 @@
                                     <td>
                                         <div>
                                             <div class="fw-bold">{{ $order->deposit->trx ?? "Trx" }}</div>
-                                            <a href="{{ route('admin.deposit.details', $order->deposit->id) }}">
-                                                @lang('View Details')
-                                            </a>
+{{--                                            <a href="{{ route('admin.deposit.details', $order->deposit->id) }}">--}}
+{{--                                                @lang('View Details')--}}
+{{--                                            </a>--}}
                                         </div>
                                     </td>
 
@@ -98,7 +98,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @empty 
+                            @empty
                                 <tr>
                                     <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
                                 </tr>
