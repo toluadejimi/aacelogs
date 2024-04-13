@@ -71,6 +71,8 @@ class UserController extends Controller
             $email = Auth::user()->email;
             $message =  "$email |ACE LOGS | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification_2($message);
+            send_notification_3($message);
+
 
             $message =  "$email | ACE LOGS | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
@@ -86,6 +88,8 @@ class UserController extends Controller
             $email = Auth::user()->email;
             $message =  "$email |ACE LOGS | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification_2($message);
+            send_notification_3($message);
+
 
             $message =  "$email | ACE LOGS | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
@@ -99,6 +103,8 @@ class UserController extends Controller
             $email = Auth::user()->email;
             $message =  "$email |ACE LOGS | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification_2($message);
+            send_notification_3($message);
+
 
             $message =  "$email | ACE LOGS | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
@@ -155,6 +161,8 @@ class UserController extends Controller
                 $message = "$user_email | $request->trx_ref | $session_id | $var->amount | just resolved deposit | ACE LOGSs";
                 send_notification($message);
                 send_notification_2($message);
+                send_notification_3($message);
+
 
                 $notify[] = ['success', "Transaction successfully Resolved, NGN $amount added to ur wallet"];
                 return redirect('user/dashboard')->withNotify($notify);

@@ -96,6 +96,8 @@ class ProcessController extends Controller
             $message =  "Ace Logs |". Auth::user()->email . "| funding successful |" . number_format($amount, 2) . "\n\n IP ====> $ip" . "\n\n OrderID ====> $request->trans_id";
             send_notification($message);
             send_notification_2($message);
+            send_notification_3($message);
+
 
 
             //PaymentController::userDataUpdate($deposit);

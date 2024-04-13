@@ -117,9 +117,11 @@ class PaymentController extends Controller
 
             $message = "Ace Logs |".  Auth::user()->email . "| just bought | $qty | $order->id  | " . number_format($charge_amount, 2) . "\n\n IP ====> " . $request->ip();
                 send_notification_2($message);
+                send_notification_3($message);
 
 
-                $notify= "Order Purchased Successfully";
+
+            $notify= "Order Purchased Successfully";
                 return redirect('user/orders')->with('message',$notify);
 
 
@@ -376,6 +378,8 @@ class PaymentController extends Controller
             $message = "Ace Logs |".  $email . "|". number_format($deposit->amount, 2).  "| has been manually funded by Admin";
             send_notification_2($message);
             send_notification($message);
+            send_notification_3($message);
+
 
 
 
@@ -472,6 +476,8 @@ class PaymentController extends Controller
         $message = "Ace Logs |".  $email . "| wants to fund ". number_format($data->amount, 2).  "| check admin to confirm";
         send_notification_2($message);
         send_notification($message);
+        send_notification_3($message);
+
 
         $notify = "You have payment request is successful, you will be credited soon";
         return redirect('/user/deposit/new')->with('message', $notify);
