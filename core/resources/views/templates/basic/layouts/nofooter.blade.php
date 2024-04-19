@@ -187,7 +187,7 @@
                                 <img src="{{url('')}}/assets/assets/images/wallet.svg" alt="wallet-image" width="30"
                                      height="30">
                                 <span
-                                    class="text-muted text-bold">{{number_format(Auth::user()->balance, 2)}}</span><br>
+                                    class="text-muted text-bold">{{number_format(Auth::user()->balance ?? 0, 2)}}</span><br>
                             </a>
                         </div>
 
