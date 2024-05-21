@@ -65,7 +65,7 @@ Route::middleware('auth')->name('user.')->group(function () {
                 Route::any('payment/history', 'depositHistory')->name('deposit.history');
                 Route::any('deposit/new', 'depositNew')->name('deposit.new');
                 Route::any('resolve-deposit', 'resloveDeposit')->name('resolve.deposit');
-                Route::any('rules', 'rules')->name('user.rules');
+                Route::any('rules', 'rules')->name('rules');
 
                 Route::any('resolve-now', 'resolve_now')->name('resolve.now');
                 Route::get('attachment-download/{fil_hash}','attachmentDownload')->name('attachment.download');
