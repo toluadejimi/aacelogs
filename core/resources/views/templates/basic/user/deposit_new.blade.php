@@ -51,7 +51,7 @@
                                 <div class="col-12">
                                     <select class="form-control" name="gateway" required>
                                         @foreach ($gateway_currency as $data)
-                                            <option value="{{ $data->method_code }}">{{ $data->name }} </option>
+                                            <option value="{{ $data->code }}">{{ $data->name }} </option>
                                         @endforeach
                                     </select>
 
