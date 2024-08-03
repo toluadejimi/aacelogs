@@ -158,8 +158,8 @@
                                         @elseif($deposit->status == 3)
                                             <a href="#" class="btn btn-danger btn-sm">Rejected</a>
                                         @else
-                                            <a href="/user/resolve-deposit?trx={{$deposit->trx}}"
-                                               class="btn btn-dark btn-sm">Resolve</a>
+{{--                                            <a href="/user/resolve-deposit?trx={{$deposit->trx}}"--}}
+{{--                                               class="btn btn-dark btn-sm">Resolve</a>--}}
                                         @endif
 
                                     </a>
