@@ -132,8 +132,8 @@ class PaymentController extends Controller
         if($request->payment == "enkpay"){
 
 
-        if($request->amount < 100) {
-            $notify[] = ['error', "Amount can not be less than 100"];
+        if($request->amount < 2000) {
+            $notify[] = ['error', "Amount can not be less than 2000"];
             return back()->withNotify($notify);
         }
 
