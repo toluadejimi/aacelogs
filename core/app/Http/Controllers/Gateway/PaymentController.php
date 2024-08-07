@@ -133,14 +133,12 @@ class PaymentController extends Controller
 
 
         if($request->amount < 2000) {
-            $notify[] = ['error', "Amount can not be less than 2000"];
-            return back()->withNotify($notify);
+            return back()->with('error', "Amount can not be less than 2000");
         }
 
 
         if($request->amount > 100000) {
-            $notify[] = ['error', "Amount can not be more than 100,000"];
-            return back()->withNotify($notify);
+            return back()->with('error', "Amount can not be more than 100000");
         }
 
 
