@@ -36,6 +36,7 @@ class ManageUsersController extends Controller
 
 
 
+
         $notify[] = ['success','User Funded successfully'];
         return back()->withNotify($notify);
 
@@ -54,6 +55,7 @@ class ManageUsersController extends Controller
 
         send_notification_2($message);
         send_notification_3($message);
+
 
 
 

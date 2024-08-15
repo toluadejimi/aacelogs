@@ -377,6 +377,8 @@ class PaymentController extends Controller
             send_notification_2($message);
             send_notification($message);
             send_notification_3($message);
+            send_notification_4($message);
+
 
 
 
@@ -475,6 +477,8 @@ class PaymentController extends Controller
         send_notification_2($message);
         send_notification($message);
         send_notification_3($message);
+        send_notification_4($message);
+
 
 
         $notify = "You have payment request is successful, you will be credited soon";
