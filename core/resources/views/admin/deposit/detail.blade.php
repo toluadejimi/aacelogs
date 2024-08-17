@@ -62,7 +62,7 @@
                     <h5 class="card-title mb-50 border-bottom pb-2">@lang('User Payment Information')</h5>
                     @if($deposit->url != null)
 
-                        <img src="$deposit->url" alt="description of image" width="500">
+                        <img src="{{ $deposit->url }}" alt="description of image" width="500" height="700">
 
                         <a href="{{ $deposit->url }}" >View Receipt</a>
                     @endif
