@@ -8,7 +8,7 @@
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Date')
-                            <span class="fw-bold">{{ showDateTime($deposit->created_at) }}</span>
+                            <span class="fw-bold">{{ showDateTime($deposit->pay_time ?? $deposit->created_at) }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @lang('Transaction Number')
@@ -61,7 +61,10 @@
                 <div class="card-body">
                     <h5 class="card-title mb-50 border-bottom pb-2">@lang('User Payment Information')</h5>
                     @if($deposit->url != null)
-                        <a href="{{ $deposit->url }}" >View Recepit</a>
+
+                        <img src="$deposit->url" alt="description of image" width="500" height="700">
+
+                        <a href="{{ $deposit->url }}" >View Receipt</a>
                     @endif
                         @if($deposit->method_code < 1000)
                             @include('admin.deposit.gateway_data',['details'=>json_decode($details)])
