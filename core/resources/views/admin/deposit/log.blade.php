@@ -70,7 +70,7 @@
                                 </td>
 
                                 <td>
-                                    {{ showDateTime($deposit->created_at) }}<br>{{ diffForHumans($deposit->created_at) }}
+                                    {{ showDateTime($deposit->paytime ?? $deposit->created_at) }}<br>{{ diffForHumans($deposit->paytime ?? $deposit->created_at) }}
                                 </td>
                                 <td>
                                     <span class="fw-bold">{{ $deposit->user->fullname ?? "Name" }}</span>
