@@ -447,7 +447,8 @@ class PaymentController extends Controller
         $request->receipt->move($path, $receipt_fileName);
         $url = url('')."/".$path."/".$receipt_fileName;
 
-        $givenTime = Carbon::createFromFormat('Y-m-d H:i:s', '2024-08-17 18:40:53');
+        $date = date('Y-m-d H:i:s');
+        $givenTime = Carbon::createFromFormat('Y-m-d H:i:s', $date);
         $newTime = $givenTime->subHours(2);
 
 
