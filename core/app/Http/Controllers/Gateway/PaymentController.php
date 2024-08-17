@@ -10,6 +10,7 @@ use App\Constants\Status;
 use App\Models\OrderItem;
 use App\Lib\FormProcessor;
 use App\Models\CouponCode;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\ProductDetail;
 use App\Models\GatewayCurrency;
@@ -446,10 +447,14 @@ class PaymentController extends Controller
         $request->receipt->move($path, $receipt_fileName);
         $url = url('')."/".$path."/".$receipt_fileName;
 
+        $givenTime = Carbon::createFromFormat('Y-m-d H:i:s', '2024-08-17 18:40:53');
+        $newTime = $givenTime->subHours(2);
+
 
         Deposit::where('trx', $track)->update([
             'status' => Status::PAYMENT_PENDING,
             'url' => $url,
+            'paytime' => $newTime
         ]);
 
 
