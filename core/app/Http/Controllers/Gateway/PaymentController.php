@@ -41,7 +41,6 @@ class PaymentController extends Controller
                     $notify = "Please wait for 10sec and try again";
                     return redirect('user/orders')->with('error', $notify);
 
-
                 }
 
             }
