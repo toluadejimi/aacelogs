@@ -77,7 +77,7 @@
                             </defs>
                         </svg>
 
-                        <a href="https://chat.whatsapp.com/CQtiNorfsys3irydIog6ON" class="text-dark">Whatsapp Group</a>
+                        <a href="https://chat.whatsapp.com/DetDWu6WT20Cd8JNh0bxgz" class="text-dark">Whatsapp Group</a>
 
                     </div>
 

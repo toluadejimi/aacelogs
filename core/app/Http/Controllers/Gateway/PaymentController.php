@@ -61,6 +61,7 @@ class PaymentController extends Controller
             $amount = ($product->price * $qty);
 
 
+
             $balance = Auth::user()->balance ?? null;
             if($balance < $amount){
                 $notify = "Insufficient Funds, Fund your wallet";
