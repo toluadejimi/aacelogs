@@ -28,6 +28,24 @@ class PaymentController extends Controller
         if($request->payment == "wallet"){
 
 
+            $last_order = Order::latest()->where('user_id', Auth::id())->first()->created_at ?? null;
+
+            if($last_order != null){
+
+                $createdAt = strtotime($last_order);
+                $currentTime = time();
+                $timeDifference = $currentTime - $createdAt;
+
+                if ($timeDifference < 50) {
+
+                    $notify = "Please wait for 10sec and try again";
+                    return redirect('user/orders')->with('error', $notify);
+
+
+                }
+
+            }
+
 
             $qty = $request->qty;
 
