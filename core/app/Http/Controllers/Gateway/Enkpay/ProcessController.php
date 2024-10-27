@@ -22,7 +22,7 @@ class ProcessController extends Controller
         $key = env('WEBKEY');
         $email = Auth::user()->email;
         $amount = round($deposit->final_amo, 2);
-        $url = "https://web.enkpay.com/pay?amount=$amount&key=$key&ref=$deposit->trx&email=$email";
+        $url = "https://web.sprintpay.online/pay?amount=$amount&key=$key&ref=$deposit->trx&email=$email";
         $send['url'] =  $url;
 
 
@@ -71,7 +71,7 @@ class ProcessController extends Controller
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://web.enkpay.com/api/verify',
+            CURLOPT_URL => 'https://web.sprintpay.online/api/verify',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

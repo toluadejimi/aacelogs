@@ -133,7 +133,7 @@ class UserController extends Controller
             );
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://web.enkpay.com/api/resolve',
+                CURLOPT_URL => 'https://web.sprintpay.online/api/resolve',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
