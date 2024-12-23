@@ -157,6 +157,18 @@
       <path value="$PROJECT_DIR$/core/vendor/mockery/mockery" />
       <path value="$PROJECT_DIR$/core/vendor/nesbot/carbon" />
       <path value="$PROJECT_DIR$/core/vendor/silviolleite/laravelpwa" />
+      <path value="$PROJECT_DIR$/core/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/core/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/core/vendor/league/uri-interfaces" />
+      <path value="$PROJECT_DIR$/core/vendor/league/oauth2-server" />
+      <path value="$PROJECT_DIR$/core/vendor/league/event" />
+      <path value="$PROJECT_DIR$/core/vendor/league/uri" />
+      <path value="$PROJECT_DIR$/core/vendor/nyholm/psr7" />
+      <path value="$PROJECT_DIR$/core/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/core/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/core/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/core/vendor/laravel/passport" />
+      <path value="$PROJECT_DIR$/core/vendor/symfony/psr-http-message-bridge" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

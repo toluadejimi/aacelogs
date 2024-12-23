@@ -5,7 +5,10 @@
       <sourceFolder url="file://$MODULE_DIR$/core/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/core/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
       <sourceFolder url="file://$MODULE_DIR$/core/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/core/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/core/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/core/vendor/authorizenet/authorizenet" />
       <excludeFolder url="file://$MODULE_DIR$/core/vendor/barryvdh/laravel-debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/core/vendor/beyondcode/laravel-query-detector" />
@@ -151,6 +154,18 @@
       <excludeFolder url="file://$MODULE_DIR$/core/vendor/vonage/nexmo-bridge" />
       <excludeFolder url="file://$MODULE_DIR$/core/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/core/vendor/silviolleite/laravelpwa" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/defuse/php-encryption" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/firebase/php-jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/laravel/passport" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/league/event" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/league/oauth2-server" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/league/uri" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/league/uri-interfaces" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/nyholm/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/paragonie/constant_time_encoding" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/paragonie/random_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/phpseclib/phpseclib" />
+      <excludeFolder url="file://$MODULE_DIR$/core/vendor/symfony/psr-http-message-bridge" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

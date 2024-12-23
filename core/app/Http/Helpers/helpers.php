@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 
 function systemDetails()
 {
-    $system['name'] = 'keylab';
+    $system['name'] = 'acelogstore';
     $system['version'] = '1.0';
     $system['build_version'] = '4.4.7';
     return $system;
