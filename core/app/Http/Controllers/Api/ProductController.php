@@ -42,10 +42,55 @@ class ProductController extends Controller
 
     }
 
+
+    public static function get_product_details(request $request)
+    {
+
+        $cat = Product::latest()->where('id', $request->id)->first();
+
+        $data['id'] = $cat->id;
+        $data['name'] = $cat->name;
+        $data['description'] = $cat->description;
+        $data['price'] = $cat->price;
+        $data['image'] = url('')."/assets/images/product/".$cat->image;
+        $data['in_stock'] = $cat->in_stock;
+
+
+        return response()->json([
+            'status' => true,
+            'data' => $data
+        ]);
+
+    }
+
     public static function buy_product(request $request)
     {
 
-        $last_order = Order::latest()->where('user_id', Auth::id())->first()->created_at ?? null;
+        $data = json_encode($request->all());
+
+
+        if($request->key == null){
+            return response()->json([
+                'status' => false,
+                'message' => "Key can not be null | $data "
+            ]);
+
+        }
+
+
+        $usr = User::where('api_key', $request->key)->first() ?? null;
+        if($usr == null){
+            return response()->json([
+                'status' => false,
+                'message' => "Key not found on our system | $data "
+            ]);
+
+        }
+
+       
+
+        $user_id = $usr->id;
+        $last_order = Order::latest()->where('user_id', $user_id)->first()->created_at ?? null;
         if ($last_order != null) {
             $createdAt = strtotime($last_order);
             $currentTime = time();
@@ -64,14 +109,14 @@ class ProductController extends Controller
 
 
         $qty = $request->qty;
-
         $get_product = Product::where('id', $request->product_id)->first() ?? null;
         if ($get_product == null) {
             return response()->json([
                 'status' => false,
-                'message' => "Product not found, Check the product ID and try again"
+                'message' => "Product not found, Check the product ID and try again | $data | $request->product_id"
             ]);
         }
+
 
         $product = Product::active()->whereHas('category', function ($category) {
             return $category->active();
@@ -86,11 +131,12 @@ class ProductController extends Controller
 
         }
 
+
+        
+
         $amount = ($product->price * $qty);
-
-
-        $balance2 = number_format(Auth::user()->balance ?? 0, 2);
-        $balance = Auth::user()->balance ?? 0;
+        $balance2 = number_format($usr->balance ?? 0, 2);
+        $balance = $usr->balance ?? 0;
 
         if ($balance < $amount) {
             return response()->json([
@@ -100,10 +146,10 @@ class ProductController extends Controller
         }
 
 
-        User::where('id', Auth::id())->decrement('balance', $amount);
+        User::where('id', $usr->id)->decrement('balance', $amount);
 
         $order = new Order();
-        $order->user_id = Auth::id();
+        $order->user_id = $usr->id;
         $order->total_amount = $amount;
         $order->status = 1;
         $order->save();
@@ -133,7 +179,7 @@ class ProductController extends Controller
         }
 
 
-        $message = "Log Market Place API |" . Auth::user()->email . "| just bought | $qty | $order->id  | " . number_format($amount, 2) . "\n\n IP ====> " . $request->ip();
+        $message = "Log Market Place API |" . $usr->email . "| just bought | $qty | $order->id  | " . number_format($amount, 2) . "\n\n IP ====> " . $request->ip();
         // send_notification_2($message);
 
 
