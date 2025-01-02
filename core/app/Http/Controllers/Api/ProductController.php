@@ -216,7 +216,7 @@ class ProductController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => "Api not valid",
-                'data' => $request->api_key
+                'data' => $request->key
             ]);
         }
         return response()->json([
