@@ -212,9 +212,7 @@ class ProductController extends Controller
     {
 
         $usr = User::where('key', $request->api_key)->first() ?? null;
-
         if($usr == null){
-
             return response()->json([
                 'status' => false,
                 'message' => "Api not valid",
@@ -224,7 +222,8 @@ class ProductController extends Controller
         return response()->json([
             'status' => true,
             'message' => "Successful",
-            'data' => $usr
+            'data' => $usr,
+            'key' => $request->api_key
         ]);
 
     }
