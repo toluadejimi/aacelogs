@@ -211,7 +211,7 @@ class ProductController extends Controller
     public function get_balance(request $request)
     {
 
-        $usr = User::where('api_key', $request->api_key)->first() ?? null;
+        $usr = User::where('key', $request->api_key)->first() ?? null;
 
         if($usr == null){
 
