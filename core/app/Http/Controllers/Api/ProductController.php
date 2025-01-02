@@ -30,6 +30,21 @@ class ProductController extends Controller
     }
 
 
+    public static function get_all_category_products(request $request)
+    {
+
+        $cat = Product::latest()->where('category_id', $request->cat_id)->where('status', 1)->paginate(12);
+        return response()->json([
+            'status' => true,
+            'data' => $cat
+        ]);
+
+    }
+
+
+
+
+
     public static function get_products_by_category(request $request)
     {
 
@@ -87,7 +102,7 @@ class ProductController extends Controller
 
         }
 
-       
+
 
         $user_id = $usr->id;
         $last_order = Order::latest()->where('user_id', $user_id)->first()->created_at ?? null;
@@ -132,7 +147,7 @@ class ProductController extends Controller
         }
 
 
-        
+
 
         $amount = ($product->price * $qty);
         $balance2 = number_format($usr->balance ?? 0, 2);
@@ -189,6 +204,28 @@ class ProductController extends Controller
             'data' => $products
         ]);
 
+
+    }
+
+
+    public function get_balance(request $request)
+    {
+
+        $usr = User::where('api_key', $request->api_key)->first() ?? null;
+
+        if($usr == null){
+
+            return response()->json([
+                'status' => false,
+                'message' => "Api not valid",
+                'data' => $request->api_key
+            ]);
+        }
+        return response()->json([
+            'status' => true,
+            'message' => "Successful",
+            'data' => $usr
+        ]);
 
     }
 
