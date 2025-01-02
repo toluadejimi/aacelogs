@@ -211,7 +211,7 @@ class ProductController extends Controller
     public function get_balance(request $request)
     {
 
-        $usr = User::where('key', $request->api_key)->first() ?? null;
+        $usr = User::where('key', $request->key)->first() ?? null;
         if($usr == null){
             return response()->json([
                 'status' => false,
@@ -223,7 +223,7 @@ class ProductController extends Controller
             'status' => true,
             'message' => "Successful",
             'data' => $usr,
-            'key' => $request->api_key
+            'key' => $request->key
         ]);
 
     }
