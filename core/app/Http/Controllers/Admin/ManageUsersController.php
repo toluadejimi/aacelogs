@@ -290,7 +290,7 @@ class ManageUsersController extends Controller
                 $q->where('email', 'like', '%' . request()->search . '%')->orWhere('username', 'like', '%' . request()->search . '%');
             });
         }
-        $users = $query->orderBy('id', 'desc')->paginate(getPaginate());
+        $users = $query->orderBy('balance', 'desc')->paginate(getPaginate());
         return response()->json([
             'success' => true,
             'users'   => $users,
