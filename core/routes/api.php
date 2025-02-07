@@ -11,7 +11,7 @@ use App\Http\Controllers\User\UserController;
 
 
 Route::any('e-fund',  'User\UserController@e_fund')->name('e-fund');
-Route::any('e-check',  'User\UserController@e_check')->name('e-check');
+Route::any('verify',  'User\UserController@e_check')->name('e-check');
 
 
 Route::post('buy-product',  [ProductController::class, 'buy_product']);
