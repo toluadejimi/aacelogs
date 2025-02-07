@@ -358,15 +358,13 @@ class UserController extends Controller
         if($get_user == null){
 
             return response()->json([
-                'status' => false,
-                'message' => 'No user found, please check email and try again',
+                'username' => "Not Found, Pleas try again"
             ]);
+
         }
 
-
         return response()->json([
-            'status' => true,
-            'user' => $get_user->username,
+            'username' => $get_user->username
         ]);
 
     }
