@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transfertransaction;
+use App\Models\User;
 use App\Models\Webkey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -41,11 +42,23 @@ class TelegramBotController extends Controller
 
         // Handle commands
         if ($text === '/start') {
-            return $this->sendMenu($chatId);
+
+            $tid = User::where('telegram_id', $chatId)->first() ?? null;
+            if($tid == null){
+                return $this->sendMenuRegister($chatId);
+            }else{
+                return $this->sendMenu($chatId);
+            }
+
         }
 
         if ($text === 'hi') {
-            return $this->sendMenu($chatId);
+            $tid = User::where('telegram_id', $chatId)->first() ?? null;
+            if($tid == null){
+                return $this->sendMenuRegister($chatId);
+            }else{
+                return $this->sendMenu($chatId);
+            }
         }
 
         if (strpos($text, 'resolve') !== false) {
@@ -141,6 +154,8 @@ class TelegramBotController extends Controller
 
     protected function sendMenu($chatId)
     {
+
+
         $keyboard = [
             'inline_keyboard' => [
                 [['text' => 'Resolve Transaction', 'callback_data' => 'resolve']],
@@ -149,7 +164,24 @@ class TelegramBotController extends Controller
             ]
         ];
 
-        $this->sendMessage($chatId, "Choose an option:", $keyboard);
+        $this->sendMessage($chatId, "Welcome to AcelogStore |  | Choose an option:", $keyboard);
+    }
+
+
+
+    protected function sendMenuRegister($chatId)
+    {
+
+
+        $keyboard = [
+            'inline_keyboard' => [
+                [['text' => 'Link Account', 'callback_data' => 'link']],
+                [['text' => 'New Registration', 'callback_data' => 'register']],
+                [['text' => 'Need Help', 'callback_data' => 'help']]
+            ]
+        ];
+
+        $this->sendMessage($chatId, "Welcome to AcelogStore |  | Choose an option:", $keyboard);
     }
 
     protected function handleCallbackQuery($callbackQuery)
