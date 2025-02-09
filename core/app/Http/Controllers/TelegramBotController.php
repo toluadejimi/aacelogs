@@ -25,6 +25,8 @@ class TelegramBotController extends Controller
             $message = $update['message'];
             $chatId = $message['chat']['id'];
             $text = $message['text'] ?? '';
+            $username = $update['message']['from']['username'] ?? null;
+
 
             $this->autoReply($chatId, $text);
         }
@@ -35,7 +37,7 @@ class TelegramBotController extends Controller
     }
 
 
-    protected function autoReply($chatId, $text)
+    protected function autoReply($chatId, $text, $username)
     {
         $text = strtolower(trim($text));
         Log::info("Received message: $text from Chat ID: $chatId");
@@ -85,7 +87,24 @@ class TelegramBotController extends Controller
         }
 
         if (preg_match('/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/', $text, $matches)) {
-            return $this->sendMessage($chatId, "I found an email: " . $matches[0]);
+
+           $get_user =  User::where('email', $matches[0])->first() ?? null;
+           if($get_user == null){
+
+               $new_user = new User();
+               $new_user->email = $matches[0];
+               $new_user->telegram_id = $chatId;
+               $new_user->username = $username;
+               $new_user->save();
+
+               return $this->sendMessage($chatId,  $matches[0]. "Successfully Registred on AcelogBot");
+
+
+           }else{
+               User::where('email', $matches[0])->update(['telegram_id' => $chatId ]) ?? null;
+               return $this->sendMessage($chatId, $matches[0]. "Successfully Linked with AcelogBot");
+           }
+
         }
 
 
