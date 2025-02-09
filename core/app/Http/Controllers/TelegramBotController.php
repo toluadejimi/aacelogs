@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Deposit;
 use App\Models\Product;
 use App\Models\Transfertransaction;
 use App\Models\User;
@@ -126,38 +127,64 @@ class TelegramBotController extends Controller
 
         }
 
+        if (preg_match('/^\d+\.00$/', $text)) {
 
-        // Handle Account Number cases
-        if (preg_match('/^(961|603|500|558)\d{7}$/', $text)) {
-            return $this->handleTransaction($chatId, $text);
+            if($text < 1000){
+                return $this->sendMessage($chatId, "Minmum funding is 1000.00");
+            }
+
+            $user = User::where('telegram_id', $chatId)->first();
+
+
+            $trx_id = "TRXTG".rand_int(000000, 999999);
+            $trx = new Deposit();
+            $trx->trx = $trx_id;
+            $trx->status = 0;
+            $trx->user_id = $user->id;
+            $trx->amount = $text;
+            $trx->method_code = 250;
+            $trx->save();
+
+            $pt = "Telegram";
+
+            $key = env('WEBKEY');
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://web.sprintpay.online/pay?amount=$text&key=$key&ref=$trx_id&email=$user->email&platform=$pt",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 20,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'GET',
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: application/json',
+                ),
+            ));
+
+            $var = curl_exec($curl);
+            curl_close($curl);
+            $var = json_decode($var);
+
+            $res  = json_encode($var);
+
+            return $this->sendMessage($chatId, $res);
+
         }
 
-        return $this->sendMessage($chatId, "Invalid command or account number. Please try again.");
+
+
+
     }
 
-    protected function handleTransaction($chatId, $accountNo)
+    protected function handleTransaction($chatId, $amount, $trx_id)
     {
-        Log::info("Checking transaction for Account No: $accountNo");
-        $trx = Transfertransaction::where('account_no', $accountNo)->first();
 
-        if (!$trx) {
-            Log::warning("No transaction found for Account No: $accountNo");
-            return $this->handleUnknownTransaction($chatId, $accountNo);
-        }
 
-        $pref = $trx->ref;
-        $amount = number_format($trx->amount);
-        $email = $trx->email;
-        $date = $trx->created_at;
-        $sitename = Webkey::where('key', $trx->key)->first()->site_name ?? 'Unknown';
 
-        $verify = $this->verifyTransaction($accountNo, $pref);
-
-        if (!is_array($verify)) {
-            return $this->sendMessage($chatId, "Error: Unexpected response format.");
-        }
-
-        return $this->sendTransactionStatus($chatId, $accountNo, $verify, $email, $date, $sitename, $amount);
+        //return $this->sendTransactionStatus();
     }
 
     protected function verifyTransaction($accountNo, $pref)
