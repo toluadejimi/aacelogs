@@ -48,7 +48,8 @@ class TelegramBotController extends Controller
             if($tid == null){
                 return $this->sendMenuRegister($chatId);
             }else{
-                return $this->sendMenu($chatId);
+                $username = $tid->username;
+                return $this->sendMenu($chatId, $username);
             }
 
         }
@@ -59,7 +60,8 @@ class TelegramBotController extends Controller
             if($tid == null){
                 return $this->sendMenuRegister($chatId);
             }else{
-                return $this->sendMenu($chatId);
+                $username = $tid->username;
+                return $this->sendMenu($chatId, $username);
             }
 
         }
@@ -69,7 +71,8 @@ class TelegramBotController extends Controller
             if($tid == null){
                 return $this->sendMenuRegister($chatId);
             }else{
-                return $this->sendMenu($chatId);
+                $username = $tid->username;
+                return $this->sendMenu($chatId, $username);
             }
         }
 
@@ -186,7 +189,7 @@ class TelegramBotController extends Controller
         return $this->sendTransactionStatus($chatId, $accountNo, $verify, 'N/A', 'N/A', 'N/A', 'N/A');
     }
 
-    protected function sendMenu($chatId)
+    protected function sendMenu($chatId, $username)
     {
 
 
@@ -198,7 +201,7 @@ class TelegramBotController extends Controller
             ]
         ];
 
-        $this->sendMessage($chatId, "Welcome to AcelogStore |  | Choose an option:", $keyboard);
+        $this->sendMessage($chatId, "Welcome to AcelogStore | $username | Choose an option:", $keyboard);
     }
 
 
