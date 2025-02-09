@@ -279,7 +279,7 @@ class TelegramBotController extends Controller
 
                 $keyboardButtons = [];
                 foreach ($products as $product) {
-                    $keyboardButtons[] = [['text' => "NGN $product->price | ". $product->name, 'callback_data' => 'product_' . $product->id]];
+                    $keyboardButtons[] = [['text' =>  "NGN ".number_format($product->price, 2)."|". $product->name, 'callback_data' => 'product_' . $product->id]];
                 }
 
                 $keyboard = [
