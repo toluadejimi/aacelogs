@@ -306,13 +306,15 @@ class TelegramBotController extends Controller
             case 'profile':
 
                 $user = User::where('telegram_id', $chatId)->first();
-                $count_order = Order::where('user_id', $user->id)->where('status', 1)->count();
-                $order_sum = Order::where('user_id', $user->id)->where('status', 1)->sum('total_amount');
+                $bal =  number_format(User::where('telegram_id', $chatId)->first()->balance,2);
+                $count_order = number_format(Order::where('user_id', $user->id)->where('status', 1)->count(),2);
+                $order_sum = number_format(Order::where('user_id', $user->id)->where('status', 1)->sum('total_amount'), 2);
 
 
                 $this->sendMessage($chatId,
 
                     "Email: $user->email  \n\n"
+                    . "Balance: $bal  \n\n"
                     . "Total Order: $count_order\n\n"
                     . "Total Spent: NGN.$order_sum\n\n"
 
