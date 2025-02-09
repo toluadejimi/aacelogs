@@ -361,8 +361,8 @@ class TelegramBotController extends Controller
                             . "Description: $product->description  \n\n"
                             . "Amount: ₦$pamount\n\n"
                             . "Available Stock: $stock\n\n"
-                            . "To buy more than 1 of this Product reply with ( Item = $pId & Qty = 2 ) \n\n"
-                            . "To buy one this Product reply with ( Item = $pId ) \n\n"
+                            . "To buy more than 1 of this Product reply with | Item = $pId & Qty = 2\n\n"
+                            . "To buy one this Product reply with | Item = $pId \n\n"
 
                         );
 
