@@ -123,12 +123,31 @@ class TelegramBotController extends Controller
                $new_user->username = $username ?? $chatId;
                $new_user->save();
 
-               return $this->sendMessage($chatId,  $matches[0]. " Successfully Registred on AcelogBot");
+               $keyboard = [
+                   'inline_keyboard' => [
+                       [['text' => 'Home', 'callback_data' => '/start']],
+                       [['text' => 'Buy Accounts', 'callback_data' => 'buy']],
+                       [['text' => 'My Orders', 'callback_data' => 'orders']],
+                       [['text' => 'Fund Wallet', 'callback_data' => 'fund']],
+                       [['text' => 'My Profile', 'callback_data' => 'profile']]
+                   ]
+               ];
+
+               return $this->sendMessage($chatId,  $matches[0]. " Successfully Registred on AcelogBot", $keyboard);
 
 
            }else{
                User::where('email', $matches[0])->update(['telegram_id' => $chatId ]) ?? null;
-               return $this->sendMessage($chatId, $matches[0]. " Successfully Linked with AcelogBot");
+               $keyboard = [
+                   'inline_keyboard' => [
+                       [['text' => 'Home', 'callback_data' => '/start']],
+                       [['text' => 'Buy Accounts', 'callback_data' => 'buy']],
+                       [['text' => 'My Orders', 'callback_data' => 'orders']],
+                       [['text' => 'Fund Wallet', 'callback_data' => 'fund']],
+                       [['text' => 'My Profile', 'callback_data' => 'profile']]
+                   ]
+               ];
+               return $this->sendMessage($chatId, $matches[0]. " Successfully Linked with AcelogBot", $keyboard);
            }
 
         }
