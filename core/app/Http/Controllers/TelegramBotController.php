@@ -309,11 +309,16 @@ class TelegramBotController extends Controller
 
 
 
-            case 'link':
+                case 'link':
                 $this->sendMessage($chatId, "Enter your Email on Acelogstore.com");
                 break;
 
-            case 'register':
+
+                case 'fund':
+                $this->sendMessage($chatId, "Enter amount to fund Ex 1000.00");
+                break;
+
+                case 'register':
                 $this->sendMessage($chatId, "Enter your Email to register");
                 break;
 
