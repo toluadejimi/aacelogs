@@ -84,6 +84,11 @@ class TelegramBotController extends Controller
             return $this->sendMessage($chatId, "How can I assist you?");
         }
 
+        if (preg_match('/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/', $text, $matches)) {
+            return $this->sendMessage($chatId, "I found an email: " . $matches[0]);
+        }
+
+
         // Handle Account Number cases
         if (preg_match('/^(961|603|500|558)\d{7}$/', $text)) {
             return $this->handleTransaction($chatId, $text);
