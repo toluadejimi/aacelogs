@@ -398,77 +398,81 @@ class TelegramBotController extends Controller
 
                        if ($product->in_stock < $qty) {
                            $this->sendMessage($chatId, "Not enough stock available. Only {$product->in_stock} quantity left");
-                       }
+                       }else{
 
-                       $amount = ($product->price * $qty);
+                           $amount = ($product->price * $qty);
 
-                       // Get the user ID from Telegram ID
-                       $user = User::where('telegram_id', $chatId)->first();
-                       if (!$user) {
-                           $this->sendMessage($chatId, "User not found!");
-                           return;
-                       }
-                       $user_id = $user->id;
+                           // Get the user ID from Telegram ID
+                           $user = User::where('telegram_id', $chatId)->first();
+                           if (!$user) {
+                               $this->sendMessage($chatId, "User not found!");
+                               return;
+                           }
+                           $user_id = $user->id;
 
-                       // Create order
-                       $order = new Order();
-                       $order->user_id = $user_id;
-                       $order->total_amount = $amount;
-                       $order->save();
+                           // Create order
+                           $order = new Order();
+                           $order->user_id = $user_id;
+                           $order->total_amount = $amount;
+                           $order->save();
 
-                       // Create deposit
-                       $data = new Deposit();
-                       $data->user_id = $user_id;
-                       $data->order_id = $order->id;
-                       $data->method_code = "250";
-                       $data->method_currency = "NGN";
-                       $data->amount = $amount;
-                       $data->charge = 0;
-                       $data->rate = 0;
-                       $data->final_amo = $amount;
-                       $data->btc_amo = 0;
-                       $data->btc_wallet = "";
-                       $data->trx = getTrx();
-                       $data->save();
+                           // Create deposit
+                           $data = new Deposit();
+                           $data->user_id = $user_id;
+                           $data->order_id = $order->id;
+                           $data->method_code = "250";
+                           $data->method_currency = "NGN";
+                           $data->amount = $amount;
+                           $data->charge = 0;
+                           $data->rate = 0;
+                           $data->final_amo = $amount;
+                           $data->btc_amo = 0;
+                           $data->btc_wallet = "";
+                           $data->trx = getTrx();
+                           $data->save();
 
-                       $unsoldProductDetails = $product->unsoldProductDetails;
-                       $orderedItems = "";
+                           $unsoldProductDetails = $product->unsoldProductDetails;
+                           $orderedItems = "";
 
-                       for ($i = 0; $i < $qty; $i++) {
-                           if (!isset($unsoldProductDetails[$i])) {
-                               continue;
+                           for ($i = 0; $i < $qty; $i++) {
+                               if (!isset($unsoldProductDetails[$i])) {
+                                   continue;
+                               }
+
+                               $item = new OrderItem();
+                               $item->order_id = $order->id;
+                               $item->product_id = $product->id;
+                               $item->product_detail_id = $unsoldProductDetails[$i]->id;
+                               $item->price = $product->price;
+                               $item->save();
+
+                               $dtails = ProductDetail::where('id', $unsoldProductDetails[$i]->id)->details;
+                               $orderedItems .= "    *Order Details:* " . $dtails . "\n";
                            }
 
-                           $item = new OrderItem();
-                           $item->order_id = $order->id;
-                           $item->product_id = $product->id;
-                           $item->product_detail_id = $unsoldProductDetails[$i]->id;
-                           $item->price = $product->price;
-                           $item->save();
+                           // Create Telegram keyboard
+                           $keyboard = [
+                               'inline_keyboard' => [
+                                   [['text' => 'Home', 'callback_data' => '/start']],
+                                   [['text' => 'Buy Accounts', 'callback_data' => 'buy']],
+                                   [['text' => 'My Orders', 'callback_data' => 'orders']],
+                                   [['text' => 'Fund Wallet', 'callback_data' => 'fund']],
+                                   [['text' => 'My Profile', 'callback_data' => 'profile']]
+                               ]
+                           ];
 
-                           $dtails = ProductDetail::where('id', $unsoldProductDetails[$i]->id)->details;
-                           $orderedItems .= "    *Order Details:* " . $dtails . "\n";
+                           // Send order confirmation message with full details
+                           $this->sendMessage(
+                               $chatId,
+                               "✅ *Order Successful!* \n\n" .
+                               "📌 *Order ID:* " . $order->id . "\n" .
+                               "📦 *Ordered Items:*\n" . $orderedItems ,
+                               $keyboard
+                           );
+
                        }
 
-                       // Create Telegram keyboard
-                       $keyboard = [
-                           'inline_keyboard' => [
-                               [['text' => 'Home', 'callback_data' => '/start']],
-                               [['text' => 'Buy Accounts', 'callback_data' => 'buy']],
-                               [['text' => 'My Orders', 'callback_data' => 'orders']],
-                               [['text' => 'Fund Wallet', 'callback_data' => 'fund']],
-                               [['text' => 'My Profile', 'callback_data' => 'profile']]
-                           ]
-                       ];
 
-                       // Send order confirmation message with full details
-                       $this->sendMessage(
-                           $chatId,
-                           "✅ *Order Successful!* \n\n" .
-                           "📌 *Order ID:* " . $order->id . "\n" .
-                           "📦 *Ordered Items:*\n" . $orderedItems ,
-                           $keyboard
-                       );
                    }
 
 
