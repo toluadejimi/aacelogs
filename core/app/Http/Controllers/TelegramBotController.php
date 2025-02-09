@@ -83,7 +83,6 @@ class TelegramBotController extends Controller
 
         if (strpos($text, 'buy') !== false) {
             $categories = Category::latest()->where('status', 1)->get();
-
             $keyboardButtons = [];
             foreach ($categories as $data) {
                 $keyboardButtons[] = [['text' => $data->name, 'callback_data' => 'buyaccount_' . $data->id]];
@@ -212,7 +211,7 @@ class TelegramBotController extends Controller
 
         $keyboard = [
             'inline_keyboard' => [
-                [['text' => 'Buy Accounts', 'callback_data' => 'buy']],
+                [['text' => 'Buy Accounts', 'callback_data' => 'resolve']],
                 [['text' => 'My Orders', 'callback_data' => 'orders']],
                 [['text' => 'Fund Wallet', 'callback_data' => 'fund']],
                 [['text' => 'My Profile', 'callback_data' => 'profile']]
