@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Transfertransaction;
 use App\Models\User;
 use App\Models\Webkey;
@@ -262,6 +263,33 @@ class TelegramBotController extends Controller
 
                 $this->sendMessage($chatId, "Choose the type of account to buy", $keyboard);
                 break;
+
+
+               case 'buyaccount_':
+                    $categoryId = str_replace('buyaccount_', '', $callbackData);
+
+                    // Fetch products for the category
+                    $products = Product::where('category_id', $categoryId)->where('status', 1)->get();
+
+                    if ($products->isEmpty()) {
+                        return $this->sendMessage($chatId, "No products available for this category.");
+                    }
+
+                    // Build product selection buttons
+                    $keyboardButtons = [];
+                    foreach ($products as $product) {
+                        $keyboardButtons[] = [['text' => $product->name, 'callback_data' => 'product_' . $product->id]];
+                    }
+
+                    $keyboard = [
+                        'inline_keyboard' => $keyboardButtons
+                    ];
+
+                    $this->sendMessage($chatId, "Select a product to purchase:", $keyboard);
+                break;
+
+
+
 
             case 'link':
                 $this->sendMessage($chatId, "Enter your Email on Acelogstore.com");
