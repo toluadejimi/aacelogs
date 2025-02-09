@@ -19,6 +19,14 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    protected $telegramToken;
+
+    public function __construct()
+    {
+        $this->telegramToken = env('TELEGRAM_BOT_TOKEN');
+    }
+
     public function home()
     {
         $pageTitle = 'Dashboard';
