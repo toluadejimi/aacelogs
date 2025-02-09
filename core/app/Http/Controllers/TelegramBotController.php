@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Transfertransaction;
 use App\Models\User;
 use App\Models\Webkey;
@@ -78,6 +79,22 @@ class TelegramBotController extends Controller
 
         if (strpos($text, 'resolve') !== false) {
             return $this->sendMessage($chatId, "Enter your Account No to resolve a transaction.");
+        }
+
+        if (strpos($text, 'buyaccount') !== false) {
+            $categories = Category::latest()->where('status', 1)->get();
+
+            $keyboardButtons = [];
+            foreach ($categories as $data) {
+                $keyboardButtons[] = [['text' => $data->name, 'callback_data' => 'buyaccount_' . $data->id]];
+            }
+
+            $keyboard = [
+                'inline_keyboard' => $keyboardButtons
+            ];
+
+            $this->sendMessage($chatId, "Choose the type of account to buy", $keyboard);
+
         }
 
         if (strpos($text, 'status') !== false) {
@@ -195,9 +212,10 @@ class TelegramBotController extends Controller
 
         $keyboard = [
             'inline_keyboard' => [
-                [['text' => 'Resolve Transaction', 'callback_data' => 'resolve']],
-                [['text' => 'Check Status', 'callback_data' => 'status']],
-                [['text' => 'Help', 'callback_data' => 'help']]
+                [['text' => 'Buy Accounts', 'callback_data' => 'buyaccount']],
+                [['text' => 'My Orders', 'callback_data' => 'orders']],
+                [['text' => 'Fund Wallet', 'callback_data' => 'fund']],
+                [['text' => 'My Profile', 'callback_data' => 'profile']]
             ]
         ];
 
