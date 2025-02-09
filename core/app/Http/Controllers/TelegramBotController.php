@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Status;
 use App\Models\Category;
 use App\Models\Deposit;
+use App\Models\GatewayCurrency;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\ProductDetail;
 use App\Models\Transfertransaction;
 use App\Models\User;
 use App\Models\Webkey;
@@ -357,7 +361,33 @@ class TelegramBotController extends Controller
                             ]
                         ];
                         $this->sendMessage($chatId, "Insufficient Funds | Your Bal is: ₦".$money, $keyboard);
+                    }else{
+
+
+                        $product = Product::where('id', $pId)->first();
+                        $pamount = number_format($product->price, 2);
+                        $stock = number_format(ProductDetail::where('product_id', $pId)->where('is_sold', 0)->count(), 2);
+
+                        $this->sendMessage($chatId,
+
+                            "Product Name: $product->name  \n\n"
+                            . "Description: $product->description  \n\n"
+                            . "Amount: ₦$pamount\n\n"
+                            . "Available Stock: $stock\n\n"
+                            . "To buy more than 1 of this Product reply with ( Item = $pId & Qty = 2 ) \n\n"
+                            . "To buy one this Product reply with ( Item = $pId ) \n\n"
+
+
+                        );
+
+
+                        $this->sendMessage($chatId, "Insufficient Funds | Your Bal is: ₦".$money, $keyboard);
+
+
                     }
+
+
+
 
                     break;
 
