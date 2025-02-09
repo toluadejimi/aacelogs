@@ -136,7 +136,7 @@ class TelegramBotController extends Controller
             $user = User::where('telegram_id', $chatId)->first();
 
 
-            $trx_id = "TRXTG".rand_int(000000, 999999);
+            $trx_id = "TRXTG".random_int(000000, 999999);
             $trx = new Deposit();
             $trx->trx = $trx_id;
             $trx->status = 0;
