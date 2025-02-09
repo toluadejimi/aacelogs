@@ -211,7 +211,7 @@ class TelegramBotController extends Controller
 
         $keyboard = [
             'inline_keyboard' => [
-                [['text' => 'Buy Accounts', 'callback_data' => 'resolve']],
+                [['text' => 'Buy Accounts', 'callback_data' => 'buy']],
                 [['text' => 'My Orders', 'callback_data' => 'orders']],
                 [['text' => 'Fund Wallet', 'callback_data' => 'fund']],
                 [['text' => 'My Profile', 'callback_data' => 'profile']]
@@ -246,6 +246,21 @@ class TelegramBotController extends Controller
         switch ($callbackData) {
             case 'resolve':
                 $this->sendMessage($chatId, "Enter your Account No to resolve a transaction.");
+                break;
+
+
+            case 'buy':
+                $categories = Category::latest()->where('status', 1)->get();
+                $keyboardButtons = [];
+                foreach ($categories as $data) {
+                    $keyboardButtons[] = [['text' => $data->name, 'callback_data' => 'buyaccount_' . $data->id]];
+                }
+
+                $keyboard = [
+                    'inline_keyboard' => $keyboardButtons
+                ];
+
+                $this->sendMessage($chatId, "Choose the type of account to buy", $keyboard);
                 break;
 
             case 'link':
