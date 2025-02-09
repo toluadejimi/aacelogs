@@ -170,10 +170,10 @@ class TelegramBotController extends Controller
 
             return $this->sendMessage($chatId,
 
-                "Transfer Exactly $text to avoid delays"
-                . "Bank: $var->bank'\n\n"
-                . "Account No: $var->account_no'\n\n"
-                . "Account Name: $var->account_name'\n\n"
+                "Transfer Exactly $text to avoid delays \n\n"
+                . "Bank: $var->bank\n\n"
+                . "Account No: $var->account_no\n\n"
+                . "Account Name: $var->account_name\n\n"
 
             );
 
