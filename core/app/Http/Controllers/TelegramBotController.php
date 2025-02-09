@@ -269,32 +269,24 @@ class TelegramBotController extends Controller
                 break;
 
 
-            case 'buyaccount_':
-                if (strpos($callbackData, 'buyaccount_') === 0) {
-                    // Remove 'buyaccount_' from the beginning of the callback data to get the category ID
-                    $categoryId = str_replace('buyaccount_', '', $callbackData);
 
-                    // Fetch products for the selected category
-                    $products = Product::where('category_id', $categoryId)->where('status', 1)->get();
-
-                    if ($products->isEmpty()) {
-                        return $this->sendMessage($chatId, "No products available for this category.");
-                    }
-
-                    // Build product selection buttons
-                    $keyboardButtons = [];
-                    foreach ($products as $product) {
-                        $keyboardButtons[] = [['text' => $product->name, 'callback_data' => 'product_' . $product->id]];
-                    }
-
-                    // Create the inline keyboard for product selection
-                    $keyboard = [
-                        'inline_keyboard' => $keyboardButtons
-                    ];
-
-                    // Send a message to prompt the user to select a product
-                    $this->sendMessage($chatId, "Select a product to purchase:", $keyboard);
+            case (preg_match('/^buyaccount_\d+$/', $callbackData) ? $callbackData : null):
+                $categoryId = str_replace('buyaccount_', '', $callbackData);
+                $products = Product::where('category_id', $categoryId)->where('status', 1)->get();
+                if ($products->isEmpty()) {
+                    return $this->sendMessage($chatId, "No products available for this category.");
                 }
+
+                $keyboardButtons = [];
+                foreach ($products as $product) {
+                    $keyboardButtons[] = [['text' => $product->name, 'callback_data' => 'product_' . $product->id]];
+                }
+
+                $keyboard = [
+                    'inline_keyboard' => $keyboardButtons
+                ];
+
+                $this->sendMessage($chatId, "Select a product to purchase:", $keyboard);
                 break;
 
 
