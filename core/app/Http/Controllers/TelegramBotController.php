@@ -358,7 +358,6 @@ class TelegramBotController extends Controller
                         $this->sendMessage($chatId,
 
                             "Product Name: $product->name  \n\n"
-                            . "Description: $product->description  \n\n"
                             . "Amount: ₦$pamount\n\n"
                             . "Available Stock: $stock\n\n"
                             . "To buy more than 1 of this Product reply with | Item = $pId & Qty = 2\n\n"
