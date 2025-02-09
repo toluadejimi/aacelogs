@@ -52,6 +52,17 @@ class TelegramBotController extends Controller
 
         }
 
+        if ($text === '/hello') {
+
+            $tid = User::where('telegram_id', $chatId)->first() ?? null;
+            if($tid == null){
+                return $this->sendMenuRegister($chatId);
+            }else{
+                return $this->sendMenu($chatId);
+            }
+
+        }
+
         if ($text === 'hi') {
             $tid = User::where('telegram_id', $chatId)->first() ?? null;
             if($tid == null){
