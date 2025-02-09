@@ -302,7 +302,7 @@ class TelegramBotController extends Controller
                                 [['text' => 'Fund Wallet', 'callback_data' => 'fund']]
                             ]
                         ];
-                        $this->sendMessage($chatId, "Insufficient Funds | Bal: ₦".$money, $keyboard);
+                        $this->sendMessage($chatId, "Insufficient Funds | Your Bal is: ₦".$money, $keyboard);
                     }
 
                     break;
