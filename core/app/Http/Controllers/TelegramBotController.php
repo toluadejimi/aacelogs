@@ -244,7 +244,11 @@ class TelegramBotController extends Controller
         $chatId = $callbackQuery['message']['chat']['id'];
         $callbackData = $callbackQuery['data'];
 
+        Log::info("Received message: $chatId callbackdata: $callbackData");
+
+
         switch ($callbackData) {
+
             case 'resolve':
                 $this->sendMessage($chatId, "Enter your Account No to resolve a transaction.");
                 break;
@@ -267,8 +271,6 @@ class TelegramBotController extends Controller
 
                case 'buyaccount_':
                     $categoryId = str_replace('buyaccount_', '', $callbackData);
-
-                    // Fetch products for the category
                     $products = Product::where('category_id', $categoryId)->where('status', 1)->get();
 
                     if ($products->isEmpty()) {
