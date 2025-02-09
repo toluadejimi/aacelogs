@@ -358,7 +358,7 @@ class TelegramBotController extends Controller
 
                     $keyboard = [
                         'inline_keyboard' => [
-                            [['text' => 'Click to Buy 1', 'callback_data' => "buy$pId"]],
+                            [['text' => 'Click to Buy 1', 'callback_data' => 'buyone_' . $pId]],
                             [['text' => 'Click to buy more than 1', 'callback_data' => "buymore"]],
                         ]
                     ];
@@ -375,8 +375,110 @@ class TelegramBotController extends Controller
                     break;
 
 
+               case (preg_match('/^buyone_\d+$/', $callbackData) ? $callbackData : null):
+                   $pId = str_replace('buyone_', '', $callbackData);
+                   $balance = User::where('telegram_id', $chatId)->first()->balance;
+                   $money = number_format(User::where('telegram_id', $chatId)->first()->balance, 2);
 
-                case 'link':
+                   $pbalance = Product::where('id', $pId)->first()->price;
+                   if ($pbalance > $balance) {
+                       $keyboard = [
+                           'inline_keyboard' => [
+                               [['text' => 'Fund Wallet', 'callback_data' => 'fund']]
+                           ]
+                       ];
+                       $this->sendMessage($chatId, "Insufficient Funds | Your Bal is: ₦" . $money, $keyboard);
+                   } else {
+                       $qty = 1;
+
+                       // Get the product
+                       $product = Product::active()->whereHas('category', function ($category) {
+                           return $category->active();
+                       })->findOrFail($pId);
+
+                       if ($product->in_stock < $qty) {
+                           $this->sendMessage($chatId, "Not enough stock available. Only {$product->in_stock} quantity left");
+                       }
+
+                       $amount = ($product->price * $qty);
+
+                       // Get the user ID from Telegram ID
+                       $user = User::where('telegram_id', $chatId)->first();
+                       if (!$user) {
+                           $this->sendMessage($chatId, "User not found!");
+                           return;
+                       }
+                       $user_id = $user->id;
+
+                       // Create order
+                       $order = new Order();
+                       $order->user_id = $user_id;
+                       $order->total_amount = $amount;
+                       $order->save();
+
+                       // Create deposit
+                       $data = new Deposit();
+                       $data->user_id = $user_id;
+                       $data->order_id = $order->id;
+                       $data->method_code = "250";
+                       $data->method_currency = "NGN";
+                       $data->amount = $amount;
+                       $data->charge = 0;
+                       $data->rate = 0;
+                       $data->final_amo = $amount;
+                       $data->btc_amo = 0;
+                       $data->btc_wallet = "";
+                       $data->trx = getTrx();
+                       $data->save();
+
+                       $unsoldProductDetails = $product->unsoldProductDetails;
+                       $orderedItems = "";
+
+                       for ($i = 0; $i < $qty; $i++) {
+                           if (!isset($unsoldProductDetails[$i])) {
+                               continue;
+                           }
+
+                           $item = new OrderItem();
+                           $item->order_id = $order->id;
+                           $item->product_id = $product->id;
+                           $item->product_detail_id = $unsoldProductDetails[$i]->id;
+                           $item->price = $product->price;
+                           $item->save();
+
+                           $orderedItems .= "🔹 *Item:* " . $product->name . "\n";
+                           $orderedItems .= "   🆔 *Detail ID:* " . $unsoldProductDetails[$i]->id . "\n";
+                           $orderedItems .= "   💰 *Price:* ₦" . number_format($product->price, 2) . "\n\n";
+                       }
+
+                       // Create Telegram keyboard
+                       $keyboard = [
+                           'inline_keyboard' => [
+                               [['text' => 'Home', 'callback_data' => '/start']],
+                               [['text' => 'Buy Accounts', 'callback_data' => 'buy']],
+                               [['text' => 'My Orders', 'callback_data' => 'orders']],
+                               [['text' => 'Fund Wallet', 'callback_data' => 'fund']],
+                               [['text' => 'My Profile', 'callback_data' => 'profile']]
+                           ]
+                       ];
+
+                       // Send order confirmation message with full details
+                       $this->sendMessage(
+                           $chatId,
+                           "✅ *Order Successful!* \n\n" .
+                           "📌 *Order ID:* " . $order->id . "\n" .
+                           "🛍️ *Total Quantity:* $qty \n" .
+                           "📦 *Ordered Items:*\n" . $orderedItems ,
+                           $keyboard
+                       );
+                   }
+
+
+                   break;
+
+
+
+            case 'link':
                 $this->sendMessage($chatId, "Enter your Email on Acelogstore.com");
                 break;
 
