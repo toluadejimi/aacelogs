@@ -114,7 +114,7 @@ class TelegramBotController extends Controller
                $new_user = new User();
                $new_user->email = $matches[0];
                $new_user->telegram_id = $chatId;
-               $new_user->username = $username;
+               $new_user->username = $username ?? $chatId;
                $new_user->save();
 
                return $this->sendMessage($chatId,  $matches[0]. " Successfully Registred on AcelogBot");

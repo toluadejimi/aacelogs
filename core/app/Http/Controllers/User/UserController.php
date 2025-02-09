@@ -369,6 +369,20 @@ class UserController extends Controller
 
     }
 
+    protected function sendMessage($chatId, $text, $keyboard = null)
+    {
+        $data = [
+            'chat_id' => $chatId,
+            'text' => $text,
+            'parse_mode' => 'HTML',
+        ];
+
+        if ($keyboard) {
+            $data['reply_markup'] = json_encode($keyboard);
+        }
+
+        file_get_contents("https://api.telegram.org/bot" . $this->telegramToken . "/sendMessage?" . http_build_query($data));
+    }
 
     public function e_fund(request $request){
 
@@ -399,7 +413,13 @@ class UserController extends Controller
             Deposit::where('trx', $request->order_id)->update(['status'=> 1]);
         }
 
+       $tid =  User::where('email', $request->email)->first()->telegram_id ?? null;
 
+        if($tid != null){
+            $chatId =  User::where('email', $request->email)->first()->telegram_id;
+            $this->sendMessage($chatId, "Your Account has been funded with | ₦".$request->amount);
+
+        }
 
 
         return response()->json([
