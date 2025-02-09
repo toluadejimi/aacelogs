@@ -204,6 +204,15 @@ class TelegramBotController extends Controller
             case 'resolve':
                 $this->sendMessage($chatId, "Enter your Account No to resolve a transaction.");
                 break;
+
+            case 'link':
+                $this->sendMessage($chatId, "Enter your Email on Acelogstore. Ex- Link -johndoe@email.com");
+                break;
+
+            case 'register':
+                $this->sendMessage($chatId, "Enter your Email to register. Ex- Register -johndoe@email.com");
+                break;
+
             case 'status':
                 $this->sendMessage($chatId, "Enter your transaction reference to check status.");
                 break;
