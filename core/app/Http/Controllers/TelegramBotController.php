@@ -446,7 +446,7 @@ class TelegramBotController extends Controller
                                $item->price = $product->price;
                                $item->save();
 
-                               $dtails = ProductDetail::where('id', $unsoldProductDetails[$i]->id)->details;
+                               $dtails = ProductDetail::where('id', $unsoldProductDetails[$i]->id)->first()->details;
                                $orderedItems .= "    *Order Details:* " . $dtails . "\n";
                            }
 
