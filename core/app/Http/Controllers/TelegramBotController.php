@@ -269,8 +269,12 @@ class TelegramBotController extends Controller
                 break;
 
 
-               case 'buyaccount_'.$callbackData:
+            case 'buyaccount_':
+                if (strpos($callbackData, 'buyaccount_') === 0) {
+                    // Remove 'buyaccount_' from the beginning of the callback data to get the category ID
                     $categoryId = str_replace('buyaccount_', '', $callbackData);
+
+                    // Fetch products for the selected category
                     $products = Product::where('category_id', $categoryId)->where('status', 1)->get();
 
                     if ($products->isEmpty()) {
@@ -283,11 +287,14 @@ class TelegramBotController extends Controller
                         $keyboardButtons[] = [['text' => $product->name, 'callback_data' => 'product_' . $product->id]];
                     }
 
+                    // Create the inline keyboard for product selection
                     $keyboard = [
                         'inline_keyboard' => $keyboardButtons
                     ];
 
+                    // Send a message to prompt the user to select a product
                     $this->sendMessage($chatId, "Select a product to purchase:", $keyboard);
+                }
                 break;
 
 
