@@ -81,7 +81,7 @@ class TelegramBotController extends Controller
             return $this->sendMessage($chatId, "Enter your Account No to resolve a transaction.");
         }
 
-        if (strpos($text, 'buyaccount') !== false) {
+        if (strpos($text, 'buy') !== false) {
             $categories = Category::latest()->where('status', 1)->get();
 
             $keyboardButtons = [];
@@ -212,7 +212,7 @@ class TelegramBotController extends Controller
 
         $keyboard = [
             'inline_keyboard' => [
-                [['text' => 'Buy Accounts', 'callback_data' => 'buyaccount']],
+                [['text' => 'Buy Accounts', 'callback_data' => 'buy']],
                 [['text' => 'My Orders', 'callback_data' => 'orders']],
                 [['text' => 'Fund Wallet', 'callback_data' => 'fund']],
                 [['text' => 'My Profile', 'callback_data' => 'profile']]
