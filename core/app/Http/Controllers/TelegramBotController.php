@@ -293,7 +293,8 @@ class TelegramBotController extends Controller
                 case (preg_match('/^product_\d+$/', $callbackData) ? $callbackData : null):
                     $balance = User::where('telegram_id', $chatId)->first()->balance;
                     $money = number_format(User::where('telegram_id', $chatId)->first()->balance, 2);
-                    $pbalance = Product::where('id', $callbackData)->first()->price;
+                    $pId = str_replace('product_', '', $callbackData);
+                    $pbalance = Product::where('id', $pId)->first()->price;
 
                     if($pbalance > $balance){
                         $keyboard = [
