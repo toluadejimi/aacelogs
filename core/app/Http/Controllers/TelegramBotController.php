@@ -269,7 +269,7 @@ class TelegramBotController extends Controller
                 break;
 
 
-               case 'buyaccount_':
+               case 'buyaccount_'.$callbackData:
                     $categoryId = str_replace('buyaccount_', '', $callbackData);
                     $products = Product::where('category_id', $categoryId)->where('status', 1)->get();
 
