@@ -447,7 +447,8 @@ class TelegramBotController extends Controller
                                $item->save();
 
                                $dtails = ProductDetail::where('id', $unsoldProductDetails[$i]->id)->first()->details;
-                               $orderedItems .= "    *Order Details:* " . $dtails . "\n";
+                               User::where('telegram_id', $chatId)->decrement('balance', $amount);
+                               ProductDetail::where('id', $unsoldProductDetails[$i]->id)->update(['is_sold' => 1]);
                            }
 
                            // Create Telegram keyboard
@@ -466,7 +467,7 @@ class TelegramBotController extends Controller
                                $chatId,
                                "✅ *Order Successful!* \n\n" .
                                "📌 *Order ID:* " . $order->id . "\n" .
-                               "📦 *Ordered Items:*\n" . $orderedItems ,
+                               "📦 *Ordered Items:*\n" . $dtails ,
                                $keyboard
                            );
 
