@@ -355,15 +355,16 @@ class TelegramBotController extends Controller
                         $pamount = number_format($product->price, 2);
                         $stock = number_format(ProductDetail::where('product_id', $pId)->where('is_sold', 0)->count(), 2);
 
-                        $this->sendMessage($chatId,
+                    $this->sendMessage($chatId,
 
-                            "Product Name: $product->name  \n\n"
-                            . "Amount: ₦$pamount\n\n"
-                            . "Available Stock: $stock\n\n"
-                            . "To buy more than 1 of this Product reply with | Item = $pId & Qty = 2\n\n"
-                            . "To buy one this Product reply with | Item = $pId \n\n"
+                        "Product Name: $product->name  \n\n"
+                        . "Amount: ₦$pamount\n\n"
+                        . "Description: " . $product->description . "\n\n"
+                        . "Available Stock: $stock\n\n"
+                        . "To buy more than 1 of this Product reply with | Item = $pId & Qty = 2\n\n"
+                        . "To buy one this Product reply with | Item = $pId \n\n"
 
-                        );
+                    );
 
 
                     break;
@@ -407,3 +408,20 @@ class TelegramBotController extends Controller
         file_get_contents("https://api.telegram.org/bot" . $this->telegramToken . "/sendMessage?" . http_build_query($data));
     }
 }
+
+
+//$balance = User::where('telegram_id', $chatId)->first()->balance;
+//$money = number_format(User::where('telegram_id', $chatId)->first()->balance, 2);
+//
+//$pbalance = Product::where('id', $pId)->first()->price;
+//if($pbalance > $balance){
+//    $keyboard = [
+//        'inline_keyboard' => [
+//            [['text' => 'Fund Wallet', 'callback_data' => 'fund']]
+//        ]
+//    ];
+//    $this->sendMessage($chatId, "Insufficient Funds | Your Bal is: ₦".$money, $keyboard);
+//}else{
+//
+//
+//    $this->sendMessage($chatId, "Insufficient Funds | Your Bal is: ₦".$money, $keyboard);
