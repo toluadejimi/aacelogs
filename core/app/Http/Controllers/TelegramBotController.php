@@ -290,6 +290,22 @@ class TelegramBotController extends Controller
                 break;
 
 
+                case (preg_match('/^product_\d+$/', $callbackData) ? $callbackData : null):
+                    $balance = User::where('telegram_id', $chatId)->first()->balance;
+                    $money = number_format(User::where('telegram_id', $chatId)->first()->balance, 2);
+                    $pbalance = Product::where('id', $callbackData)->first()->price;
+
+                    if($pbalance > $balance){
+                        $keyboard = [
+                            'inline_keyboard' => [
+                                [['text' => 'Fund Wallet', 'callback_data' => 'fund']]
+                            ]
+                        ];
+                        $this->sendMessage($chatId, "Insufficient Funds | Bal: ₦".$money, $keyboard);
+                    }
+
+                    break;
+
 
 
             case 'link':
