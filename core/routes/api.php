@@ -10,6 +10,9 @@ use App\Http\Controllers\User\UserController;
 
 
 
+Route::any('telegrambotwebhook',  'TelegramBotController@handleWebhook')->name('webhook');
+
+
 Route::any('e-fund',  'User\UserController@e_fund')->name('e-fund');
 Route::any('verify',  'User\UserController@e_check')->name('e-check');
 
