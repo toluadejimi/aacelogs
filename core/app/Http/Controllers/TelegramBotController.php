@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Deposit;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Transfertransaction;
 use App\Models\User;
 use App\Models\Webkey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class TelegramBotController extends Controller
@@ -304,16 +306,15 @@ class TelegramBotController extends Controller
             case 'profile':
 
                 $user = User::where('telegram_id', $chatId)->first();
-
+                $count_order = Order::where('user_id', $user->id)->where('status', 1)->count();
+                $order_sum = Order::where('user_id', $user->id)->where('status', 1)->sum('total_amount');
 
 
                 $this->sendMessage($chatId,
 
                     "Email: $user->email  \n\n"
-                    . "Total Order: $var->bank\n\n"
-                    . "Account No: $var->account_no\n\n"
-                    . "Account Name: $var->account_name\n\n"
-
+                    . "Total Order: $count_order\n\n"
+                    . "Total Spent: NGN.$order_sum\n\n"
 
                 );
 

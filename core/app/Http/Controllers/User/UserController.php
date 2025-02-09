@@ -308,8 +308,6 @@ class UserController extends Controller
             ->paginate(getPaginate());
 
 
-
-
         $count_order = Order::where('user_id', Auth::id())->where('status', 1)->count();
         $order_sum = Order::where('user_id', Auth::id())->where('status', 1)->sum('total_amount');
 
