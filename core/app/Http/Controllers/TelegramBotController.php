@@ -168,9 +168,14 @@ class TelegramBotController extends Controller
             curl_close($curl);
             $var = json_decode($var);
 
-            $res  = json_encode($var);
+            return $this->sendMessage($chatId,
 
-            return $this->sendMessage($chatId, $res);
+                "Transfer Exactly $text to avoid delays"
+                . "Bank: $var->bank'\n\n"
+                . "Account No: $var->account_no'\n\n"
+                . "Account Name: $var->account_name'\n\n"
+
+            );
 
         }
 
