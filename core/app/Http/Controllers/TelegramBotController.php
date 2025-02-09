@@ -27,8 +27,7 @@ class TelegramBotController extends Controller
             $text = $message['text'] ?? '';
             $username = $update['message']['from']['username'] ?? null;
 
-
-            $this->autoReply($chatId, $text);
+            $this->autoReply($chatId, $text, $username);
         }
 
         if (isset($update['callback_query'])) {
