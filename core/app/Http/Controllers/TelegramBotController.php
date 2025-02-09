@@ -52,7 +52,7 @@ class TelegramBotController extends Controller
 
         }
 
-        if ($text === '/hello') {
+        if ($text === 'hello') {
 
             $tid = User::where('telegram_id', $chatId)->first() ?? null;
             if($tid == null){
