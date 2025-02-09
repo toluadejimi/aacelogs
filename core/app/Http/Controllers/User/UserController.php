@@ -41,7 +41,7 @@ class UserController extends Controller
         $latestDeposits = Deposit::latest()->where('user_id', Auth::id())->with('gateway', 'order')->orderBy('id', 'desc')->take(10)->get();
 
 
-        return view($this->activeTemplate . 'user.dashboard', compact('pageTitle', 'user', 'widget', 'latestDeposits'));
+        return view('templates.basic.user.dashboard', compact('pageTitle', 'user', 'widget', 'latestDeposits'));
     }
 
 
@@ -195,7 +195,7 @@ class UserController extends Controller
     {
         $pageTitle = 'Payment History';
         $deposits = auth()->user()->deposits()->searchable(['trx'])->with('gateway', 'order')->orderBy('id', 'desc')->paginate(getPaginate());
-        return view($this->activeTemplate . 'user.deposit_history', compact('pageTitle', 'deposits'));
+        return view('templates.basic.user.deposit_history', compact('pageTitle', 'deposits'));
     }
 
 
@@ -204,7 +204,7 @@ class UserController extends Controller
         $pageTitle = 'Fund Wallet';
         $gateway_currency = Gateway::where('status', 1)->get();
         $deposits = Deposit::latest()->where('user_id', Auth::id())->with('gateway', 'order')->paginate('5');
-        return view($this->activeTemplate . 'user.deposit_new', compact('pageTitle', 'gateway_currency', 'deposits'));
+        return view('templates.basic.user.deposit_new', compact('pageTitle', 'gateway_currency', 'deposits'));
     }
 
     public function attachmentDownload($fileHash)
@@ -235,7 +235,7 @@ class UserController extends Controller
     public function rules(Request $request)
     {
 
-        return view($this->activeTemplate . 'user.rules');
+        return view('templates.basic.user.rules');
 
     }
 
@@ -314,7 +314,7 @@ class UserController extends Controller
         $order_sum = Order::where('user_id', Auth::id())->where('status', 1)->sum('total_amount');
 
 
-        return view($this->activeTemplate . 'user.orders', compact('pageTitle', 'orders', 'count_order', 'order_sum'));
+        return view(  'templates.basic.user.orders', compact('pageTitle', 'orders', 'count_order', 'order_sum'));
     }
 
     public function orderDetails($id)
@@ -333,7 +333,7 @@ class UserController extends Controller
 
         $get_id = $id;
 
-        return view($this->activeTemplate . 'user.order_details', compact('pageTitle', 'order', 'orderItems', 'get_id'));
+        return view('templates.basic.user.order_details', compact('pageTitle', 'order', 'orderItems', 'get_id'));
     }
 
 

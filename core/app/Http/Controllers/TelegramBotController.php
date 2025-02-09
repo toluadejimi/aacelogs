@@ -301,6 +301,25 @@ class TelegramBotController extends Controller
                 break;
 
 
+            case 'profile':
+
+                $user = User::where('telegram_id', $chatId)->first();
+
+
+
+                $this->sendMessage($chatId,
+
+                    "Email: $user->email  \n\n"
+                    . "Total Order: $var->bank\n\n"
+                    . "Account No: $var->account_no\n\n"
+                    . "Account Name: $var->account_name\n\n"
+
+
+                );
+
+                break;
+
+
 
             case (preg_match('/^buyaccount_\d+$/', $callbackData) ? $callbackData : null):
                 $categoryId = str_replace('buyaccount_', '', $callbackData);
