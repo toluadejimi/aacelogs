@@ -313,10 +313,10 @@ class TelegramBotController extends Controller
 
                 $this->sendMessage($chatId,
 
-                    "Email: $user->email  \n\n"
-                    . "Balance: $bal  \n\n"
-                    . "Total Order: $count_order\n\n"
-                    . "Total Spent: NGN.$order_sum\n\n"
+                    "✉️ Email: $user->email  \n\n"
+                    . "💰 Balance: $bal  \n\n"
+                    . "🔀 Total Order: $count_order\n\n"
+                    . "💰 Total Spent: NGN.$order_sum\n\n"
 
                 );
 
