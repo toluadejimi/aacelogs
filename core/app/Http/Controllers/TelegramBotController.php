@@ -96,12 +96,12 @@ class TelegramBotController extends Controller
                $new_user->username = $username;
                $new_user->save();
 
-               return $this->sendMessage($chatId,  $matches[0]. "Successfully Registred on AcelogBot");
+               return $this->sendMessage($chatId,  $matches[0]. " Successfully Registred on AcelogBot");
 
 
            }else{
                User::where('email', $matches[0])->update(['telegram_id' => $chatId ]) ?? null;
-               return $this->sendMessage($chatId, $matches[0]. "Successfully Linked with AcelogBot");
+               return $this->sendMessage($chatId, $matches[0]. " Successfully Linked with AcelogBot");
            }
 
         }
@@ -215,7 +215,7 @@ class TelegramBotController extends Controller
             ]
         ];
 
-        $this->sendMessage($chatId, "Welcome to AcelogStore |  | Choose an option:", $keyboard);
+        $this->sendMessage($chatId, "Welcome to AcelogStore  | Choose an option:", $keyboard);
     }
 
     protected function handleCallbackQuery($callbackQuery)
