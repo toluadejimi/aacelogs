@@ -355,15 +355,21 @@ class TelegramBotController extends Controller
                         $pamount = number_format($product->price, 2);
                         $stock = number_format(ProductDetail::where('product_id', $pId)->where('is_sold', 0)->count(), 2);
 
+
+                    $keyboard = [
+                        'inline_keyboard' => [
+                            [['text' => 'Click to Buy 1', 'callback_data' => "buy$pId"]],
+                            [['text' => 'Click to buy more than 1', 'callback_data' => "buymore"]],
+                        ]
+                    ];
+
                     $this->sendMessage($chatId,
 
                         "Product Name: $product->name  \n\n"
                         . "Amount: ₦$pamount\n\n"
                         . "Available Stock: $stock\n\n"
-                        . "To buy more than 1 of this Product reply with | Item = $pId & Qty = 2\n\n"
-                        . "To buy one this Product reply with | Item = $pId \n\n"
 
-                    );
+                    ,$keyboard);
 
 
                     break;
