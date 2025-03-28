@@ -159,8 +159,6 @@ class TelegramBotController extends Controller
             }
 
             $user = User::where('telegram_id', $chatId)->first();
-
-
             $trx_id = "TRXTG".random_int(000000, 999999);
             $trx = new Deposit();
             $trx->trx = $trx_id;
@@ -171,7 +169,6 @@ class TelegramBotController extends Controller
             $trx->save();
 
             $pt = "Telegram";
-
             $key = env('WEBKEY');
             $curl = curl_init();
 
