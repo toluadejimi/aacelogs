@@ -400,8 +400,6 @@ class PaymentController extends Controller
 
 
 
-
-
             if (!$isManual) {
                 $adminNotification = new AdminNotification();
                 $adminNotification->user_id = $user->id;

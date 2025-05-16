@@ -11,8 +11,16 @@
                         @lang('You have to pay')
                     </li>
 
+                    @php if($deposit->final_amo > 11000){
+                            $amount = $deposit->final_amo + 300;
+                         } else{
+                            $amount = $deposit->final_amo + 100;
+                         }
+                    @endphp
+
                     <li class="text-center px-0">
-                        <h6>{{__($deposit->method_currency)}} {{showAmount($deposit->final_amo)}} </h6>
+                        <h6>{{__($deposit->method_currency)}} {{showAmount($amount)}} </h6>
+                        <span style="font-size: 10px">Bank charges apply</span>
                     </li>
 
 
