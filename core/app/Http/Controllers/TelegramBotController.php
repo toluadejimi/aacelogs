@@ -536,18 +536,3 @@ class TelegramBotController extends Controller
 }
 
 
-//$balance = User::where('telegram_id', $chatId)->first()->balance;
-//$money = number_format(User::where('telegram_id', $chatId)->first()->balance, 2);
-//
-//$pbalance = Product::where('id', $pId)->first()->price;
-//if($pbalance > $balance){
-//    $keyboard = [
-//        'inline_keyboard' => [
-//            [['text' => 'Fund Wallet', 'callback_data' => 'fund']]
-//        ]
-//    ];
-//    $this->sendMessage($chatId, "Insufficient Funds | Your Bal is: ₦".$money, $keyboard);
-//}else{
-//
-//
-//    $this->sendMessage($chatId, "Insufficient Funds | Your Bal is: ₦".$money, $keyboard);
